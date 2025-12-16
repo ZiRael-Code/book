@@ -1,0 +1,9 @@
+{
+  "name": "books",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo containing book example projects and starter kits",
+  "workspaces": [
+    "packages/*"
+  ]
+}
