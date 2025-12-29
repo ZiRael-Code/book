@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML, CSS & Tailwind - Web Reader</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#ffffff",
+                        foreground: "#0f172a",
+                        muted: "#475569",
+                        border: "#e2e8f0",
+                        primary: "#2563eb",
+                        primaryForeground: "#ffffff",
+                        accent: "#0ea5e9",
+                        danger: "#dc2626"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "sans-serif"],
+                        mono: ["Roboto Mono", "ui-monospace", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.10/lib/index.min.js"></script>
+
+    <link rel="stylesheet" href="./styles/input.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body class="min-h-screen bg-white">
+<div class="flex h-screen">
+    <aside class="w-80 border-r border-slate-200 bg-white flex flex-col">
+        <header class="p-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">B</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-900">HTML/CSS Book</h1>
+                    <p class="text-sm text-slate-600">Beginner's Journey</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="px-6 py-4 border-b border-slate-200">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-slate-600">Your Progress</span>
+                <span class="text-sm text-blue-600 font-medium">33%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill w-1/3"></div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto p-4">
+            <h2 class="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-3">Table of Contents</h2>
+            <div class="space-y-1" id="toc-list">
+                <a href="#read-me-first" class="nav-item active">
+                    <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium">0</div>
+                    <span>Read Me First</span>
+                </a>
+                <a href="#project-setup" class="nav-item">
+                    <div class="w-6 h-6 rounded-full bg-gray-100 text-slate-600 flex items-center justify-center text-sm font-medium">1</div>
+                    <span>Project Setup & Tools</span>
+                </a>
+                <a href="#html-header" class="nav-item">
+                    <div class="w-6 h-6 rounded-full bg-gray-100 text-slate-600 flex items-center justify-center text-sm font-medium">2</div>
+                    <span>Building HTML Header</span>
+                </a>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-200">
+                <h2 class="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-3">Resources</h2>
+                <a href="#" class="nav-item">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    <span>Code Examples</span>
+                </a>
+
+                <a href="../export/book.pdf" class="nav-item" target="_blank" download="HTML-CSS-Book.pdf">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Export PDF</span>
+                </a>
+            </div>
+        </nav>
+
+        <footer class="p-4 border-t border-slate-200">
+            <div class="text-center text-sm text-slate-600">
+                <p>Made with ❤️ for learners</p>
+            </div>
+        </footer>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto">
+        <div class="max-w-4xl mx-auto">
+            <header class="sticky top-0 z-10 bg-white/90 backdrop-blur-sm border-b border-slate-200 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-slate-900" id="chapter-title">Read Me First</h1>
+                        <p class="text-slate-600 mt-2">Welcome to your learning journey. Let's start by understanding how this book works.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="code-link">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                            View Code
+                        </a>
+                        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                            Next Chapter →
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <article class="chapter-content" id="chapter-content">
+
+
+
+
+
+
+
+            </article>
+
+            <footer class="border-t border-slate-200 mt-12 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <button class="px-4 py-2 border border-slate-200 hover:bg-gray-50 text-slate-600 rounded-lg font-medium transition-colors">
+                        ← Previous
+                    </button>
+                    <div class="text-sm text-slate-600">
+                        Chapter 0 of 7 • Estimated time: 10 minutes
+                    </div>
+                    <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                        Next Chapter →
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<!--<script type="module">-->
+<!--    document.querySelectorAll('.nav-item').forEach(item => {-->
+<!--        item.addEventListener('click', function(e) {-->
+<!--            e.preventDefault();-->
+<!--            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));-->
+<!--            this.classList.add('active');-->
+
+<!--            const chapterTitle = this.querySelector('span').textContent;-->
+<!--            document.getElementById('chapter-title').textContent = chapterTitle;-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<script type="module" src="./scripts/app.js"></script>
+</body>
+</html>

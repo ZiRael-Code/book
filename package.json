@@ -7,7 +7,34 @@
     "packages/*"
   ],
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18"
-  }
+    "@tailwindcss/typography": "0.5.19",
+    "autoprefixer": "10.4.23",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --watch",
+    "dev": "concurrently \"npm run dev:css\" \"npx live-server packages/book1-portfolio/reader/\"",
+    "build:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --minify",
+    "build:pdf": "node packages/book1-portfolio/reader/scripts/build-pdf.js",
+    "build": "npm run build:css && npm run build:pdf"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "md-to-pdf": "^5.2.0",
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atopwebtechnologies/books.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atopwebtechnologies/books/issues"
+  },
+  "homepage": "https://github.com/atopwebtechnologies/books#readme"
 }
