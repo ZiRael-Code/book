@@ -4,7 +4,7 @@ const path = require('path');
 async function buildPDF() {
     console.log('📚 Building PDF from chapters...\n');
 
-    const chaptersDir = path.join(__dirname, '..', 'chapters');
+    const chaptersDir = path.join(__dirname, '..', "..", 'chapters');
     const exportDir = path.join(__dirname, '..', 'export');
 
     await fs.mkdir(exportDir, { recursive: true });
@@ -47,7 +47,12 @@ async function buildPDF() {
         console.log(`✓ Created combined markdown: ${combinedPath}`);
 
         try {
-            const mdToPdf = require('md-to-pdf');
+            const { mdToPdf } = require(
+  require.resolve("md-to-pdf", {
+    paths: [process.cwd()]
+  })
+);
+
 
             const pdf = await mdToPdf({ content: fullBook }, {
                 dest: path.join(exportDir, 'book.pdf'),
