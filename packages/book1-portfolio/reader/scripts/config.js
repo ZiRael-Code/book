@@ -63,11 +63,38 @@ export const CONFIG = {
         {
             id: "color-contrast-and-tokens",
             title: "Color, Contrast and Tokens",
-            order: 5,
+            order: 6,
             path: "/chapters/06-color-contrast-and-tokens.md",
             codePath: "../code/03-hero-section/",
             time: "25 min",
-            subtitle: ""
-        }
+            subtitle: "Choosing colors"
+        },
+        {
+            id: "typography",
+            title: "Typography",
+            order: 7,
+            path: "/chapters/07-typography.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Choosing fonts"
+        },
+        {
+            id: "positioning-and-flex",
+            title: "Positioning and Flex",
+            order: 8,
+            path: "/chapters/08-positioning-and-flex.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Flex Layout"
+        },
+        {
+            id: "deep-dive-flex",
+            title: "Deep Dive into Flexbox",
+            order: 9,
+            path: "/chapters/09-deep-dive-flexbox.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Learn to style using flexbox"
+        },
     ]
 };
