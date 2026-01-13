@@ -16,13 +16,13 @@ export const CONFIG = {
             subtitle: "Welcome to your learning journey. Let's start by understanding how this book works."
         },
         {
-            id: "project-setup",
-            title: "Project Setup & Tools",
+            id: "introduction-to-html",
+            title: "Introduction to HTML",
             order: 1,
-            path: "../chapters/01-project-setup.md",
+            path: "../chapters/01-introduction-to-html.md",
             codePath: "../code/01-project-setup/",
             time: "15 min",
-            subtitle: "Set up your development environment and tools"
+            subtitle: "Introduction to HTML"
         },
         {
             id: "html-header",
