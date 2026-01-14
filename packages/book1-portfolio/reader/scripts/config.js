@@ -96,5 +96,32 @@ export const CONFIG = {
             time: "25 min",
             subtitle: "Learn to style using flexbox"
         },
+        {
+            id: "css-grid",
+            title: "CSS Grid",
+            order: 10,
+            path: "/chapters/10-css-grid.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Learn to create 2d layouts"
+        },
+        {
+            id: "responsive-design",
+            title: "Responsive Design",
+            order: 11,
+            path: "/chapters/11-responsive-design.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Designing for all screen sizes"
+        },
+        {
+            id: "intro-to-tailwind",
+            title: "Intro to Tailwind",
+            order: 12,
+            path: "/chapters/12-intro-to-tailwind.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Learn the basics of tailwind"
+        },
     ]
 };
