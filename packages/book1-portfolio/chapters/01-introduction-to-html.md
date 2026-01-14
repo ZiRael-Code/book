@@ -1,7 +1,7 @@
 # Chapter 1 — The First Words: Introduction to HTML
 
 ## Personal Reasoning
-When you first open a website, When you open a website, the first thing you notice is how it looks. You see text, images, buttons, and layout structure. But the browser does not see any of that. The Browser only reads instructions and arrangements.
+When you first open a website, the first thing you notice is how it looks. You see text, images, buttons, and layout structure. But the browser does not see any of that. The Browser only reads instructions and arrangements.
 
 HTML is another way we speak to the browser.
 
