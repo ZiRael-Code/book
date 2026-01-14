@@ -28,7 +28,9 @@ HTML stands for **HyperText Markup Language**. HTML is a widely used language th
 **NO.** HTML is not a programming language. It does not run logic or perform calculations.
 
 ### What a tag is (Tag Anatomy)
-HTML uses tags to label and structure content. A tag has an opening and a closing.
+HTML uses tags to label and structure content on a webpage. A tag is written using angle brackets and usually comes in a pair: an opening tag and a closing tag. The opening tag marks where an element will begins, and the closing tag marks where it ends.
+
+The content placed between the opening and closing tags is affected by that tag and determines how the browser displays or understands the content.
 
 **Example of a tag:**
 ```html
