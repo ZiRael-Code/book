@@ -20,27 +20,27 @@ export const CONFIG = {
             title: "Introduction to HTML",
             order: 1,
             path: "../chapters/01-introduction-to-html.md",
-            codePath: "../code/01-project-setup/",
+            codePath: "../code/01-introduction-to-html/",
             time: "15 min",
             subtitle: "Introduction to HTML"
         },
         {
-            id: "html-header",
-            title: "Building HTML Header",
+            id: "link-vs-button",
+            title: "Link VS Button",
             order: 2,
-            path: "../chapters/02-html-header.md",
-            codePath: "../code/02-html-header/",
+            path: "../chapters/02-link-vs-button.md",
+            codePath: "../code/02-link-vs-button/",
             time: "20 min",
-            subtitle: "Create the header section of your portfolio"
+            subtitle: "Links vs Buttons (tiny but critical)"
         },
         {
-            id: "hero-section",
-            title: "Creating a Hero Section",
+            id: "structuring-content",
+            title: "Building Block - Structuring Content",
             order: 3,
-            path: "../chapters/03-hero-section.md",
-            codePath: "../code/03-hero-section/",
+            path: "../chapters/03-structuring-content.md",
+            codePath: "../code/03-structuring-content/",
             time: "25 min",
-            subtitle: "Create the hero section of your portfolio"
+            subtitle: "Structuring you content"
         }
     ]
 };
