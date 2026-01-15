@@ -22,7 +22,7 @@ export async function showCodeForChapter(chapter) {
         let htmlFile = '';
         let cssFile = '';
 
-        const htmlFiles = ['header.html', 'hero.html', 'index.html', 'main.html'];
+        const htmlFiles = ['introduction.html', 'hero.html', 'index.html', 'main.html'];
         for (const file of htmlFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -37,7 +37,7 @@ export async function showCodeForChapter(chapter) {
             }
         }
 
-        const cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'main.css'];
+        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'main.css'];
         for (const file of cssFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -46,14 +46,16 @@ export async function showCodeForChapter(chapter) {
                     cssCode = await response.text();
                     cssFile = file;
                     break;
+                }else {
+                    cssFiles = null
                 }
             } catch (error) {
                 // nna ehh Continue
             }
         }
-
+        let plus = `+ ${cssFile}`
         if (htmlCode) {
-            showCodeModal(`${chapter.title} (${htmlFile} + ${cssFile})`, htmlCode, cssCode);
+            showCodeModal(`${chapter.title} (${htmlFile} ${cssFiles !== null ? plus : ""})`, htmlCode, cssCode);
         } else {
             showCodeDirectory(chapter);
         }
@@ -217,7 +219,6 @@ function showCodeModal(title, htmlCode, cssCode) {
         });
     });
 
-    // Copy buttons
     modal.querySelectorAll('.copy-code-btn').forEach(button => {
         button.addEventListener('click', function() {
             const code = this.dataset.code;
