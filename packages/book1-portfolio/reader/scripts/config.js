@@ -123,5 +123,14 @@ export const CONFIG = {
             time: "25 min",
             subtitle: "Learn the basics of tailwind"
         },
+        {
+            id: "prototyping-with-tailwind",
+            title: "Rapid Prototyping with Tailwind",
+            order: 13,
+            path: "/chapters/13-prototyping-with-tailwind.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Diving deeper into Tailwind"
+        },
     ]
 };

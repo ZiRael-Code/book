@@ -4,28 +4,37 @@ By the end of this chapter, you will understand what utility-first CSS is, why T
 
 ---
 
-## Why utility-first CSS exists
 
-Traditional CSS encourages writing custom class names and styling them in separate files. This works, but it often leads to: bloated stylesheets, inconsistent spacing and colors  constant context switching between HTML and CSS and naming fatigue
+## What utility class means
 
-Utility-first CSS solves these issues.
-Instead of writing new CSS for every component, you compose designs directly in your markup using small, single-purpose classes.
-Tailwind only changes how you apply CSS.
-
----
-
-## What “utility-first” means
-
-Each class does one thing.
+A class is a `utility class` if that class does only one thing.
 
 Examples:
 
 * `p-4` → padding
 * `text-center` → text alignment
-* `bg-blue-500` → background color
+* `bg-blue-500` → background color of blue
 * `rounded-lg` → border radius
 
-You build components by combining utilities, not by inventing new class names.
+You build components by combining utilities, not by creating new class names. The difference between this and traditional CSS classes is that a CSS class can handle different things at the same time.
+For Example:
+
+```CSS
+.hero-heading {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+```
+You can see that the above css class `.hero-heading` is applying multiple styles at once as opposed to utility classes.
+
+---
+
+## Why utility-first CSS exists
+
+Traditional CSS encourages writing custom class names and styling them in separate files. This works, but it often leads to bloated stylesheets, inconsistent spacing and colors, naming fatigue and constant context switching between HTML and CSS. 
+Utility-first CSS solves these issues. So, instead of writing new CSS for every component, you can add utility classes to elements and that way, you can make changes safely without worrying about accidentally breaking another page that's using the same CSS.
+
 
 ---
 
@@ -44,13 +53,15 @@ This keeps output CSS extremely small.
 
 ## Preflight reset
 
-Tailwind includes a modern CSS reset called Preflight. It normalizes browser inconsistencies, sets sensible defaults and removes opinionated styles without killing accessibility
+Preflight is a set of base styles for Tailwind projects that are designed to smooth over cross-browser inconsistencies and make it easier for you to work within the constraints of your design system.
 
-Examples:
+Here are some of the styles applied by preflight reset:
 
-* Headings don’t come with random margins
-* Buttons inherit font styles
-* Box-sizing defaults to `border-box`
+* Border styles are reset
+* Headings are unstyled
+* Lists are unstyled
+* Images are block-level
+* Images are constrained
 
 This creates a clean baseline for layout and typography.
 
@@ -58,7 +69,7 @@ This creates a clean baseline for layout and typography.
 
 ## Design tokens in Tailwind
 
-Instead of using random utility colors, you can define semantic tokens in `tailwind.config.js`.
+Instead of using random utility colors, you can define semantic tokens in `tailwind.config.js`(just like CSS variables discussed in earlier chapters).
 
 ```js
 theme: {
@@ -75,21 +86,17 @@ theme: {
 }
 ```
 
-Now your classes become:
+You can then use them like so:
 
 * `bg-primary`
 * `text-danger`
 * `text-text`
 
-This keeps meaning consistent across the app.
-
 ---
 
 ## Spacing scale
 
-Tailwind uses a spacing scale (`1`, `2`, `4`, `6`, `8`, etc.)
-
-You can customize it to match your layout rhythm.
+Tailwind uses a spacing scale (listed below) but you can customize it to match your layout.
 
 ```js
 spacing: {
@@ -101,13 +108,16 @@ spacing: {
 }
 ```
 
-This enforces **visual consistency** and prevents random spacing decisions.
+Example:
+```HTML
+  <p className="text-md text-text">This wil have a text-size of 16px and a color of #0f172a</p>
+```
 
 ---
 
 ## Border radius tokens
 
-Just like spacing, radius should be intentional.
+You can also customize your boder-radius tokens in the same way. The default values are listed below. You can choose to customize these values according to what you're building.
 
 ```js
 borderRadius: {
@@ -116,5 +126,10 @@ borderRadius: {
   lg: "12px",
 }
 ```
+
+## Tailwind + CSS Together - When to Use Tailwind and Custom CSS
+
+Tailwind is powerful, but it is not a replacement for CSS. While Tailwind can handle the vast majority of styling needs, you may occasionally need to write raw CSS for highly specific, complex, or unusual design requirements that may not be easily achieved with just Tailwind.
+That being said, Tailwind is best used for layout, typography, spacing and responsive design. You can use CSS in your project if there's need for complex animations, complex shadows, highly unique designs, masks and advanced visuals ( mask images, custom gradients, clip paths)
 
 ---
