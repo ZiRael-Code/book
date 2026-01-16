@@ -7,6 +7,7 @@ export type RequestContext = {
   startedAt: number;
   ip: string | null;
   userAgent: string | null;
+  params: Record<string, string | undefined>;
   user?: { id: string; email: string; fullName: string };
 };
 
