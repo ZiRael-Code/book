@@ -1,34 +1,132 @@
-# Read Me First
+# 0. Read Me First — How to Use This Book
 
-Welcome to your journey into web development! This book is designed for **absolute beginners** with no prior experience.
+## Personal Reasoning
+You’ll learn by building.
 
-## How This Book Works
+This book is not meant to be read like a story. It is meant to be followed with your editor open and your browser running. Every chapter teaches one idea and applies it immediately to a real project.
 
-Each chapter follows this structure:
+By the end of the book, you will not just understand HTML, CSS, and Tailwind — you will have a complete, working portfolio site that you built step by step.
 
-1. **Concept Explanation** - Learn the theory
-2. **Code Examples** - See it in action
-3. **Hands-on Practice** - Try it yourself
-4. **Code Review** - Compare with solution
+Each chapter moves the project forward. Nothing here is theoretical for long.
 
-## What You'll Need
+---
 
-- A computer (Windows, Mac, or Linux)
-- A modern web browser (Chrome, Firefox, or Edge)
-- A text editor (VS Code recommended)
-- Internet connection (for some tools)
+## Overall Learning
+By the end of this chapter, you will understand:
 
-## Learning Approach
+- How the project is structured
+- How to work through chapters in order
+- What “Section Done” means at the end of each chapter
+- How to use the keyboard to test accessibility
+- How to verify your work before moving on
 
-We believe in **learning by doing**. You'll write code from Chapter 1 onward. Don't worry about memorizing everything—focus on understanding concepts.
+---
 
-> **Remember:** Every expert was once a beginner. Take your time, and don't hesitate to revisit chapters.
+## Explanation
+This book follows a simple rule: **build first, decorate later**.
 
-## Getting Help
+You will start with plain HTML.  
+Then you will add structure.  
+Then styling.  
+Then layout and responsiveness.
 
-If you get stuck:
-1. Check the code examples in the `/code/` folder
-2. Use the browser's developer tools (F12)
-3. Take a break and come back fresh
+Every chapter assumes you have completed the previous one. Skipping chapters will leave gaps in your understanding and in your code.
 
-Ready to begin? Let's start with setting up your development environment in the next chapter!
+At the end of each chapter, you will see a few consistent sections:
+
+- **Section Done** — what should now exist or be visible
+- **Keyboard Walkthrough** — how to test your page without a mouse
+- **Contrast Check** — whether the page is readable
+- **Ship Note** — what to verify and commit
+
+These sections exist to help you slow down and confirm your progress.
+
+---
+
+## Code Walkthrough
+We begin by setting up the project files.
+
+Create a new folder for the project and add an `index.html` file at the root.
+
+```text
+project/
+├── index.html
+├── assets/
+└── styles/
+```
+
+Inside the `styles` folder, create a `base.css` file. This file will hold global styles later.
+
+Link the CSS file in your HTML.
+
+```html
+<link rel="stylesheet" href="styles/base.css" />
+```
+
+Add a favicon file inside the `assets` folder and link it in the `<head>`.
+
+```html
+<link rel="icon" href="assets/favicon.ico" />
+```
+
+Next, include the font links for Inter and Roboto Mono in the `<head>` of your HTML file.
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono&display=swap"
+  rel="stylesheet"
+/>
+```
+
+At this stage, we are only preparing the foundation. No layout or styling is expected yet.
+
+---
+
+## Project Milestone
+You now have a basic project structure in place.
+
+You should have:
+- An `index.html` file
+- An `assets` folder for images and icons
+- A `styles` folder with a `base.css` file
+- Font links included in the document
+- A favicon linked in the `<head>`
+
+This is the starting point for everything that follows.
+
+---
+
+## Section Done
+You should be able to open `index.html` in the browser without errors.
+
+The page may look empty or plain. That is expected.
+
+What matters is that the file loads correctly and the structure is ready.
+
+---
+
+## Keyboard Walkthrough
+Press the `Tab` key after the page loads.
+
+At this stage, nothing may receive focus. That is fine.  
+There are no interactive elements yet.
+
+This walkthrough will become more meaningful in later chapters.
+
+---
+
+## Contrast Check
+There is no styling yet, but the page should still be readable.
+
+If text is invisible or the page fails to load, something is wrong with the setup.
+
+---
+
+## Ship Note
+Before moving on:
+- Confirm `index.html` opens without errors
+- Confirm `base.css` is linked correctly
+- Confirm font links are present in the `<head>`

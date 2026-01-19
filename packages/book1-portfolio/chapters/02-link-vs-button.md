@@ -66,3 +66,49 @@ Users interact with them differently
 
 
 If you use the wrong element, you break expectations for users who rely on those behaviors.
+
+
+
+## Code Walkthrough
+## Code Walkthrough
+In our project, the hero section needs a clear and descriptive way for a user to move forward. For example, a link like “View My Work” should take the user to another part of the page or to another page entirely.
+
+This is not a trigger action that changes data or submits anything.  
+It is just a navigation.
+
+
+```html
+<a href="#projects">View My Work</a>
+```
+
+This tells the browser engine that:
+- This is navigation
+- It points to the Projects section
+- It should behave like a link
+
+In future chapters we will use the `<button>` element when we build forms and interactive features for our project.
+
+## Project Milestone
+Your hero section now has a call-to-action that is semantically correct.
+
+The page still looks simple, but the meaning is right:
+- Navigation uses `<a>`
+- Actions are reserved for `<button>`
+
+## Section Done
+You should now have a clickable view-my-work link in your hero section that uses an `<a>` tag instead of a button or clickable text.
+
+## Keyboard Walkthrough
+Press the `Tab` key until the view-my-work is focused.
+
+You should see it receive focus automatically.  
+Press `Enter` to activate it and confirm it navigates correctly.
+
+## Contrast Check
+Even without final styling, the link text should be clearly visible and readable.
+
+
+## Ship Note
+Before moving on:
+- Confirm the hero Section uses `<a>`, not `<button>`
+- Confirm it has an `href`

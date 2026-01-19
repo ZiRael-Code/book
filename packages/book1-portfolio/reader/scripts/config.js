@@ -35,12 +35,21 @@ export const CONFIG = {
         },
         {
             id: "structuring-content",
-            title: "Building Block - Structuring Content",
+            title: "tructuring Content",
             order: 3,
             path: "../chapters/03-structuring-content.md",
             codePath: "../code/03-structuring-content/",
             time: "25 min",
-            subtitle: "Structuring you content"
+            subtitle: "Structuring your content"
+        },
+        {
+            id: "architectural-plan",
+            title: "Semantic HTML",
+            order: 4,
+            path: "../chapters/04-architectural-plan-semantic.md",
+            codePath: "../code/04-architectural-plan-semantic/",
+            time: "35 min",
+            subtitle: "Semantic HTML"
         }
     ]
 };
