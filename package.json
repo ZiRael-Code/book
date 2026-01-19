@@ -19,6 +19,7 @@
     "dev": "npm run dev:css",
     "build:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --minify",
     "build:pdf": "node packages/book1-portfolio/reader/scripts/build-pdf.js",
+    "serve": "npx serve packages/book1-portfolio",
     "build": "npm run build:css && npm run build:pdf"
   },
   "devDependencies": {

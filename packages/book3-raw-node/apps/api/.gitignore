@@ -1,0 +1,17 @@
+# Node
+node_modules/
+npm-debug.log*
+.yarn/
+.pnpm-store/
+
+# Env
+.env
+.env.*
+
+# Builds
+dist/
+build/
+
+# VitePress
+book/docs/.vitepress/cache/
+book/docs/.vitepress/dist/
