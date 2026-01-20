@@ -132,5 +132,14 @@ export const CONFIG = {
             time: "25 min",
             subtitle: "Diving deeper into Tailwind"
         },
+        {
+            id: "accessibility-and-seo",
+            title: "Accessibility and SEO",
+            order: 14,
+            path: "/chapters/14-accessibility-and-seo.md",
+            codePath: "../code/03-hero-section/",
+            time: "25 min",
+            subtitle: "Diving deeper into Tailwind"
+        },
     ]
 };

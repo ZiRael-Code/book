@@ -8,9 +8,9 @@ By the end of this chapter, you will understand how color works in CSS, how to u
 
 Color is one of the first things people notice on a website.
 
-Good color combinations improve readability and make the site more appealing. On the other hand, poor color choices could make text hard to read, make your website feel less professional, and confuse users.
+Good color combinations improve readability and make the site more visually appealing. On the other hand, poor color choices could make text hard to read, make your website feel less professional, and confuse users.
 
-When designing your website, don't just choose random colors, you should follow a consistent system.
+When designing your website, you shouldn't choose random colors, try to follow a consistent system.
 
 ---
 
@@ -42,7 +42,7 @@ button {
 }
 ```
 
-There's nothing inherently wrong with defining your colors this way in your stylesheet. However it becomes a problem when your website grows and becomes really large. It then becomes hard to update later and creates inconsistencies. Imagine you have a file with 800 lines of code and you're asked to change one color from #000 to #fff and now you have to go through all those lines of code and change all instances of that color, and probably do  the same for other files too. That's a lot of work!
+There's nothing inherently wrong with defining your colors this way in your stylesheet. However, it becomes a problem when your website grows and becomes really large. It then becomes hard to update later and creates inconsistencies. Imagine you have a file with 800 lines of code and you're asked to change text color from black to green and now you have to go through all those lines of code and change all instances of that color, and probably do  the same for other files too. That's a lot of work!
 This is where CSS variables come in.
 
 ---
