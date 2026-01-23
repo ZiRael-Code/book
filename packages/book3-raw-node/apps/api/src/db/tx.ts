@@ -9,7 +9,7 @@ export async function withTransaction<T> (client: PoolClient,
             await client.query("commit");
             return result;
         }catch(e) {
-            await client.query("roolback");
+            await client.query("rollback");
             throw e;
         }
     }

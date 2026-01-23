@@ -7,40 +7,49 @@ export const CONFIG = {
     },
     chapters: [
         {
-            id: "read-me-first",
+            id: "read",
             title: "Read Me First",
             order: 0,
-            path: `/chapters/00-read-me-first.md`,
-            codePath: "../code/00-read-me-first/",
+            path: `../chapters/00.00-read-me-first.md`,
+            codePath: "../code/00.00-read-me-first/",
             time: "10 min",
             subtitle: "Welcome to your learning journey. Let's start by understanding how this book works."
         },
         {
-            id: "project-setup",
-            title: "Project Setup & Tools",
+            id: "introduction-to-html",
+            title: "Introduction to HTML",
             order: 1,
-            path: "/chapters/01-project-setup.md",
-            codePath: "../code/01-project-setup/",
+            path: "../chapters/01.00-introduction-to-html.md",
+            codePath: "../code/01.00-introduction-to-html/",
             time: "15 min",
-            subtitle: "Set up your development environment and tools"
+            subtitle: "Introduction to HTML"
         },
         {
-            id: "html-header",
-            title: "Building HTML Header",
-            order: 2,
-            path: "/chapters/02-html-header.md",
-            codePath: "../code/02-html-header/",
+            id: "link-vs-button",
+            title: "Link VS Button",
+            order: 1.5,
+            path: "../chapters/01.50-link-vs-button.md",
+            codePath: "../code/01.50-link-vs-button/",
             time: "20 min",
-            subtitle: "Create the header section of your portfolio"
+            subtitle: "Links vs Buttons (tiny but critical)"
         },
         {
-            id: "hero-section",
-            title: "Creating a Hero Section",
-            order: 3,
-            path: "/chapters/03-hero-section.md",
-            codePath: "../code/03-hero-section/",
+            id: "structuring-content",
+            title: "Structuring Content",
+            order: 2,
+            path: "../chapters/02.00-structuring-content.md",
+            codePath: "../code/02.00-structuring-content/",
             time: "25 min",
-            subtitle: "Create the hero section of your portfolio"
+            subtitle: "Structuring your content"
+        },
+        {
+            id: "architectural-plan",
+            title: "Semantic HTML",
+            order: 3,
+            path: "../chapters/03.00-architectural-plan-semantic.md",
+            codePath: "../code/03.00-architectural-plan-semantic/",
+            time: "35 min",
+            subtitle: "Semantic HTML"
         },
         {
             id: "the-first-coat-of-paint",
