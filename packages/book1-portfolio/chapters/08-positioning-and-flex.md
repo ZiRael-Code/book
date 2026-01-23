@@ -14,7 +14,7 @@ Every element on a page follows something called **normal flow**. In normal flow
 
 ## When and why to break normal flow
 
-Sometimes we may may want to design something that doesn't follow the default layout like a badge on top of a card or a sticky sidebar. CSS allows you to break normal flow using the `position` property.
+Sometimes we may may want to design something that doesn't follow the default layout, like a badge on top of a card or a sticky sidebar. CSS allows you to break normal flow using the `position` property.
 
 ---
 
