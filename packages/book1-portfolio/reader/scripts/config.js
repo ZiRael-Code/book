@@ -127,8 +127,8 @@ export const CONFIG = {
             id: "intro-to-tailwind",
             title: "Intro to Tailwind",
             order: 12,
-            path: "/chapters/12-intro-to-tailwind.md",
-            codePath: "../code/03-hero-section/",
+            path: "../chapters/12-intro-to-tailwind.md",
+            codePath: "../code/12-intro-to-tailwind/",
             time: "25 min",
             subtitle: "Learn the basics of tailwind"
         },
@@ -136,8 +136,8 @@ export const CONFIG = {
             id: "prototyping-with-tailwind",
             title: "Rapid Prototyping with Tailwind",
             order: 13,
-            path: "/chapters/13-prototyping-with-tailwind.md",
-            codePath: "../code/03-hero-section/",
+            path: "../chapters/13-prototyping-with-tailwind.md",
+            codePath: "../code/13-prototyping-with-tailwind/",
             time: "25 min",
             subtitle: "Diving deeper into Tailwind"
         },
@@ -145,8 +145,8 @@ export const CONFIG = {
             id: "accessibility-and-seo",
             title: "Accessibility and SEO",
             order: 14,
-            path: "/chapters/14-accessibility-and-seo.md",
-            codePath: "../code/03-hero-section/",
+            path: "../chapters/14-accessibility-and-seo.md",
+            codePath: "../code/14-accessibility-and-seo/",
             time: "25 min",
             subtitle: "Diving deeper into Tailwind"
         },
