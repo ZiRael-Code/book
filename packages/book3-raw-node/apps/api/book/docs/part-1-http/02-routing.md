@@ -4,6 +4,9 @@ outline: deep
 
 # 2. Routing Without a Framework
 
+
+
+
 Last chapter, we built a tiny server with one job:
 
 > “If someone asks `/health`, reply: `ok`.”
@@ -51,7 +54,31 @@ Then the guard points you to the right room.
 In your API:
 - the **security guard** is the router
 - the **rooms** are your handler functions
+```ts
+          ┌────────────────────┐
+          │   Incoming Request │
+          │  (a knock at door) │
+          └─────────┬──────────┘
+                    │
+                    ▼
+        ┌──────────────────────────┐
+        │        ROUTER (Guard)     │
+        │ asks 2 questions:         │
+        │  1) Method?  (GET/POST)   │
+        │  2) Path?    (/v1/users)  │
+        └─────────┬────────────────┘
+                  │
+      ┌───────────┼───────────┬───────────┐
+      │           │           │           │
+      ▼           ▼           ▼           ▼
+┌──────────┐ ┌────────────┐ ┌──────────────┐ ┌──────────────────┐
+│ /health  │ │ /v1/users   │ │ /v1/accounts  │ │ /v1/transactions  │
+│ handler  │ │ handler     │ │ handler       │ │ handler           │
+└──────────┘ └────────────┘ └──────────────┘ └──────────────────┘
 
+(If the guard doesn’t recognize you → 404 Not Found)
+
+```
 ---
 
 ## What We’re Building
@@ -134,6 +161,8 @@ Request	pathname
 
 All query parameters are removed automatically.
 
+Routing ignores the query parameters, but your handler can still read it.
+
 This is exactly what we want for routing.
 
 ### Step 2-  Make a Route Table (A Simple List)
@@ -178,7 +207,7 @@ route.handler(req, res);
 
 That’s routing!!!!
 
-### Step 4- Stub Handlers (Keeping It Simple)
+### Step 4- Stub Handlers 
 
 At this stage, we don’t care about databases or real data yet.
 We just want each route to return something valid.
@@ -208,5 +237,44 @@ function sendJson(
 }
 ```
 
-
 Now we can reuse this function in every handler!!!!
+```ts
+Client sends:
+  GET /v1/users?limit=10
+        │
+        ▼
+┌──────────────────────────────┐
+│ Node.js server receives req  │
+│ req.method = "GET"           │
+│ req.url    = "/v1/users?..." │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Clean the URL using URL()     │
+│ pathname = "/v1/users"        │  ← query removed
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Route Table (list of rules)   │
+│ (method + path) → handler     │
+└───────────────┬──────────────┘
+                │ find match
+                ▼
+        ┌───────────────┐
+        │ Match found?   │
+        └───────┬───────┘
+                │Yes                 No
+                ▼                    ▼
+┌──────────────────────────────┐   ┌──────────────────────────┐
+│ Call handler(req, res)       │   │ sendJson(res, 404, ...)   │
+│ e.g. handleUsers()           │   │ { error: "Route not found"}│
+└───────────────┬──────────────┘   └──────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ sendJson helper returns JSON  │
+│ { "users": [] }              │
+└──────────────────────────────┘
+```
