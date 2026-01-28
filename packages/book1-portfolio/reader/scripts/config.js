@@ -19,13 +19,8 @@ export const CONFIG = {
             id: "introduction-to-html",
             title: "Introduction to HTML",
             order: 1,
-<<<<<<< HEAD
-            path: "/chapters/01-project-setup.md",
-            codePath: "../code/01-project-setup/",
-=======
             path: "../chapters/01-introduction-to-html.md",
             codePath: "../code/01-introduction-to-html/",
->>>>>>> 8668f3bd6e9ec0e458297facf967e56d6371a787
             time: "15 min",
             subtitle: "Introduction to HTML"
         },
@@ -33,13 +28,8 @@ export const CONFIG = {
             id: "link-vs-button",
             title: "Link VS Button",
             order: 2,
-<<<<<<< HEAD
-            path: "/chapters/02-html-header.md",
-            codePath: "../code/02-html-header/",
-=======
             path: "../chapters/02-link-vs-button.md",
             codePath: "../code/02-link-vs-button/",
->>>>>>> 8668f3bd6e9ec0e458297facf967e56d6371a787
             time: "20 min",
             subtitle: "Links vs Buttons (tiny but critical)"
         },
@@ -47,7 +37,6 @@ export const CONFIG = {
             id: "structuring-content",
             title: "Building Block - Structuring Content",
             order: 3,
-<<<<<<< HEAD
             path: "/chapters/03-hero-section.md",
             codePath: "../code/03-hero-section/",
             time: "25 min",
@@ -107,12 +96,5 @@ export const CONFIG = {
             time: "25 min",
             subtitle: "Learn to style using flexbox"
         },
-=======
-            path: "../chapters/03-structuring-content.md",
-            codePath: "../code/03-structuring-content/",
-            time: "25 min",
-            subtitle: "Structuring you content"
-        }
->>>>>>> 8668f3bd6e9ec0e458297facf967e56d6371a787
     ]
 };
