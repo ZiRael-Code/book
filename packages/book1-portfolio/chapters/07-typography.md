@@ -6,7 +6,7 @@ By the end of this chapter, you will understand how typography works on the web,
 
 ## Why typography matters
 
-Typography is the voice of the page. Just like body language affects how people understand you, fonts affect how users understand what they are reading. Different fonts create different feelings. Some fonts feel serious, friendly, technical or even playful. Choosing the right font is very important when building any application.
+Typography is the art of arranging text on a webpage to makeit legible and visually appealing. Just like body language affects how people understand you, fonts affect how users understand what they are reading. Different fonts create different feelings. Some fonts feel serious, friendly, technical or even playful. Choosing the right font is very important when building any application.
 
 ---
 
@@ -62,7 +62,12 @@ Google Fonts is a great platform to explore and use web fonts. You can visit htt
 
 ## Adding fonts to your HTML
 
-One way to add fonts to your HTML is by using the link tag. Google Fonts provides a `<link>` tag.
+You can addfonts to your aHTML using one of these 2 methods:
+
+* Using an online font
+* Hosting custom fonts with `@font-face`
+
+To add an online font like Google fonts to your project, you can use the `<link>` tag and then add the embed code to the href atrribute fo the `link` tag. The embed code will be provided by the online service.
 
 Example:
 
@@ -74,6 +79,16 @@ Example:
 ```
 
 This makes the fonts available to your CSS.
+
+Example:
+
+```css
+  h1{
+    font-family: 'Roboto Mono';
+  }
+```
+
+Using online fonts is easier and generally provides better performance than hosting your fonts yourself.
 
 ---
 
@@ -96,11 +111,7 @@ Preconnect allows the browser to prepare early and it improves loading speed.
 
 ### Font display swap
 
-`font-display: swap` ensures text appears immediately.
-
-If the custom font is not ready, the browser uses a fallback font and swaps later.
-
-This prevents invisible text and improves user experience.
+`font-display: swap` ensures text appears immediately. If the custom font is not ready, the browser uses a fallback font and swaps later. This prevents invisible text and improves user experience.
 
 ---
 
@@ -128,7 +139,7 @@ p {
 }
 ```
 
-Some things to remember whn choosing font size:
+Here are some things to remember whn choosing font size:
 
 * Body text should usually be 16px or larger
 * Headings should clearly scale above body text
@@ -177,10 +188,10 @@ p {
 }
 ```
 
-**A few good practices:**
+**Here are a few good practices you should keep in mind:**
 
-* Left aligned text is the easiest to read
 * Avoid centering long paragraphs
+* Left aligned text is the easiest to read
 * Use center alignment sparingly for headings or short labels
 
 ---

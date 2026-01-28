@@ -91,13 +91,11 @@ The above CSS code hides an element completely by removing it from the layout an
 
 ## The CSS Box Model
 
-Now that we know how elements are displayed, we can look at **how CSS measures and spaces them**.
+Now that we know how elements are displayed, we can look at how CSS measures and spaces them.
 
-On a web page, nothing floats freely.
-Every element is placed inside a box.
+On a web page, every element is placed inside a box forming the CSS box model.
 
-Think of HTML as building rooms in a house.
-CSS decides how big each room is and how far apart the rooms are.
+Think of HTML as building rooms in a house. CSS decides how big each room is and how far apart the rooms are.
 
 This system is called the **CSS Box Model**.
 
@@ -105,14 +103,11 @@ This system is called the **CSS Box Model**.
 
 ## The four parts of the box
 
-Each element’s box is made up of four layers, starting from the inside.
-
----
+Each element’s box is made up of four layers: content, padding, border and margin.
 
 ### Content
 
-This is the actual content of the element.
-Text, images, or child elements live here.
+This is the actual content of the element which could be text, images, or even child elements.
 
 ```css
 p {
@@ -126,7 +121,7 @@ The width applies only to the content area by default.
 
 ### Padding
 
-CSS Padding creates space **inside** the element, around the content.
+CSS Padding creates space inside the element, around the content.
 
 ```css
 p {
@@ -150,7 +145,7 @@ Borders help visualize structure, but should not be overused.
 
 ### Margin
 
-Margin creates space **outside** the element.
+Margin creates space outside the element.
 
 ```css
 p {
@@ -179,7 +174,7 @@ div {
 }
 ```
 
-The final size is larger than 200px because of the border size.
+The final size is larger than 200px because of the border size and padding.
 
 ---
 
@@ -193,7 +188,8 @@ This is where box-sizing comes in. Box-sizing defines how to calculate the width
 }
 ```
 
-When you use box sizing with the value of border-box, width includes padding and border and the element's size appears exactly as expected. It is good practice to set this rule at the start of every proect.
+When you use box sizing with the value of border-box, width and height include padding and border and the element's size appears exactly as expected. It is good practice to set this rule at the start of every project.
+
 ---
 
 ## Inspecting spacing with DevTools

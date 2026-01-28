@@ -1,0 +1,338 @@
+### health
+GET http://localhost:3000/health
+
+### ready
+GET http://localhost:3000/ready
+
+### signup
+POST http://localhost:3000/v1/auth/signup
+Content-Type: application/json
+
+{
+  "fullName": "John Smith",
+  "email": "john@atopbank.com",
+  "password": "Password123"
+}
+
+### login
+POST http://localhost:3000/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@atopbank.com",
+  "password": "Password123",
+  "remember": true
+}
+
+### refresh (paste refreshToken)
+POST http://localhost:3000/v1/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "PASTE_REFRESH_TOKEN"
+}
+
+### me (paste accessToken)
+GET http://localhost:3000/v1/me
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### logout (paste refreshToken)
+POST http://localhost:3000/v1/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "PASTE_REFRESH_TOKEN"
+}
+
+#######################################
+### KYC (Step 2 + Step 3)
+#######################################
+
+### kyc - submit profile (Step 2)
+POST http://localhost:3000/v1/kyc/profile
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{ 
+  "dob": "1999-01-01",
+  "country": "Nigeria",
+  "address": "Ibadan, Oyo State",
+  "phone": "+2348012345678"
+}
+
+
+### kyc - submit document (Step 3)
+POST http://localhost:3000/v1/kyc/document
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "docType": "NIN",
+  "fileRef": "nin-photo.png"
+}
+
+
+### kyc - status (used for pending screen)
+GET http://localhost:3000/v1/kyc/status
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+
+#######################################
+### ADMIN (Approve / Reject)
+#######################################
+
+### admin - approve user (paste USER_ID from signup/login response)
+POST http://localhost:3000/admin/v1/users/PASTE_USER_ID/approve 
+x-admin-key: supersecret
+
+
+### admin - reject user (paste USER_ID)
+POST http://localhost:3000/admin/v1/users/PASTE_USER_ID/reject
+x-admin-key: supersecret
+
+create NGN wallet
+POST http://localhost:3000/v1/accounts
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "name": "Main Wallet",
+  "currency": "NGN"
+}
+
+### create USD wallet
+POST http://localhost:3000/v1/accounts
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "name": "Dollar Wallet",
+  "currency": "USD"
+}
+
+### list accounts (dashboard balances)
+GET http://localhost:3000/v1/accounts
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+
+### topup (simulated) - fund NGN wallet
+POST http://localhost:3000/v1/topups
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "accountId": "PASTE_NGN_ACCOUNT_ID",
+  "amountMinor": 500000,
+  "idempotencyKey": "topup-1"
+}
+
+### transfer NGN wallet -> NGN wallet (internal)
+POST http://localhost:3000/v1/transfers
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "fromAccountId": "PASTE_FROM_ACCOUNT_ID",
+  "toAccountId": "PASTE_TO_ACCOUNT_ID",
+  "amountMinor": 10000,
+  "idempotencyKey": "transfer-1"
+}
+
+### list transactions (dashboard history)
+GET http://localhost:3000/v1/transactions?limit=20
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### list transactions filtered by account
+GET http://localhost:3000/v1/transactions?accountId=PASTE_ACCOUNT_ID&limit=20
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+#######################################
+### PAYEES
+#######################################
+
+### create payee (must be APPROVED)
+POST http://localhost:3000/v1/payees
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "name": "Mary Jane",
+  "email": "mary@atopbank.com"
+}
+
+### list payees
+GET http://localhost:3000/v1/payees
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### search payees
+GET http://localhost:3000/v1/payees?q=mary
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### get payee by id
+GET http://localhost:3000/v1/payees/PASTE_PAYEE_ID
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### delete payee
+DELETE http://localhost:3000/v1/payees/PASTE_PAYEE_ID
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+#######################################
+### SEND MONEY (PAYEE-BASED)
+#######################################
+
+### send money to payee
+POST http://localhost:3000/v1/send-money
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "fromAccountId": "PASTE_SOURCE_ACCOUNT_ID",
+  "payeeId": "PASTE_PAYEE_ID",
+  "amountMinor": 5000,
+  "idempotencyKey": "send-1"
+}
+
+#######################################
+### CARDS
+#######################################
+
+### issue a virtual card
+POST http://localhost:3000/v1/cards
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "brand": "VISA"
+}
+
+### list cards
+GET http://localhost:3000/v1/cards
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### get card by id
+GET http://localhost:3000/v1/cards/PASTE_CARD_ID
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### reveal card details (PAN + CVV)
+GET http://localhost:3000/v1/cards/PASTE_CARD_ID/reveal
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### block card
+POST http://localhost:3000/v1/cards/PASTE_CARD_ID/block
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### unblock card
+POST http://localhost:3000/v1/cards/PASTE_CARD_ID/unblock
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+#######################################
+### STATEMENTS
+#######################################
+
+### statement json (monthly)
+GET http://localhost:3000/v1/statements/PASTE_ACCOUNT_ID?month=2026-01
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### statement csv download
+GET http://localhost:3000/v1/statements/PASTE_ACCOUNT_ID.csv?month=2026-01
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+#######################################
+### NOTIFICATIONS
+#######################################
+
+### list notifications
+GET http://localhost:3000/v1/notifications?limit=20
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### list notifications (next page)
+GET http://localhost:3000/v1/notifications?limit=20&cursor=PASTE_NEXT_CURSOR
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### mark one as read
+POST http://localhost:3000/v1/notifications/PASTE_NOTIFICATION_ID/read
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### mark all as read
+POST http://localhost:3000/v1/notifications/read-all
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+
+#######################################
+### ADMIN KYC DASHBOARD
+#######################################
+
+### list pending kyc users
+GET http://localhost:3000/admin/v1/kyc/pending?limit=50
+x-admin-key: supersecret
+
+### view one user's kyc profile + documents
+GET http://localhost:3000/admin/v1/kyc/users/PASTE_USER_ID
+x-admin-key: supersecret
+
+### approve user
+POST http://localhost:3000/admin/v1/kyc/users/PASTE_USER_ID/approve
+x-admin-key: supersecret
+
+### reject user (with reason)
+POST http://localhost:3000/admin/v1/kyc/users/PASTE_USER_ID/reject
+x-admin-key: supersecret
+Content-Type: application/json
+
+{
+  "reason": "Document photo is blurry. Please upload a clearer image."
+}
+
+
+#######################################
+### SETTINGS
+#######################################
+
+### get profile
+GET http://localhost:3000/v1/profile
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### update profile
+PATCH http://localhost:3000/v1/profile
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "fullName": "John Smith Updated",
+  "phone": "+2348012345678",
+  "address": "Ibadan, Oyo State",
+  "avatarUrl": "https://example.com/avatar.png"
+}
+
+### change password
+POST http://localhost:3000/v1/security/change-password
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "currentPassword": "Password123",
+  "newPassword": "Password1234"
+}
+
+### list sessions
+GET http://localhost:3000/v1/security/sessions
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### revoke one session
+DELETE http://localhost:3000/v1/security/sessions/PASTE_SESSION_ID
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### get notification prefs
+GET http://localhost:3000/v1/notification-preferences
+Authorization: Bearer PASTE_ACCESS_TOKEN
+
+### update notification prefs
+PUT http://localhost:3000/v1/notification-preferences
+Authorization: Bearer PASTE_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "transfers": true,
+  "cards": false,
+  "kyc": true
+}

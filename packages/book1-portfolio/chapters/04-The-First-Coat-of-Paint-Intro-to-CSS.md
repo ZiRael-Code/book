@@ -3,13 +3,13 @@ By the end of this chapter, you'll understand basic CSS concepts like linking ex
 
 ### What CSS Is
 
-CSS means *Cascading Style Sheets*. CSS describes how HTML elements are structured on the page. To put it simply, When you build a house with HTML, HTML is like the **structure and rooms** while CSS is like the **paint and decorations** that make the house look good.
+CSS means *Cascading Style Sheets*. CSS describes how HTML elements are structured on the page. To put it simply, if you're building a house, HTML is like the **structure and rooms** while CSS is like the **paint and decorations** that make the house look good.
 
 ---
 
 ## Linking External CSS
-One way to style your HTML document is to put your CSS code in a separate file. Every css file name should end with `.css` to let the IDE and browser know that it is a CSS file.
-You can connect a CSS stylesheet to your HTML by adding a `link` tag in the `head` section with the correct css file path. 
+One way to style your HTML document is to put your CSS code in a separate file. Every CSS file name should end with `.css` to let the IDE and browser know that it is a CSS file.
+You can connect a CSS stylesheet to your HTML by adding a `link` tag in the `head` section with the correct CSS file path. 
 Follow the instructions below to link your first CSS style sheet to your already existing html file.
 
 * Create a folder named `styles' 
@@ -58,6 +58,7 @@ CSS selectors are used to specify which HTML elements you want to style. For exa
 
 Selectors generally target an attribute value, such as an id or class value, or target the type of element, such as ```<h1>``` or ```<p>```.
 Selectors are followed with curly brackets, {}, the styles to be applied to the selected element are then written within the curly braces. 
+
 CSS selectors are divided into five:
 
 * Simple selectors (select elements based on name, id, class)
@@ -94,6 +95,7 @@ A class selector styles all elements that have the same class name. When trying 
   color: green;
 }
 ```
+Now, the `h3` and `p` tags will have text color of green.
 
 Since different elements can have the same class name, you can choose to select only a type of element with a given class name. Let's modify the previous example.
 
@@ -102,11 +104,11 @@ p.intro {
   color: green;
 }
 ```
-Now, only the p element with class name of `intro` is going to have a text color of green.
+Now, only p elements with class name of `intro` is going to have a text color of green.
 
 
 **ID selector**
-An id selector styles the element wiith the specified ID. IDs are unique and so each ID should appear only once in the HTML. This means that you cannot use the same id for more than one element. An id cannot start with a number. When trying to select an element by its id, you use `#` followed by the id.
+An id selector styles the element wiith the specified ID. IDs are unique and so each ID should appear only once in the HTML. This means that you cannot use the same id for more than one element. Justlike classnames, an id cannot start with a number. When trying to select an element by its id, you use `#` followed by the id.
 
 ```html
 <p id="main">Hello</p>
@@ -130,7 +132,7 @@ When you write the code below, every text element on the page will be aligned ce
 }
 ```
 
-You can group different HTML elements by using the syntax below:
+You can style different HTML elements together by using the syntax below:
 
 ```css
 h1, section, div{
@@ -148,15 +150,18 @@ All h1, section and div tags will have the above styles applied to them.
 **Cascade** means that if two rules are applied to the same element, the one that is written last will be applied to that element. It is like paint layers. If you paint a wall red then paint over it with blue, the wall looks blue.
 
 **Specificity** means some selectors are stronger than others.
+
 Here is a brief on how browsers decide which style to use when there is a conflict:
 
-* Inline styles (applied right on an element) are the strongest.
+* Inline styles (applied right on an element in the HTMLcode) are the strongest.
 * An ID selector is stronger than a class selector.
 * A class selector is stronger than a simple element selector.
 
-For example, if a paragraph has both a class and an ID, and both have different colors, the ID’s color will win because ID selectors have higher importance.
+For example, if a paragraph has both a class and an ID, and both apply different colors, the ID’s color will win because ID selectors have higher importance.
 
-**Note: Order only matters when specificity is the same. So if a class elector is defined before an element slector, the class selector will be applied. Specificity beats order.**
+**FAQ  
+What if I define a classs selector before an ID selctor?
+Order only matters when specificity is the same, in otherwords,. So if a class selector is defined before an element slector, the ID selector will be applied. Specificity beats order.**
 
 ---
 
@@ -239,11 +244,8 @@ Example:
 
 ## Good Practices
 
-Do not use `!important` unless you absolutely have to. It forces a style to win even if it should not. It is like shouting louder than everyone else to get attention. You want your code to work clearly without shouting.
+Do not use `!important` unless you absolutely have to. It forces a style to take precedence even if it should not. It is like shouting louder than everyone else to get attention. You want your code to work clearly without shouting.
 
 Keep your selectors simple and your files organized so that you always know where a style is coming from.
 
 ---
-
----
-

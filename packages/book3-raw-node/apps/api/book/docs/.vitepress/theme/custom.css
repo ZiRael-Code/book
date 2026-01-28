@@ -1,0 +1,148 @@
+/* ============
+   Premium Book Styling for VitePress
+   ============ */
+
+:root {
+  --vp-font-family-base: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Brand */
+  --vp-c-brand-1: #22c55e;
+  --vp-c-brand-2: #16a34a;
+  --vp-c-brand-3: #15803d;
+
+  /* Better readability */
+  --vp-nav-height: 72px;
+}
+
+.VPHome .cards .VPLink:hover {
+  transform: translateY(-2px);
+  transition: transform .15s ease;
+}
+
+/* Make the whole doc page feel like a book page */
+.VPDoc {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* Better max width (feels like a book column) */
+.VPDoc .content-container,
+.VPDoc .content {
+  max-width: 860px;
+}
+
+/* Headings: bold, roomy, book-like */
+.VPDoc h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+.VPDoc h2 {
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+.VPDoc h3 {
+  font-size: 1.25rem;
+  margin-top: 2.2rem;
+}
+
+/* Paragraph spacing */
+.VPDoc p {
+  margin: 1.1rem 0;
+}
+
+/* Links */
+.VPDoc a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.VPDoc a:hover {
+  text-decoration: underline;
+}
+
+/* Blockquotes: elegant callouts */
+.VPDoc blockquote {
+  border-left: 4px solid var(--vp-c-brand-1);
+  padding: 0.25rem 1rem;
+  margin: 1.4rem 0;
+  color: var(--vp-c-text-2);
+  background: color-mix(in srgb, var(--vp-c-brand-1) 8%, transparent);
+  border-radius: 10px;
+}
+
+/* Code blocks: rounded, premium, not boxy */
+.VPDoc pre {
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  margin: 1.2rem 0;
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* Inline code */
+.VPDoc :not(pre) > code {
+  border-radius: 8px;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--vp-c-divider);
+  background: color-mix(in srgb, var(--vp-c-bg-alt) 80%, transparent);
+  font-size: 0.92em;
+}
+
+/* Lists: less cramped */
+.VPDoc ul,
+.VPDoc ol {
+  margin: 1rem 0 1rem 1.2rem;
+}
+.VPDoc li {
+  margin: 0.4rem 0;
+}
+
+/* Tables: clean */
+.VPDoc table {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+}
+.VPDoc th {
+  font-weight: 700;
+}
+
+/* Home page hero: make it feel like a product landing page */
+.VPHome {
+  padding-top: 1.5rem;
+}
+
+/* Add a subtle gradient behind the hero */
+.VPHome .VPHero {
+  border-radius: 18px;
+  padding: 2.2rem 2rem;
+  border: 1px solid var(--vp-c-divider);
+  background:
+    radial-gradient(1200px 400px at 20% 0%, color-mix(in srgb, var(--vp-c-brand-1) 18%, transparent), transparent 60%),
+    radial-gradient(900px 300px at 90% 20%, color-mix(in srgb, var(--vp-c-brand-2) 12%, transparent), transparent 60%),
+    color-mix(in srgb, var(--vp-c-bg) 92%, transparent);
+}
+
+/* Hero text spacing */
+.VPHome .name {
+  font-size: 3rem !important;
+  letter-spacing: -0.03em;
+}
+.VPHome .text {
+  opacity: 0.9;
+}
+.VPHome .tagline {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+/* Feature cards: more “book store / product” feel */
+.VPHomeFeatures .VPFeature {
+  border-radius: 16px;
+  border: 1px solid var(--vp-c-divider);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 85%, transparent);
+}
+
