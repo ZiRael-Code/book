@@ -1,0 +1,15 @@
+:root {
+  /* Colors */
+  --color-bg: #fAf9f6;
+  --color-text: #36454F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}

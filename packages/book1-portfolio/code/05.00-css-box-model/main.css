@@ -1,0 +1,6 @@
+/* intro.css */
+header,
+main section,
+footer {
+  padding: 1.5rem 6rem;
+}

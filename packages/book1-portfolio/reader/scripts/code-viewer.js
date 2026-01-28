@@ -22,7 +22,7 @@ export async function showCodeForChapter(chapter) {
         let htmlFile = '';
         let cssFile = '';
 
-        const htmlFiles = ['introduction.html', 'hero.html', 'index.html', 'main.html'];
+        const htmlFiles = ['introduction.html', 'hero.html', 'intro.html', 'box-model.html', 'main.html'];
         for (const file of htmlFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -37,7 +37,7 @@ export async function showCodeForChapter(chapter) {
             }
         }
 
-        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'main.css'];
+        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'base.css', 'box-model.css', 'main.css'];
         for (const file of cssFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {

@@ -1,0 +1,15 @@
+:root {
+  /* Colors */
+  --color-bg: #fAf9f6;
+  --color-bg-primary: #2E7EF7;
+  --color-text: #36454F;
+}
+
+.contact-btn{
+  background-color: var(--color-bg-primary);
+}
+
+.hero {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+}

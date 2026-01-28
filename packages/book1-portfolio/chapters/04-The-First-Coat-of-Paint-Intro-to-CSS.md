@@ -159,9 +159,10 @@ Here is a brief on how browsers decide which style to use when there is a confli
 
 For example, if a paragraph has both a class and an ID, and both apply different colors, the ID’s color will win because ID selectors have higher importance.
 
-**FAQ  
+**FAQ**
+
 What if I define a classs selector before an ID selctor?
-Order only matters when specificity is the same, in otherwords,. So if a class selector is defined before an element slector, the ID selector will be applied. Specificity beats order.**
+Order only matters when specificity is the same, in otherwords,. So if a class selector is defined before an element slector, the ID selector will be applied. Specificity beats order.
 
 ---
 
