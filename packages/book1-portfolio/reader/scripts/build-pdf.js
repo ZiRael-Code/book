@@ -4,8 +4,8 @@ const path = require('path');
 async function buildPDF() {
     console.log('📚 Building PDF from chapters...\n');
 
-    const chaptersDir = path.join(__dirname, '..', "..", 'chapters');
-    const exportDir = path.join(__dirname, '..', 'export');
+    const chaptersDir = path.join(__dirname, '..', '..', 'chapters');  // reader/scripts -> ../../chapters
+    const exportDir = path.join(__dirname, '..', 'export');           // reader/scripts -> ../export
 
     await fs.mkdir(exportDir, { recursive: true });
 
@@ -14,7 +14,12 @@ async function buildPDF() {
 
         const chapterFiles = files
             .filter(f => f.endsWith('.md'))
-            .sort();
+            .sort((a, b) => {
+                // Sort by the number at the beginning
+                const numA = parseFloat(a.split('-')[0]);
+                const numB = parseFloat(b.split('-')[0]);
+                return numA - numB;
+            });
 
         console.log(`Found ${chapterFiles.length} chapters:`);
 
@@ -48,11 +53,10 @@ async function buildPDF() {
 
         try {
             const { mdToPdf } = require(
-  require.resolve("md-to-pdf", {
-    paths: [process.cwd()]
-  })
-);
-
+                require.resolve("md-to-pdf", {
+                    paths: [process.cwd()]
+                })
+            );
 
             const pdf = await mdToPdf({ content: fullBook }, {
                 dest: path.join(exportDir, 'book.pdf'),
@@ -69,6 +73,7 @@ async function buildPDF() {
 
     } catch (error) {
         console.error('❌ Error:', error.message);
+        console.error('Chapters directory attempted:', chaptersDir);
 
         const errorContent = `# Error Generating PDF\n\nCould not read chapters from: ${chaptersDir}\n\nError: ${error.message}`;
         await fs.writeFile(path.join(exportDir, 'book.pdf'), errorContent);
@@ -77,8 +82,6 @@ async function buildPDF() {
 
     console.log('\n📖 To view the reader:');
     console.log('1. Run: npm run dev');
-    console.log('2. Open: http://localhost:8080');
-    console.log('3. Click "Export PDF" in the sidebar');
 }
 
 buildPDF().catch(err => {

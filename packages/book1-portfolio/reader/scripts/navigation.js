@@ -37,6 +37,7 @@ export function setupNavigationEvents(chapters, loadChapterFunc) {
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
+
             const span = item.querySelector('span');
             if (span) {
                 const chapter = chapters.find(c => c.title === span.textContent);

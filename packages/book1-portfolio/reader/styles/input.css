@@ -13,7 +13,25 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     letter-spacing: -0.025em;
 }
+.nav-item.active {
+    background-color: #dbeafe; /* blue-50 */
+    color: #2563eb; /* blue-600 */
+}
 
+.nav-item.active svg {
+    stroke: #2563eb; /* blue-600 */
+}
+
+/* For TOC items with circle numbers */
+.nav-item.active > div:first-child {
+    background-color: #dbeafe !important; /* blue-100 */
+    color: #2563eb !important; /* blue-600 */
+}
+
+/* For resource items without circle numbers */
+.nav-item.active span {
+    color: #2563eb; /* blue-600 */
+}
 .nav-item {
     display: flex;
     align-items: center;
