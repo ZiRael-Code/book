@@ -2,6 +2,9 @@
 outline: deep
 ---
 
+
+![alt text](<ChatGPT Image Jan 28, 2026, 07_37_54 AM.png>)
+
 # 3. Request Bodies, Validation & Errors
 
 So far, our server can **listen** and **route**.
@@ -236,4 +239,55 @@ Every bug, breach, and production incident starts with bad input.
 Validation is not optional.
 Errors are not noise.
 They are communication.
-
+```ts
+Client
+sends request
+(POST /signup)
+with JSON body
+        │
+        ▼
+┌──────────────────────────────┐
+│ Node.js Server               │
+│                              │
+│ 1. Receive request           │
+│ 2. Read body as stream       │
+│    (chunks of data)          │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ readJsonBody(req)            │
+│                              │
+│ - collect chunks             │
+│ - combine into string        │
+│ - JSON.parse()               │
+│ - throw error if invalid     │
+└───────────────┬──────────────┘
+                │
+        ┌───────┴────────┐
+        │ parsed body    │
+        │ or error       │
+        └───────┬────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Validation Layer             │
+│ validateSignup(body)         │
+│                              │
+│ - email present?             │
+│ - password present?          │
+└───────────────┬──────────────┘
+        │ OK              │ NOT OK
+        ▼                 ▼
+┌──────────────┐   ┌──────────────────────────┐
+│ Continue     │   │ sendError(...)            │
+│ business     │   │ 400 VALIDATION_ERROR     │
+│ logic        │   │                          │
+└──────┬───────┘   └──────────────────────────┘
+       │
+       ▼
+┌──────────────────────────────┐
+│ sendJson(res, 201, ...)      │
+│ Success response             │
+└──────────────────────────────┘
+```

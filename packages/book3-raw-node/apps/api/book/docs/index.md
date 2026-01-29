@@ -10,8 +10,13 @@ hero:
       text: Start Reading
       link: /read-me-first
     - theme: alt
+      text: Tools You Need 
+      link: /guide/tools-you-need
+    - theme: alt
       text: View API Code
       link: /guide/repo-structure
+
+
 
 features:
   - title: "Book-like reading experience"
@@ -26,7 +31,8 @@ features:
 ## Table of Contents
 
 ### Getting Started
-- [Read Me First — What “Raw” Means Here](/read-me-first)
+- [Read Me First - What “Raw” Means Here](/read-me-first)
+- [Tools You Need](/guide/tools-you-need)
 - [Repo Structure (So You Never Get Lost)](/guide/repo-structure)
 
 ### Part I - HTTP From First Principles
@@ -37,34 +43,36 @@ features:
 
 ### Part II - Security & Auth (Bare Essentials)
 - [5. Users & Passwords](/part-2-auth/05-users-passwords)
-- [6. Sessions & JWT (Access / Refresh)](/part-2-auth/06-sessions-jwt)
+- [6. Login](/part-2-auth/06-login)
+- [6.5 Sessions & JWT (Access / Refresh)](/part-2-auth/6.5-sessions-jwt)
+- [7. Protecting Routes (Auth Middleware)](/part-2-auth/07-protecting-routes)
 
 ### Part III - PostgreSQL with Raw SQL
-- [7. Postgres Setup & Connections](/part-3-postgres/07-postgres-setup)
-- [8. SQL Migrations (No ORM)](/part-3-postgres/08-sql-migrations)
-- [9. Transactions & Atomicity](/part-3-postgres/09-transactions)
+- [8. Postgres Setup & Connections](/part-3-postgres/08-postgres-setup)
+- [9. SQL Migrations (No ORM)](/part-3-postgres/09-sql-migrations)
+- [10. Transactions & Atomicity](/part-3-postgres/10-transactions)
 
 ### Part IV - Building AtopBank
-- [10. KYC Flow (Signup → Pending → Approved)](/part-4-atopbank/10-kyc-flow)
-- [11. Accounts & Wallets](/part-4-atopbank/11-accounts)
-- [12. Payees & Send Money](/part-4-atopbank/12-payees-send-money)
-- [13. Cards (Virtual, Simulated)](/part-4-atopbank/13-cards)
-- [14. Statements & Reporting](/part-4-atopbank/14-statements)
-- [15. Notifications](/part-4-atopbank/15-notifications)
-- [16. Settings & Security](/part-4-atopbank/16-settings)
+- [11. KYC Flow (Signup → Pending → Approved)](/part-4-atopbank/11-kyc-flow)
+- [12. Accounts & Wallets](/part-4-atopbank/12-accounts)
+- [13. Payees & Send Money](/part-4-atopbank/13-payees-send-money)
+- [14. Cards (Virtual, Simulated)](/part-4-atopbank/14-cards)
+- [15. Statements & Reporting](/part-4-atopbank/15-statements)
+- [16. Notifications](/part-4-atopbank/16-notifications)
+- [17. Admin](/part-4-atopbank/17-admin)
+- [18. Settings & Security](/part-4-atopbank/18-settings)
 
 ### Part V - Testing From the Ground Up
-- [17. Unit Tests with node:test](/part-5-testing/17-unit-tests)
-- [18. Integration Tests (API + DB)](/part-5-testing/18-integration-tests)
+- [19. Tests with node:test](/part-5-testing/19-tests)
 
 ### Part VI - Observability & Docs
-- [19. Health, Readiness & Logs](/part-6-obs-docs/19-health-ready-logs)
-- [20. OpenAPI & /docs](/part-6-obs-docs/20-openapi-docs)
+- [20. Health, Readiness & Logs](/part-6-obs-docs/20-health-ready-logs)
+- [21. Postman Collection & Curl Scripts](/part-6-obs-docs/21-postman)
 
 ### Part VII - Docker & CI
-- [21. Dockerizing API + DB](/part-7-docker/21-docker)
-- [22. CI/CD with GitHub Actions](/part-7-docker/22-ci-cd)
+- [22. Dockerizing API + DB](/part-7-docker/22-docker)
+
 
 ### Part VIII - Security & Hardening
-- [23. Hardening Checklist](/part-8-security/23-hardening)
+- [23. Hardening Checklist](/part-8-security/23-hardening-checklist)
 - [24. Audit Logs & Safe Defaults](/part-8-security/24-audit-logs)

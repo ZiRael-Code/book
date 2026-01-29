@@ -6,7 +6,7 @@ outline: deep
 
 ### Welcome...
 
-This is not a tutorial.
+
 This is not documentation.
 This is a **book about understanding backend systems by building one**.
 
@@ -98,5 +98,36 @@ You won’t just *use* backend frameworks.
 You’ll **own** them.
 
 ---
+```ts
+┌──────────────────────────────┐
+│        YOU (The Builder)     │
+│  Curious • Learning • Raw   │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│        HTTP Requests         │
+│   (What the Internet Speaks) │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│        Node.js Core          │
+│   (No frameworks. No magic.) │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│     Business Logic (You)     │
+│  Auth • Accounts • Transfers│
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│     Raw SQL + PostgreSQL     │
+│   (Data you fully control)  │
+└──────────────────────────────┘
 
-➡️ Next: [Part I — HTTP From First Principles](/part-1-http/01-smallest-server)
+```
+
+

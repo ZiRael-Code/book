@@ -1,7 +1,7 @@
 ---
 outline: deep
 ---
-
+![alt text](image-1.png)
 # The Smallest Useful Server
 
 Before we write complex logic, before databases, before authentication, we must answer a deceptively simple question:
@@ -253,3 +253,37 @@ If you master this:
 - bugs become explainable
 
 - systems become understandable
+```ts
+        ┌───────────────┐
+        │    Client     │
+        │ (Browser /    │
+        │  Postman)     │
+        └───────┬───────┘
+                │
+        HTTP Request
+        (GET /health)
+                │
+                ▼
+┌─────────────────────────────┐
+│        Node.js Server       │
+│                             │
+│  1. Waits for request       │
+│  2. Reads method + path     │
+│  3. Decides what to do      │
+│  4. Sends response          │
+│                             │
+│  if GET /health → 200 OK    │
+│  else → 404 Not Found       │
+└─────────────────────────────┘
+                │
+        HTTP Response
+        { "status": "ok" }
+                │
+                ▼
+        ┌───────────────┐
+        │    Client     │
+        │  sees result  │
+        └───────────────┘
+
+        (Server goes back to waiting)
+```
