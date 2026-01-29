@@ -40,8 +40,8 @@ Use these links and install in this order:
 2. **VS Code** → https://code.visualstudio.com/  
 3. **Docker Desktop** → https://www.docker.com/products/docker-desktop/  
 4. **Git** → https://git-scm.com/downloads  
-5. **Postman (optional)** → https://www.postman.com/downloads/  
-6. **PostgreSQL (optional)** → https://www.postgresql.org/download/
+5. **Postman** → https://www.postman.com/downloads/  
+6. **PostgreSQL** → https://www.postgresql.org/download/
 
 If you install Docker, you can skip PostgreSQL for now.
 
@@ -56,7 +56,7 @@ AtopBank is built with:
 - no Express / Nest / Koa
 - no magic frameworks
 
-So Node is not optional — it’s the foundation.
+So Node is not optional - it’s the foundation.
 
 ###  Install
 Download Node.js **LTS**:
@@ -68,8 +68,8 @@ Open a terminal and run:
 ```bash
 node -v
 You should see something like:
-
 v20.x.x
+
 2) npm (Comes with Node)
 npm is how we install a few small libraries:
 
@@ -204,6 +204,8 @@ wallet + transfers
 
 ### Install
 https://www.postman.com/downloads/
+
+OR you can use postman in vscode.
 
 
 
