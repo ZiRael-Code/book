@@ -10,12 +10,12 @@ body, h1, h2, h3 {
   margin-top: 0;
 }
 
-#home h1 {
+.hero h1 {
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.2;
 }
 
-#home p {
+.hero p {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
 

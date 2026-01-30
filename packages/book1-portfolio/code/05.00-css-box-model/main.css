@@ -2,5 +2,6 @@
 header,
 main section,
 footer {
-  padding: 1.5rem 6rem;
+  margin: 1rem 0;
+  padding: 0.5rem 1.25rem;
 }
