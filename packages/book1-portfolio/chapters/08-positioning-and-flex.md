@@ -1,6 +1,15 @@
-### Lesson goal
+# Chapter 8 - Positioning and Flex
 
-By the end of this chapter, you will understand how elements are positioned on a page, how to step outside the normal flow when needed, and how to use Flexbox to create your first flexible layouts.
+## Personal Reasoning
+
+Understanding element positioning is key for controlling layout and layering. Normal flow keeps things predictable, but `position` allows intentional overlap, fixed headers, and sticky elements. Flexbox introduces a flexible, responsive way to organize content.
+
+## Overall Learning
+
+* Default normal flow stacks block elements vertically and inline elements horizontally.
+* `position` values (`static`, `relative`, `absolute`, `fixed`, `sticky`) let you step out of normal flow and control placement.
+* `z-index` manages stacking order but only works on positioned elements and within the same stacking context.
+* Flexbox makes parent-child layout easier and responsive by treating the parent as a flexible container.
 
 ---
 
@@ -132,3 +141,78 @@ To use Flexbox, you define a flex container. This changes how its direct childre
 In the next chapter, we'll learn more about flexbox, how to create flex items and how to align them
 
 ---
+
+### Code Walkthrough
+
+**Sticky Navbar**
+
+```css
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+}
+```
+
+* Adds background color to the navbar and ensures it stays at the top during scroll.
+
+**Flexbox Inner Layout**
+
+```css
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+}
+```
+
+* This flex container aligns children horizontally with spacing between them and adds enough padding and margin.
+
+**Logo & Nav Items**
+
+```css
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+```
+
+* Logo uses Flex to align image and text; nav links are evenly spaced.
+
+**Contact Button**
+
+```css
+.contact-btn {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+}
+```
+
+* The contact button here is styled for emphasis and visually separated from navigation links.
+
+### Project Milestone
+
+* Navbar is sticky using `position: sticky` with a high `z-index`.
+* Inner navbar layout uses Flexbox to align logo, navigation links, and contact button horizontally.
+* Elements inside `.navbar-inner` are evenly spaced with `justify-content: space-between`.
+* Contact button styled to stand out using primary color and rounded corners.
+
+### Ship Note
+
+Open the page and confirm:
+
+* Logo, navigation links, and contact button are horizontally aligned and evenly spaced.
+* Contact button stands out with correct colors and rounded shape.
+* Navbar is neatly styled using the cincepts taught

@@ -1,6 +1,16 @@
-### Lesson goal
+# Chapter 10 - CSS Grid
 
-By the end of this chapter, you will understand how CSS Grid works, how to think in two dimensions, and how to build deliberate layouts made of rows and columns.
+## Personal Reasoning
+
+CSS Grid lets you control layout in two dimensions at once, giving more deliberate control over rows and columns than Flexbox. Using `grid-template-columns`, `grid-template-rows`, and `gap` lets items align cleanly, while `repeat(auto-fit, minmax())` makes layouts responsive without media queries for cards or complex sections.
+
+## Overall Learning
+
+* Grid containers turn direct children into grid items.
+* `grid-template-columns` and `grid-template-rows` define structure; `fr` units divide space proportionally.
+* `gap` replaces margins for consistent spacing between items.
+* `repeat(auto-fit, minmax())` creates responsive grids that adapt to screen width.
+* Use Grid for multi-row and column layouts, Flexbox for single-axis arrangements.
 
 ---
 
@@ -99,3 +109,43 @@ This is perfect for card layouts.
 Grid is the perfect solution when your layout has both rows and columns. Use Flexbox when layout is just one direction
 
 ---
+
+### Project Milestone
+
+* Featured Projects section uses CSS Grid to display project cards in rows and columns.
+* Grid gap ensures consistent spacing between cards.
+* Contact section uses a two-column grid for form and contact info.
+* Responsive breakpoints adjust both project grid and contact grid to smaller screens.
+
+### Code Walkthrough
+
+**Projects Grid**
+
+```css
+#projects > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+```
+
+* Three equal columns; cards auto-adjust width and spacing.
+
+**Contact Section Grid**
+
+```css
+#contact > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+```
+
+* Two-column layout: form on one side, info on the other.
+
+
+### Ship Note
+
+* Featured Projects section displays cards in a clean, responsive grid.
+* Contact section aligns form and contact info side by side, collapsing on smaller screens.
+* Grid gaps maintain consistent spacing.

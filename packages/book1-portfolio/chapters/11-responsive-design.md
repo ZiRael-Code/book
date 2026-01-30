@@ -1,6 +1,18 @@
-### Lesson goal
+# Chapter 11
 
-By the end of this chapter, you will understand how to design and build layouts that adapt smoothly across screen sizes, using a mobile-first approach and content-driven breakpoints.
+## Chapter 11 - Responsive Design
+
+## Personal Reasoning
+
+Responsive design ensures a website works on any screen size, not just shrinking layouts for mobile. Mobile-first thinking simplifies CSS by styling small screens first, then enhancing for larger screens. Properly handling images and layouts prevents broken designs and improves user experience.
+
+## Overall Learning
+
+* The viewport meta tag controls how a page scales on different devices.
+* Media queries adjust styles based on screen width or characteristics.
+* Content-driven breakpoints help determine when layout changes are needed.
+* Images can be responsive using `width: 100%; height: auto;`, `max-width`, `srcset`, `<picture>`, and lazy loading.
+* Lazy loading improves performance by deferring offscreen images.
 
 ---
 
@@ -139,5 +151,80 @@ Lazy loading defers image loading until they enter the viewport. It helps with f
 <img src="photo.jpg" loading="lazy" alt="" />
 ```
 
+---
+
+## Code Walkthrough
+
+**Viewport Meta Tag**
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+* Ensures the page scales correctly on all devices.
+
+**Media Queries for Layout**
+
+```css
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  #projects > div { grid-template-columns: repeat(2, 1fr); }
+  #contact > div { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  #projects > div { grid-template-columns: 1fr; }
+  #projects, #contact { padding: 3rem 1.5rem; }
+}
+```
+
+* Adjusts hero, projects, and contact layouts for smaller screens.
+
+**Responsive Images**
+
+```css
+.hero figure img,
+#projects img {
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+}
+```
+
+* Images resize while maintaining aspect ratio.
+
+**Hamburger Navigation**
+
+```css
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav { display: none; position: absolute; width: 100%; top: 100%; }
+  .nav-toggle:checked + .hamburger + .nav { display: block; }
+}
+```
+
+* Toggles mobile menu visibility using a checkbox input.
+
+**Lazy Loading Images**
+
+```html
+<img src="photo.jpg" loading="lazy" alt="">
+```
+
+* Improves performance by loading images only when they enter the viewport.
 
 ---
+
+## Project Milestone
+
+* Navbar now collapses into a hamburger menu on mobile screens.
+* Hero section, stats, and project grids adjust for tablets and smaller devices.
+* Images across hero, projects, and about sections scale proportionally.
+* Contact section stacks on narrow screens for better readability.
+
+---
+## Ship Note
+
+* Portfolio now adapts seamlessly to mobile, tablet, and desktop.
+* Project grids, hero section, and stats resize dynamically.
+* Hamburger menu ensures accessible navigation on small screens.
+* Images scale correctly and load efficiently with lazy loading.

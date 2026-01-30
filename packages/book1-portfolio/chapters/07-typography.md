@@ -1,6 +1,18 @@
-### Lesson goal
+# Chapter 7 - Typography
 
-By the end of this chapter, you will understand how typography works on the web, how to choose fonts intentionally, and how to apply them in a way that feels clear, consistent, and appropriate for the message you are sending.
+## Personal Reasoning
+
+Typography shapes how users perceive content and affects readability, hierarchy, and the overall feel of a website. Using variable-based fonts ensures consistency and simplifies updates, while separating body, heading, and monospaced fonts improves clarity for text and numeric content.
+
+## Overall Learning
+
+* Difference between typefaces and fonts
+* Serif vs. sans serif fonts and their usage
+* Choosing fonts intentionally for body, headings, and technical content
+* Using Google Fonts and preconnect for performance
+* Applying `font-family`, `font-size`, `font-weight`, `line-height`, and `text-align`
+* Using monospaced fonts for numbers with `font-variant-numeric: tabular-nums`
+* Best practices for font loading and fallbacks
 
 ---
 
@@ -205,3 +217,71 @@ Sometimes when writing numbers in tables or when writing statistics in dashboard
   font-variant-numeric: tabular-nums;
 }
 ```
+
+## Code Walkthrough
+
+**CSS Variables**
+
+```css
+:root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+```
+
+* `--font-body` for normal text, `--font-heading` for headings, `--font-mono` for numbers/code.
+
+**Hero Section**
+
+```css
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+```
+
+* Uses `clamp()` to scale fonts responsively.
+
+**Stats Section**
+
+```css
+.stats {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+}
+```
+
+* Monospaced font ensures numbers align evenly for readability.
+
+**Body and Headings**
+
+```css
+body, h1, h2, h3 {
+  font-family: var(--font-heading);
+  margin-top: 0;
+}
+```
+
+* Consistent font-family and spacing for a clean layout.
+
+
+## Project Milestone
+
+* Google Fonts loaded for Inter and Roboto Mono
+* CSS variables defined for body, heading, and monospaced fonts
+* Hero section uses scalable `clamp()` font sizes
+* Numeric stats use monospaced font for alignment
+* Font-family applied consistently across headings, body, and special sections
+
+## Ship Note
+
+Open the page and verify that:
+
+* Headings and body text use Inter and scale correctly across screen sizes
+* Numeric stats display evenly aligned numbers using Roboto Mono
+* Fonts load quickly without invisible text (preconnect active)

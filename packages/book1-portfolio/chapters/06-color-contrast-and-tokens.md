@@ -1,8 +1,24 @@
-### Lesson goal
+# Chapter 6 - Color Contrast and Tokens
 
-By the end of this chapter, you will understand how color works in CSS, how to use CSS variables as design tokens, and how to apply color in a way that is consistent, readable, and accessible.
+## Personal Reasoning
 
----
+Color sets the tone for a website and directly affects readability, accessibility, and user perception. Using CSS variables instead of hard-coded values gives flexibility, consistency, and easier maintenance as projects scale. Understanding hover and disabled states also improves UX by visually communicating interactivity.
+
+## Overall Learning
+
+* How CSS handles color (color, background-color, border-color)
+
+* The pitfalls of hard-coded colors
+
+* CSS variables as design tokens for maintainable, reusable colors
+
+* Semantic naming for color tokens (--color-primary, --color-success, etc.)
+
+* Applying tokens to components
+
+* Ensuring sufficient color contrast for accessibility
+
+* Styling hover and disabled states for better UX
 
 ## Why color matters
 
@@ -176,3 +192,34 @@ Disabled states are very useful when building websites, as they let the user kno
 When showing a disabled state, it is good practice to combine color with opacity or cursor changes. This makes for good UX.
 
 ---
+## Code Walkthrough
+
+* Defined root variables for background and text colors:
+
+```css
+:root {
+  --color-bg: #fAf9f6;
+  --color-bg-primary: #2E7EF7;
+  --color-text: #36454F;
+  --color-text-secondary: #fAf9f6;
+}
+```
+
+* Hero background uses `--color-bg`
+* Primary button uses `--color-bg-primary` with text `--color-text-secondary`
+
+This ensures colors are centralized and easy to update. Adding hover or disabled states is straightforward by referencing the same variables.
+
+## Project Milestone
+
+* Defined CSS variables for primary, text, and background colors
+* Applied variables consistently to the hero section and buttons
+* Ensured contrast and readability are maintained
+
+## Ship Note
+
+Open the page in a browser. Confirm that:
+
+* Hero section has the background color from `--color-bg`
+* Button displays `--color-bg-primary` and `--color-text-secondary`
+* Text is readable against the background, maintaining good contrast

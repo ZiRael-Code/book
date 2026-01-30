@@ -1,5 +1,19 @@
-### Lesson goal
-By the end of this chapter, you'll understand basic CSS concepts like linking external stylesheets, CSS selectors, Cascade and Specificity and recommended practices
+# Chapter 4 - The First Coat of Paint
+
+## Personal Reasoning
+
+Before anything on a webpage looks good, the browser needs clear instructions on **how things should appear**. CSS is how we give those instructions. Learning CSS early prevents messy styling, confusion, and frustration later as projects grow.
+
+## Overall Learning
+
+* What CSS is and why it exists
+* How to link external CSS files
+* CSS syntax and selectors
+* Cascade and specificity
+* Basic CSS properties
+* Simple CSS file organization and best practices
+
+## Explanation
 
 ### What CSS Is
 
@@ -8,8 +22,9 @@ CSS means *Cascading Style Sheets*. CSS describes how HTML elements are structur
 ---
 
 ## Linking External CSS
+
 One way to style your HTML document is to put your CSS code in a separate file. Every CSS file name should end with `.css` to let the IDE and browser know that it is a CSS file.
-You can connect a CSS stylesheet to your HTML by adding a `link` tag in the `head` section with the correct CSS file path. 
+You can connect a CSS stylesheet to your HTML by adding a `link` tag in the `head` section with the correct CSS file path.
 Follow the instructions below to link your first CSS style sheet to your already existing html file.
 
 * Create a folder named `styles' 
@@ -22,11 +37,11 @@ Follow the instructions below to link your first CSS style sheet to your already
 </head>
 ```
 
-Your HTML will now apply all the styles in your `base.css` file. You can link multiple HTML pages to a single CSS file and vice versa. We will soon  be adding some code into your new CSS file! Before that, let's talk about syntax.
+Your HTML will now apply all the styles in your `base.css` file. You can link multiple HTML pages to a single CSS file and vice versa. We will soon be adding some code into your new CSS file! Before that, let's talk about syntax.
 
 ---
 
-## CSS syntax 
+## CSS syntax
 
 CSS follows a simple structure:
 
@@ -56,8 +71,8 @@ The same structure applies whenever you're styling elements.Now add the above co
 
 CSS selectors are used to specify which HTML elements you want to style. For example, we may want to select every div element on the page or we may want to select a specific paragraph on a page.
 
-Selectors generally target an attribute value, such as an id or class value, or target the type of element, such as ```<h1>``` or ```<p>```.
-Selectors are followed with curly brackets, {}, the styles to be applied to the selected element are then written within the curly braces. 
+Selectors generally target an attribute value, such as an id or class value, or target the type of element, such as `<h1>` or `<p>`.
+Selectors are followed with curly brackets, `{}`, the styles to be applied to the selected element are then written within the curly braces.
 
 CSS selectors are divided into five:
 
@@ -83,7 +98,7 @@ This will make all p tags have a text color of blue.
 
 **Class selector**
 
-A class selector styles all elements that have the same class name. When trying to select an element by its class, you use `.` followed by the class name. An HTML element can have more than one class name. A class name cannot start with a number
+A class selector styles all elements that have the same class name. When trying to select an element by its class, you use `.` followed by the class name. An HTML element can have more than one class name. A class name cannot start with a number.
 
 ```html
 <p class="intro">Hello</p>
@@ -95,6 +110,7 @@ A class selector styles all elements that have the same class name. When trying 
   color: green;
 }
 ```
+
 Now, the `h3` and `p` tags will have text color of green.
 
 Since different elements can have the same class name, you can choose to select only a type of element with a given class name. Let's modify the previous example.
@@ -104,8 +120,8 @@ p.intro {
   color: green;
 }
 ```
-Now, only p elements with class name of `intro` is going to have a text color of green.
 
+Now, only p elements with class name of `intro` is going to have a text color of green.
 
 **ID selector**
 An id selector styles the element wiith the specified ID. IDs are unique and so each ID should appear only once in the HTML. This means that you cannot use the same id for more than one element. Justlike classnames, an id cannot start with a number. When trying to select an element by its id, you use `#` followed by the id.
@@ -121,9 +137,9 @@ An id selector styles the element wiith the specified ID. IDs are unique and so 
 ```
 
 **The Universal Selector**
-The universal selector (*) selects all HTML elements on the page.
+The universal selector (`*`) selects all HTML elements on the page.
 
-When you write the code below, every text element on the page will be aligned center and will have a color of blue: 
+When you write the code below, every text element on the page will be aligned center and will have a color of blue:
 
 ```css
 * {
@@ -171,7 +187,18 @@ Order only matters when specificity is the same, in otherwords,. So if a class s
 Here are some basic properties you will use all the time:
 
 **color**
-This changes text color:
+This changes text color. 
+
+You can define colors in several ways:
+
+* **Color names** – like `red`, `blue`, or `charcoal` (limited predefined options).
+* **Hex codes** – like `#ff0000` for red; a six-digit code representing red, green, and blue values.
+* **RGB values** – like `rgb(255, 0, 0)`; specify red, green, and blue components from 0–255.
+* **HSL values** – like `hsl(0, 100%, 50%)`; define color by hue, saturation, and lightness.
+* **RGBA / HSLA** – like `rgba(255, 0, 0, 0.5)`; same as RGB/HSL but includes transparency.
+
+Each method lets you control color precision and opacity in different ways. You can find any of the codes or values for a color by simply googling it.
+
 
 ```css
 body {
@@ -189,7 +216,7 @@ body {
 ```
 
 **font-size**
-This defines the size of a text
+This defines the size of a text.
 
 These property names and values tell the browser exactly how things should look.
 
@@ -201,8 +228,6 @@ As your styles grow, organizing them helps keep things clean.
 
 **styles/base.css**
 This file should contain default looks for the whole site. Think of this as the paint primer and basic tone for all rooms.
-
-Examples:
 
 ```css
 body {
@@ -230,8 +255,6 @@ Example:
 **styles/utilities.css**
 This file has small reusable helpers. These are like common patterns you might use across many pages.
 
-Example:
-
 ```css
 .visually-hidden {
   position: absolute;
@@ -249,4 +272,29 @@ Do not use `!important` unless you absolutely have to. It forces a style to take
 
 Keep your selectors simple and your files organized so that you always know where a style is coming from.
 
----
+## Code Walkthrough
+
+```css
+body {
+  background-color: #fAf9f6;
+  color: #36454F;
+}
+```
+
+* `body` selector targets the entire webpage’s body element.
+* `background-color: #fAf9f6;` sets a very light, off-white background for the page.
+* `color: #36454F;` sets the default text color to a dark gray-blue for readability.
+
+This code establishes the base colors for the whole site, affecting background and text unless overridden by more specific selectors.
+
+## Project Milestone
+
+You should now have:
+
+* A linked external CSS file
+* Basic styles applied to your page
+* An understanding of selectors and how conflicts are resolved
+
+## Ship Note
+
+Open your page in the browser and confirm that the background color change is applied. If it is, your CSS is correctly linked and working.

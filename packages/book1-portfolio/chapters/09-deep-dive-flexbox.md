@@ -1,6 +1,17 @@
-### Lesson goal
+# Chapter 9 - Deep Dive Flexbox
 
-By the end of this chapter, you will understand Flexbox deeply enough to build clean rows and columns, align content confidently, and create layouts that adapt naturally without hacks.
+## Personal Reasoning
+
+Flexbox is about controlling how items behave along a main axis and cross axis. Using properties like `justify-content`, `align-items`, `gap`, and `flex-wrap` allows layouts to adapt naturally across screen sizes without relying on hacks. Shorthand like `flex: grow shrink basis` gives precise control over item sizing in a flexible container.
+
+### Overall Learning
+
+* The main axis is the direction items flow; cross axis is perpendicular.
+* `justify-content` aligns items along the main axis; `align-items` along the cross axis.
+* `gap` replaces margins for spacing between items.
+* `flex-wrap` enables responsive multi-line layouts.
+* `flex-grow`, `flex-shrink`, and `flex-basis` define how items scale relative to each other.
+* Flex shorthand (`flex: 1 1 auto`) combines these behaviors.
 
 ---
 
@@ -129,7 +140,7 @@ The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-gr
 ```
 
 ---
-<!-- 
+
 ## Summary
 
 * **display: flex**
@@ -192,4 +203,61 @@ The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-gr
   flex: 1 1 auto;
   ```
 
---- -->
+---
+
+### Code Walkthrough
+
+**Stats Section Flex**
+
+```css
+#skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+```
+
+* Aligns list items horizontally with consistent spacing.
+
+**Skills Cards**
+
+```css
+#skills > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#skills article {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 1 calc(50% - 2rem);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 1px 1px 10px #0000001A;
+}
+
+```
+
+* Flex container wraps cards and ensures two per row on large screens.
+* Cards align icon and text horizontally with a gap.
+
+### Project Milestone
+
+* Stats section uses Flexbox for horizontal alignment of items with consistent gaps.
+* Skills section uses Flexbox with `flex-wrap` for responsive skill cards and inner alignment.
+* Each skill card is a flex container aligning icon and content, with `flex: 1 1 calc(50% - 2rem)` for responsive sizing.
+* Mobile breakpoint adjusts the skills layout to a single column.
+
+### Ship Note
+
+* Hero section text and image align properly across viewport widths.
+* Stats list items display horizontally with equal gaps.
+* Skill cards wrap correctly on desktop and stack on mobile.
+* Flex properties (`flex`, `gap`, `flex-wrap`) are applied and behave as expected.
