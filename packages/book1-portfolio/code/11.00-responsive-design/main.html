@@ -20,26 +20,38 @@
 </head>
 
 <body>
-  <div class="navbar-inner">
+    <div class="navbar">
 
-        <a href="#top" class="logo" aria-label="Go to homepage">
+        <div class="navbar-inner">
+
+            <a href="#top" class="logo" aria-label="Go to homepage">
           <img src="../../assets/icons/logo-mark.svg" alt="" width="24" height="24">
           <span>John Doe</span>
-        </a>
+            </a>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" />
 
-        <nav class="nav" aria-label="Primary navigation">
-          <ul class="nav-list">
-            <li class="nav-item"><a href="#top">Home</a></li>
-            <li class="nav-item"><a href="#about">About</a></li>
-            <li class="nav-item"><a href="#projects">Projects</a></li>
-            <li class="nav-item"><a href="#blog">Blog</a></li>
-          </ul>
-        </nav>
+            <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+            </label>
 
-        <a href="#contact" class="contact-btn">Contact</a>
 
-      </div>
-  <header id="top" class="navbar">
+            <nav class="nav" aria-label="Primary navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#top">Home</a></li>
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#blog">Blog</a></li>
+            </ul>
+            </nav>
+
+            <a href="#contact" class="contact-btn">Contact</a>
+
+        </div>
+    </div>
+    
+  <header id="top" >
       
       <section class="hero" aria-labelledby="hero-title">
 
