@@ -11,8 +11,8 @@
   --font-mono: 'Roboto Mono', monospace;
 
   /* Layout */
-  --section-padding: 3rem 1.5rem;
-  --section-padding-wide: 4rem 1.5rem;
+  --section-padding: 1.25rem 4.5rem;
+  --section-padding-wide: 1.25rem 5.5rem;
   --max-width: 1100px;
 }
 
@@ -28,9 +28,14 @@ body {
   line-height: 1.6;
 }
 
-main > section {
+#about, .navbar, header, #projects{
   padding: var(--section-padding);
 }
+
+#skills, #contact {
+  padding: var(--section-padding-wide);
+}
+
 
 .navbar {
   position: sticky;
@@ -43,8 +48,6 @@ main > section {
 .navbar-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.25rem 1.5rem;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,7 +120,6 @@ main > section {
 
 header {
   background-color: var(--color-bg);
-  padding: var(--section-padding);
 }
 
 .hero {
@@ -160,10 +162,9 @@ header {
 
 .stats ul {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-
+  justify-content: space-between;
   background: #ffffff;
   padding: 1.25rem 2rem;
   border-radius: 0.75rem;
@@ -199,9 +200,9 @@ header {
 #about {
   background: #eaeaea;
   border-radius: 1rem;
-  padding: 2.5rem;
   max-width: 900px;
-  margin: 3rem auto;
+  margin: 3rem 2rem;
+  justify-self: center;
 }
 
 #about h2 {
@@ -225,10 +226,6 @@ header {
   font-weight: 600;
 }
 
-#skills {
-  padding: var(--section-padding-wide);
-}
-
 #skills h2 {
   text-align: center;
   margin-bottom: 3rem;
@@ -238,7 +235,6 @@ header {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -284,10 +280,6 @@ header {
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   font-size: 0.85rem;
-}
-
-#projects {
-  padding: var(--section-padding-wide);
 }
 
 #projects h2 {
@@ -381,9 +373,9 @@ header {
 }
 
 #contact {
-  padding: var(--section-padding-wide);
-  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
+  justify-self: center;
 }
 
 #contact h2 {
@@ -442,6 +434,13 @@ header {
   font-weight: 600;
   width: 100%;
   cursor: pointer;
+}
+
+footer {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  padding: 1rem;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -507,11 +506,4 @@ header {
   #projects > div {
     grid-template-columns: repeat(3, 1fr);
   }
-}
-
-footer {
-  background-color: var(--color-primary);
-  color: var(--color-primary-contrast);
-  padding: 1.5rem;
-  text-align: center;
 }
