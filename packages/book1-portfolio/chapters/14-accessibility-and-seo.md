@@ -8,7 +8,7 @@ By the end of this chapter, you will understand how to prepare a website for rea
 
 Like we mentioned in previous chapters, finished websites should work for different people and different devices.
 
-Accessibility, SEO, and performance are very important parts of every website and we're going to be discssuing them in this chapter.
+Accessibility, SEO, and performance are very important parts of every website and we're going to be discussing them in this chapter.
 
 ---
 
@@ -77,9 +77,9 @@ Use contrast checkers to ensure your text meets WCAG guidelines.
 
 ## ARIA landmarks
 
-ARIA landmarks are accessibility features added to HTML elements to define major sections pf a webpage. They help screen readers and keyboard users understand page structure.
+ARIA landmarks are accessibility features added to HTML elements to define major sections p\of a webpage. They help screen readers and keyboard users understand page structure.
 
-You can achieve ARIA landmarks with semantic HTML5 tags like: header, banner, nav, main, footer; or ARIA attributes like: `role="banner" on elements.
+You can achieve ARIA landmarks with semantic HTML5 tags like: header, banner, nav, main, footer; or ARIA attributes like: `role="banner"` on elements.
 
 When you use proper HTML elements, ARIA is often unnecessary.
 Use ARIA only when native HTML cannot express the meaning.
@@ -88,7 +88,7 @@ Use ARIA only when native HTML cannot express the meaning.
 
 ## SEO essentials
 
-SEO means Search Engine Optimization. It is the practice of improving a website's visibility in organic(unpaid) search engine results in order to attract more users. Search engines read the structure of a webpage(HTML) so, good SEO starts with good HTML.
+SEO means Search Engine Optimization. It is the practice of improving a website's visibility in organic(unpaid) search engine results in order to attract more users. Search engines read the structure of a webpage (HTML), so good SEO starts with good HTML.
 
 ---
 
@@ -118,9 +118,8 @@ Fast sites feel better and rank better. Performance is part of user experience (
 
 ## Image optimization
 
-Images should be properly sized, compressed and not larger than needed. Large images slow pages down. Image optmization in CSS can be achieved by implementing responsive scaling, responsive bckground images, lazy loading, etc.
-
-Lazy loading means deferring the loading of images that aren't yet showing on the screen until the user scrolls near them, which helps reduce initial pqge load. You can implement this by using the `loading="lazy"`HTML attribute.
+Images should be properly sized, compressed and not larger than needed. Large images slow pages down. Image optimization in CSS can be achieved by implementing responsive scaling, responsive background images, lazy loading, etc.
+Lazy loading means deferring the loading of images that aren't yet showing on the screen until the user scrolls near them, which helps reduce initial page load. You can implement this by using the `loading="lazy"` HTML attribute.
 
 ---
 

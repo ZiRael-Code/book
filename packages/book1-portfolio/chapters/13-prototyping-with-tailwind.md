@@ -25,12 +25,12 @@ Common responsive variants are:
 Tailwind uses mobile-first responsive variants.
 
 ```html
-<div class="p-4 md:p-8 lg:p-12">
+<div class="p-4 md:p-8 lg:p-12"></div>
 ```
 
 Meaning:
 
-* Default (p-4 in this case) applies to mobile
+* "Default (p-4 in this case) applies to all screens, but will be overridden at medium (md) and large (lg) screens."
 * `md:p-8` applies at medium screens
 * `lg:p-12` applies at large screens
 
@@ -40,25 +40,25 @@ Meaning:
 These apply styles based on interaction or state.
 
 Examples:
-* `hover:bg-gray-100` -> When the user hovers over this element, apply the specified background color
-* `focus-visible:outline` -> When the element receives keyboard focus, apply an outline.
-* `disabled:opacity-50` -> When this element has a disabled state, apply the specified opacity 
+* `hover:bg-gray-100` → When the user hovers over this element, apply the specified background color.
+* `focus-visible:outline` → When the element receives keyboard focus, apply an outline.
+* `disabled:opacity-50` → When this element has a disabled state, apply the specified opacity. 
 
 ### 3. Theme and environment variants
 
 These depend on user or system settings.
 
 Examples:
-* `dark:bg-black` -> When dark mode is active, apply a black background.
-* `motion-safe:animate-spin` -> If the user prefers reduced motion, the animation will not run.
+* `dark:bg-black` → When dark mode is active, apply a black background.
+* `motion-safe:animate-spin` → Apply the animation only if the user has not requested reduced motion.
 
 ### 4. Structural variants
 
 These depend on the element’s position or relationship.
 
-* `first:mt-0` -> If this element is the first child inside its parent, remove the top margin
-* `last:border-none` -> If this element is the last child inside its parent, remove the border
-* `group-hover:opacity-100` -> When a parent element with the class group is hovered, apply full opacity to this child
+* `first:mt-0` → If this element is the first child inside its parent, remove the top margin
+* `last:border-none` → If this element is the last child inside its parent, remove the border
+* `group-hover:opacity-100` → When a parent element with the class group is hovered, apply full opacity to this child
 
 ---
 
@@ -74,6 +74,6 @@ This allows precise control without writing custom selectors.
 
 ---
 
-N/B: Tailwind does not handle time-based or scroll-based animations. These should be handled in JavaScript and will be covered later.
+N.B: Tailwind does not handle time-based or scroll-based animations. These should be handled in JavaScript and will be covered later.
 
 ---

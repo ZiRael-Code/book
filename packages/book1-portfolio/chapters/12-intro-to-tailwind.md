@@ -7,7 +7,7 @@ By the end of this chapter, you will understand what utility-first CSS is, why T
 
 ## What utility class means
 
-A class is a `utility class` if that class does only one thing.
+A class is a utility class if it applies a single visual style or property.
 
 Examples:
 
@@ -69,7 +69,7 @@ This creates a clean baseline for layout and typography.
 
 ## Design tokens in Tailwind
 
-Instead of using random utility colors, you can define semantic tokens in `tailwind.config.js`(just like CSS variables discussed in earlier chapters).
+"Instead of using random utility colors, you can define semantic tokens in tailwind.config.js (just like CSS variables discussed in earlier chapters)."
 
 ```js
 theme: {
@@ -110,14 +110,14 @@ spacing: {
 
 Example:
 ```HTML
-  <p className="text-md text-text">This wil have a text-size of 16px and a color of #0f172a</p>
+  <p className="text-md text-text">"This paragraph uses the text-md utility and the text-text color token."</p>
 ```
 
 ---
 
 ## Border radius tokens
 
-You can also customize your boder-radius tokens in the same way. The default values are listed below. You can choose to customize these values according to what you're building.
+You can also customize your border-radius tokens in the same way. The default values are listed below. You can choose to customize these values according to what you're building.
 
 ```js
 borderRadius: {
@@ -130,6 +130,6 @@ borderRadius: {
 ## Tailwind + CSS Together - When to Use Tailwind and Custom CSS
 
 Tailwind is powerful, but it is not a replacement for CSS. While Tailwind can handle the vast majority of styling needs, you may occasionally need to write raw CSS for highly specific, complex, or unusual design requirements that may not be easily achieved with just Tailwind.
-That being said, Tailwind is best used for layout, typography, spacing and responsive design. You can use CSS in your project if there's need for complex animations, complex shadows, highly unique designs, masks and advanced visuals ( mask images, custom gradients, clip paths)
+That being said, Tailwind is best used for layout, typography, spacing and responsive design. You can use CSS in your project if there's need for complex animations, complex shadows, highly unique designs, mask images, custom gradients, clip paths, and other advanced visual effects.
 
 ---
