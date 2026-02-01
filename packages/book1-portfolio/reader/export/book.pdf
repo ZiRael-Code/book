@@ -1,5 +1,0 @@
-# Error Generating PDF
-
-Could not read chapters from: C:\Users\olade\IdeaProjects\books\packages\book1-portfolio\reader\chapters
-
-Error: ENOENT: no such file or directory, scandir 'C:\Users\olade\IdeaProjects\books\packages\book1-portfolio\reader\chapters'

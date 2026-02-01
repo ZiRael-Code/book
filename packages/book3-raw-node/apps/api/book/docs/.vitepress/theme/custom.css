@@ -16,6 +16,11 @@
   --vp-nav-height: 72px;
 }
 
+.VPHome .cards .VPLink:hover {
+  transform: translateY(-2px);
+  transition: transform .15s ease;
+}
+
 /* Make the whole doc page feel like a book page */
 .VPDoc {
   font-size: 17px;

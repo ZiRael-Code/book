@@ -2,163 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Developer Portfolio</title>
+    <title>Tailwind Variant Modifiers</title>
 
-    <meta name="description" content="Personal developer portfolio website" />
-    <meta property="og:title" content="Developer Portfolio" />
-    <meta property="og:description" content="A personal portfolio showcasing projects and skills" />
+    <link rel="stylesheet" href="../styles/output.css" />
 </head>
-<body>
 
-<a href="#main">Skip to main content</a>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
 
-<header>
-    <div>
-        <p><strong>John Doe</strong></p>
+<section class="mb-10">
+    <h1 class="text-xl font-semibold mb-4">
+        Responsive Variants
+    </h1>
+
+    <div class="bg-white dark:bg-gray-800 p-4 md:p-8 lg:p-12 rounded-lg shadow">
+        Resize the screen to see padding change.
     </div>
+</section>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<section class="mb-10">
+    <h2 class="text-lg font-semibold mb-4">
+        State Variants
+    </h2>
 
-    <section id="home">
-        <div>
-            <h1>Hello, I’m John Doe</h1>
-            <p>Full-Stack Developer with a passion for clean design and elegant code</p>
-            <p><a href="#projects">View My Work</a></p>
+    <button
+            class="bg-blue-600 text-white px-5 py-3 rounded-lg
+             hover:bg-blue-700
+             focus-visible:outline
+             focus-visible:outline-2
+             focus-visible:outline-offset-2
+             focus-visible:outline-blue-600"
+    >
+        Hover or focus me
+    </button>
+</section>
 
-            <div>
-                <div>
-                    <p><strong>15</strong></p>
-                    <p>Experience</p>
-                </div>
-                <div>
-                    <p><strong>100+</strong></p>
-                    <p>Projects Completed</p>
-                </div>
-                <div>
-                    <p><strong>52</strong></p>
-                    <p>Happy Clients</p>
-                </div>
-            </div>
-        </div>
+<section class="mb-10">
+    <h2 class="text-lg font-semibold mb-4">
+        Group Hover
+    </h2>
 
-        <figure>
-            <img src="headshot.jpg" alt="Portrait of John Doe" />
-            <figcaption>Portrait photo</figcaption>
-        </figure>
-    </section>
-</header>
-
-<main id="main">
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            This section introduces who you are and what you do. We will expand it later,
-            but the structure starts here.
+    <div class="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+        <p class="mb-2">
+            Hover this card
         </p>
-        <p><a href="#contact">Download My CV</a></p>
-    </section>
 
-    <section id="skills">
-        <h2>Skills &amp; Technologies</h2>
+        <span class="text-sm text-gray-500 group-hover:text-blue-600">
+        I react to my parent
+      </span>
+    </div>
+</section>
 
-        <div>
-            <h3>Frontend</h3>
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Tailwind</li>
-            </ul>
-        </div>
+<section>
+    <h2 class="text-lg font-semibold mb-4">
+        Structural Variants
+    </h2>
 
-        <div>
-            <h3>Backend</h3>
-            <ul>
-                <li>Node.js</li>
-                <li>PostgreSQL</li>
-                <li>REST APIs</li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Tools</h3>
-            <ul>
-                <li>Git</li>
-                <li>Docker</li>
-                <li>VS Code</li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Design</h3>
-            <ul>
-                <li>UI/UX</li>
-                <li>Prototyping</li>
-                <li>Responsive Design</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <p>A selection of projects that showcase my skills.</p>
-
-        <div>
-            <article>
-                <h3>E-Commerce Platform</h3>
-                <p>A full-featured online shopping platform with cart and admin dashboard.</p>
-                <ul>
-                    <li><a href="#">Live Demo</a></li>
-                    <li><a href="#">View Code</a></li>
-                </ul>
-            </article>
-
-            <article>
-                <h3>Task Manager Pro</h3>
-                <p>A collaborative task manager with real-time updates and productivity analytics.</p>
-                <ul>
-                    <li><a href="#">Live Demo</a></li>
-                    <li><a href="#">View Code</a></li>
-                </ul>
-            </article>
-
-            <article>
-                <h3>Weather Dashboard</h3>
-                <p>A dashboard with forecasts, location tracking, and interactive charts.</p>
-                <ul>
-                    <li><a href="#">Live Demo</a></li>
-                    <li><a href="#">View Code</a></li>
-                </ul>
-            </article>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Get in Touch</h2>
-
-        <div>
-            <p><strong>Email:</strong> johndoe@email.com</p>
-            <p><strong>Follow:</strong> Twitter, GitHub, LinkedIn</p>
-        </div>
-
-        <aside>
-            <p><strong>Note:</strong> The contact form structure will be built later.</p>
-        </aside>
-    </section>
-
-</main>
-
-<footer>
-    <p>© 2025 John Doe</p>
-</footer>
+    <ul class="bg-white dark:bg-gray-800 rounded-lg shadow divide-y">
+        <li class="p-4 first:pt-2">
+            First item
+        </li>
+        <li class="p-4">
+            Middle item
+        </li>
+        <li class="p-4 last:pb-2 last:border-none">
+            Last item
+        </li>
+    </ul>
+</section>
 
 </body>
 </html>

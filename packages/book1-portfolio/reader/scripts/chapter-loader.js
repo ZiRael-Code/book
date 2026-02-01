@@ -4,6 +4,14 @@ import { updateNavigation } from './navigation.js';
 import { updateCodeLink } from './code-viewer.js';
 
 export async function loadChapter(chapterId, chapters) {
+
+    const chapterView = document.getElementById('chapter-viewer');
+    const projectView = document.getElementById('project-code');
+
+    if (projectView) projectView.classList.add('hidden');
+    if (chapterView) chapterView.classList.remove('hidden');
+    chapterView.classList.add('visible');
+
     const chapter = chapters.find(c => c.id === chapterId);
     if (!chapter) {
         console.error('Chapter not found:', chapterId);
@@ -11,6 +19,7 @@ export async function loadChapter(chapterId, chapters) {
     }
 
     try {
+
         const response = await fetch(chapter.path);
         if (!response.ok) throw new Error(`Failed to load: ${response.status}`);
 
@@ -45,4 +54,6 @@ export async function loadChapter(chapterId, chapters) {
             </div>
         `;
     }
+
+
 }

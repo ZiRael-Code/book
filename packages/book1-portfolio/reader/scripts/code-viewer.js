@@ -28,7 +28,7 @@ export async function showCodeForChapter(chapter) {
         let cssFile = '';
         let jsFile = '';
 
-        const htmlFiles = ['introduction.html', 'hero.html', 'intro.html', 'box-model.html', 'main.html', 'intro-to-tailwind.html'];
+        const htmlFiles = ['introduction.html', 'accessibility-and-seo.html', 'prototyping.html','hero.html', 'intro.html', 'box-model.html', 'main.html', 'intro-to-tailwind.html'];
         for (const file of htmlFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -42,7 +42,7 @@ export async function showCodeForChapter(chapter) {
             }
         }
 
-        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'base.css', 'box-model.css', 'main.css', 'input.js'];
+        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'base.css', 'box-model.css', 'accessibility.css', 'main.css', 'input.js'];
         for (const file of cssFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -88,10 +88,16 @@ export async function showCodeForChapter(chapter) {
         alert(`Cannot load code for "${chapter.title}". Error: ${error.message}`);
     }
 }
-
 function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4';
+
+    const hasHTML = htmlCode && htmlCode.trim().length > 0;
+    const hasCSS = cssCode && cssCode.trim().length > 0;
+    const hasJS = jsCode && jsCode.trim().length > 0;
+
+    const titleMatch = title.match(/\((.*?)\)/);
+    const filesText = titleMatch ? titleMatch[1] : '';
 
     const bodyMatch = htmlCode.match(/<body[^>]*>([\s\S]*)<\/body>/i);
     let bodyContent = bodyMatch ? bodyMatch[1] : htmlCode;
@@ -102,13 +108,7 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
     const basePathMatch = currentPath.match(/(.*book1-portfolio)/);
     const basePath = basePathMatch ? basePathMatch[1] : '';
 
-    console.log('Current URL:', currentUrl.href);
-    console.log('Current path:', currentPath);
-    console.log('Base path:', basePath);
-
     const fullBasePath = basePath ? `${currentUrl.origin}${basePath}` : currentUrl.origin;
-
-    console.log('Full base path for assets:', fullBasePath);
 
     bodyContent = bodyContent.replace(/(src|href)=["']([^"']*)["']/gi, (match, attr, path) => {
         if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:') || path.startsWith('#') || path.startsWith('mailto:')) {
@@ -123,7 +123,6 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
             newPath = `${fullBasePath}/${path.substring(6)}`;
         }
 
-        console.log(`Path conversion: ${path} -> ${newPath}`);
         return `${attr}="${newPath}"`;
     });
 
@@ -134,6 +133,46 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="${fullBasePath}/">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+              corePlugins: {
+            preflight: false, 
+        },
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "#ffffff",
+                        text: "#0f172a",
+                        primary: "#2563eb",
+                        success: "#16a34a",
+                        danger: "#dc2626",
+                        warn: "#f59e0b",
+                        muted: "#475569",
+                        border: "#e2e8f0"
+                    },
+                    spacing: {
+                        xs: "4px",
+                        sm: "8px",
+                        md: "16px",
+                        lg: "24px",
+                        xl: "32px"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "sans-serif"],
+                        mono: ["Roboto Mono", "ui-monospace", "monospace"]
+                    },
+                    borderRadius: {
+                        sm: "4px",
+                        md: "8px",
+                        lg: "12px"
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
         ${cssCode || ''}
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -157,15 +196,9 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('img');
             images.forEach(img => {
-                console.log('Image loaded:', img.src, 'complete:', img.complete, 
-                           'naturalWidth:', img.naturalWidth, 'naturalHeight:', img.naturalHeight);
-                
                 if (img.naturalWidth === 0) {
-                    console.warn('Image might have loading issues:', img.src);
-                    
                     img.onerror = function() {
                         const originalSrc = this.src;
-                        console.log('Image failed to load, trying again:', originalSrc);
                         this.src = originalSrc + '?retry=' + Date.now();
                     };
                 }
@@ -178,6 +211,110 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
 </html>`;
 
     const encodedPreview = previewHtml.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+    let tabButtonsHTML = `
+        <button class="tab-button active px-4 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600" data-tab="preview">
+            👁️ Live Preview
+        </button>`;
+
+    if (hasHTML) {
+        tabButtonsHTML += `
+        <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="html">
+            📄 HTML Code
+        </button>`;
+    }
+
+    if (hasCSS) {
+        tabButtonsHTML += `
+        <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="css">
+            🎨 CSS Code
+        </button>`;
+    }
+
+    if (hasJS) {
+        tabButtonsHTML += `
+        <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="js">
+            🧠 JS Code
+        </button>`;
+    }
+
+    let tabContentHTML = `
+        <div class="tab-content flex-1 p-6 overflow-auto bg-gray-50" data-tab="preview">
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 h-full">
+                <div class="mb-4">
+                    <h4 class="font-semibold text-slate-900">Live Preview</h4>
+                    <p class="text-sm text-slate-600">This is how the code renders in a browser:</p>
+                </div>
+                <div class="border border-slate-300 rounded-lg overflow-hidden bg-white" style="height: 700px;">
+                    <iframe 
+                        srcdoc="${encodedPreview}"
+                        class="w-full h-full border-0"
+                        sandbox="allow-scripts allow-same-origin"
+                        title="Code Preview"
+                    ></iframe>
+                </div>
+            </div>
+        </div>`;
+
+    if (hasHTML) {
+        tabContentHTML += `
+        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="html">
+            <div class="h-full flex flex-col">
+                <div class="px-6 py-4 border-b border-slate-200">
+                    <h4 class="font-semibold text-slate-900">HTML Code</h4>
+                    <p class="text-sm text-slate-600">The structure of the component</p>
+                </div>
+                <div class="flex-1 overflow-auto p-6">
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-html">${escapeHtml(htmlCode)}</code></pre>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-200">
+                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(htmlCode)}">
+                        📋 Copy HTML Code
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    if (hasCSS) {
+        tabContentHTML += `
+        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="css">
+            <div class="h-full flex flex-col">
+                <div class="px-6 py-4 border-b border-slate-200">
+                    <h4 class="font-semibold text-slate-900">CSS Code</h4>
+                    <p class="text-sm text-slate-600">Styles for the component</p>
+                </div>
+                <div class="flex-1 overflow-auto p-6">
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-css">${escapeHtml(cssCode)}</code></pre>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-200">
+                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(cssCode)}">
+                        📋 Copy CSS Code
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    if (hasJS) {
+        tabContentHTML += `
+        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="js">
+            <div class="h-full flex flex-col">
+                <div class="px-6 py-4 border-b border-slate-200">
+                    <h4 class="font-semibold text-slate-900">JS Code</h4>
+                    <p class="text-sm text-slate-600">Behavior for the component</p>
+                </div>
+                <div class="flex-1 overflow-auto p-6">
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-js">${escapeHtml(jsCode)}</code></pre>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-200">
+                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(jsCode)}">
+                        📋 Copy JS Code
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }
 
     modal.innerHTML = `
 <div class="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
@@ -195,89 +332,12 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
 
     <div class="border-b border-slate-200 px-6">
         <div class="flex space-x-1">
-            <button class="tab-button active px-4 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600" data-tab="preview">
-                👁️ Live Preview
-            </button>
-            <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="html">
-                📄 HTML Code
-            </button>
-            <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="css">
-                🎨 CSS Code
-            </button>
-            <button class="tab-button px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900" data-tab="js">
-                🧠 JS Code
-            </button>
+            ${tabButtonsHTML}
         </div>
     </div>
 
     <div class="flex-1 overflow-hidden flex">
-        <div class="tab-content flex-1 p-6 overflow-auto bg-gray-50" data-tab="preview">
-            <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 h-full">
-                <div class="mb-4">
-                    <h4 class="font-semibold text-slate-900">Live Preview</h4>
-                    <p class="text-sm text-slate-600">This is how the code renders in a browser:</p>
-                </div>
-                <div class="border border-slate-300 rounded-lg overflow-hidden bg-white" style="height: 700px;">
-                    <iframe 
-                        srcdoc="${encodedPreview}"
-                        class="w-full h-full border-0"
-                        sandbox="allow-scripts allow-same-origin"
-                        title="Code Preview"
-                    ></iframe>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="html">
-            <div class="h-full flex flex-col">
-                <div class="px-6 py-4 border-b border-slate-200">
-                    <h4 class="font-semibold text-slate-900">HTML Code</h4>
-                    <p class="text-sm text-slate-600">The structure of the component</p>
-                </div>
-                <div class="flex-1 overflow-auto p-6">
-                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-html">${escapeHtml(htmlCode)}</code></pre>
-                </div>
-                <div class="px-6 py-4 border-t border-slate-200">
-                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(htmlCode)}">
-                        📋 Copy HTML Code
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="css">
-            <div class="h-full flex flex-col">
-                <div class="px-6 py-4 border-b border-slate-200">
-                    <h4 class="font-semibold text-slate-900">CSS Code</h4>
-                    <p class="text-sm text-slate-600">Styles for the component</p>
-                </div>
-                <div class="flex-1 overflow-auto p-6">
-                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-css">${escapeHtml(cssCode || '/* No CSS file found for this chapter */')}</code></pre>
-                </div>
-                <div class="px-6 py-4 border-t border-slate-200">
-                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(cssCode || '')}">
-                        📋 Copy CSS Code
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content hidden flex-1 p-0 overflow-hidden" data-tab="js">
-            <div class="h-full flex flex-col">
-                <div class="px-6 py-4 border-b border-slate-200">
-                    <h4 class="font-semibold text-slate-900">JS Code</h4>
-                    <p class="text-sm text-slate-600">Behavior for the component</p>
-                </div>
-                <div class="flex-1 overflow-auto p-6">
-                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono h-full"><code class="language-js">${escapeHtml(jsCode || '/* No JS file found for this chapter */')}</code></pre>
-                </div>
-                <div class="px-6 py-4 border-t border-slate-200">
-                    <button class="copy-code-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm" data-code="${escapeAttr(jsCode || '')}">
-                        📋 Copy JS Code
-                    </button>
-                </div>
-            </div>
-        </div>
+        ${tabContentHTML}
     </div>
 </div>`;
 
@@ -319,16 +379,6 @@ function showCodeModal(title, htmlCode, cssCode, jsCode, codePath) {
             });
         });
     });
-
-    setTimeout(() => {
-        const iframe = modal.querySelector('iframe');
-        if (iframe) {
-            iframe.onload = function () {
-                console.log('Iframe loaded - check Network tab for image requests');
-                console.log('Base path used:', fullBasePath);
-            };
-        }
-    }, 100);
 }
 
 
