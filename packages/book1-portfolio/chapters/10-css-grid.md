@@ -16,15 +16,13 @@ CSS Grid lets you control layout in two dimensions at once, giving more delibera
 
 ## Why CSS Grid exists
 
-Flexbox is great for laying things out in a line(one dimension) but CSS Grid is built for laying things out in **two directions at once**.
-
-Analogy:
+Flexbox is great for laying things out in a line (one dimension), while CSS Grid is built for laying things out in two directions at once.
 
 ---
 
 ## Creating a grid container
 
-Grid starts the same way Flexbox does, by creating a container.
+CSS Grid starts the same way Flexbox does, by creating a container.
 
 ```css
 .container {
@@ -38,7 +36,7 @@ Once an element becomes a grid container, its direct children become grid items.
 
 ## Grid rows and columns
 
-Grid layouts are defined by rows and columns. Grid items are then placed in these rows and columns. Columns run left to right while rows run top to bottom. You can decide how many of each you want.
+Grid layouts are defined by rows and columns, and grid items are placed within this structure. Columns run left to right while rows run top to bottom. You can decide how many of each you want.
 
 ---
 
@@ -66,7 +64,7 @@ Rows can be defined the same way.
 }
 ```
 
-Most of the time, rows can be left to auto size based on content, i.e., the number of rows will be determined by the size of the grid items.
+Most of the time, rows can be left to auto size based on content, i.e., the number of rows will be created automatically based on how many grid items need to be placed.
 
 ---
 
@@ -80,11 +78,11 @@ Grid spacing is controlled with `gap`.
 }
 ```
 
-The above code leaves a space of 24px between the rows and columns. It replaces the need for margins between grid items.
+The above code leaves a space of 24px between the rows and columns. It reduces the need for margins between grid items by providing consistent spacing within the grid.
 
 ---
 
-## Auto fit and minmax for responsive grids
+## Auto-fit and minmax for responsive grids
 
 One of the most powerful Grid patterns is auto fit with minmax.
 
@@ -101,12 +99,13 @@ What this means:
 * Columns can grow to fill available space up to 1fr
 
 This is perfect for card layouts.
+`auto-fit` collapses empty columns so items stretch to fill available space. A related value, auto-fill, keeps empty columns even if no items occupy them.
 
 ---
 
 ## When to use Grid instead of Flexbox
 
-Grid is the perfect solution when your layout has both rows and columns. Use Flexbox when layout is just one direction
+Grid is the perfect solution when your layout has both rows and columns. Use Flexbox when the layout flows in just one direction.
 
 ---
 
@@ -115,7 +114,7 @@ Grid is the perfect solution when your layout has both rows and columns. Use Fle
 * Featured Projects section uses CSS Grid to display project cards in rows and columns.
 * Grid gap ensures consistent spacing between cards.
 * Contact section uses a two-column grid for form and contact info.
-* Responsive breakpoints adjust both project grid and contact grid to smaller screens.
+* Grid layouts adapt naturally to smaller screens and can be further refined with responsive breakpoints.
 
 ### Code Walkthrough
 
@@ -129,7 +128,7 @@ Grid is the perfect solution when your layout has both rows and columns. Use Fle
 }
 ```
 
-* Three equal columns; cards auto-adjust width and spacing.
+* Three equal columns; cards automatically adjust their width while spacing is controlled by the grid gap.
 
 **Contact Section Grid**
 

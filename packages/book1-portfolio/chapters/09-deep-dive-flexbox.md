@@ -2,7 +2,7 @@
 
 ## Personal Reasoning
 
-Flexbox is about controlling how items behave along a main axis and cross axis. Using properties like `justify-content`, `align-items`, `gap`, and `flex-wrap` allows layouts to adapt naturally across screen sizes without relying on hacks. Shorthand like `flex: grow shrink basis` gives precise control over item sizing in a flexible container.
+Flexbox is about controlling how items behave along a main axis and a cross axis, which are determined by the flex-direction of the container. Using properties like `justify-content`, `align-items`, `gap`, and `flex-wrap` allows layouts to adapt naturally across screen sizes without relying on hacks. Shorthand like `flex: grow shrink basis` gives precise control over item sizing in a flexible container.
 
 ### Overall Learning
 
@@ -15,7 +15,7 @@ Flexbox is about controlling how items behave along a main axis and cross axis. 
 
 ---
 
-## Flexbox intro recap
+## Flexbox Intro Recap
 
 Flexbox exists to solve one problem: arranging items in a line. That line can run horizontally or vertically, but it is always one main direction at a time.
 
@@ -23,7 +23,7 @@ Flexbox exists to solve one problem: arranging items in a line. That line can ru
 
 ## The flex container and flex items
 
-Like we learned in the previous chapter, flexbox starts with a container whose display is set to flex, then the direct children of the flex container then become flex items.
+Like we learned in the previous chapter, flexbox starts with a container whose display is set to flex, the direct children of the flex container then become flex items.
 
 ```css
 .container {
@@ -40,7 +40,7 @@ Flexbox layout is based on two axes.
 * **Main axis** is the direction items flow
 * **Cross axis** is perpendicular to the main axis
 
-By default the main axis runs left to right and the cross axis runs top to bottom.But you can set the direction of the main axis using flex direction.
+By default the main axis runs left to right and the cross axis runs top to bottom. But you can set the direction of the main axis using flex direction.
 
 ---
 
@@ -54,7 +54,7 @@ By default the main axis runs left to right and the cross axis runs top to botto
 }
 ```
 
-The value for `flex-direction` can either be row (default) or column.
+The value for flex-direction can be row (default), column, row-reverse, or column-reverse.
 If you switch to column, the axes swap roles.
 
 ---
@@ -74,7 +74,7 @@ Some common values for justify content are:
 * flex-start
 * center
 * space-between (aligns the flex items from edge to edge within the container and puts even space between them)
-* space-around(distributes the space in the container evenly between the flex items)
+* space-around (distributes space around items, with half-sized space at the edges)
 * space-evenly
 
 ---
@@ -96,13 +96,13 @@ Some common values are:
 * flex-start
 * flex-end
 
-Setting the value to stretch ensures that flex items will automatically stretch vertically to match the height of the tallest item in the row
+Setting the value to stretch causes flex items to stretch along the cross axis to fill the container, as long as no fixed size is set.
 
 ---
 
 ## Gap
 
-`gap` controls spacing (distance) between flex items, replacing the need for margins
+`gap` controls spacing (distance) between flex items, reducing the need for margins when spacing items within a flex container.
 
 ```css
 .container {
@@ -113,7 +113,7 @@ Setting the value to stretch ensures that flex items will automatically stretch 
 
 ## Wrapping items
 
-By default, flex items try to stay on one line. If you want your flex trend to break into a new line when space runs out, you can use flex-wrap. This is essential for responsive designs as your layout will now adjust to screen sizes 
+By default, flex items try to stay on one line. If you want your flex items to break into a new line when space runs out, you can use `flex-wrap`. This is essential for responsive designs as your layout will now adjust to screen sizes 
 
 ```css
 .container {
@@ -121,17 +121,18 @@ By default, flex items try to stay on one line. If you want your flex trend to b
 }
 ```
 
+Wrapping only affects how items move onto new lines; it does not automatically resize them unless combined with flex-grow, flex-shrink, or flex-basis.
 ---
 
-Let's look at 3 more core CSS Flexbox properties. Read through it slowly and carefully so as to really understnad it.
+Let's look at 3 more core CSS Flexbox properties. Read through it slowly and carefully to fully understand it.
 
 ## Flex grow, shrink and basis
-`flex-grow` determines how much an item expands to fill extra space. A higher number means it grows faster. The default is 0 and when it's set to 0, it won't grow more than its `flex-basis`.
+`flex-grow` determines how much an item expands to fill extra space. A higher number means the item receives a larger share of the available space relative to other items. The default is 0 and when it's set to 0, it won't grow more than its `flex-basis`.
 
 `flex-shrink` dictates how much an item shrinks when space is limited (relative to others). A higher number means it shrinks more and the default is 1.
 
-`flex-basis` sets the item's initial size of the flex item before growing or shrinking.
-The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-grow and flex-shrink don't take any unit
+`flex-basis` sets the item’s initial size before grow or shrink behavior is applied.
+The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-grow and flex-shrink are unitless numbers.
 
 ```css
 .card{
@@ -183,7 +184,7 @@ The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-gr
   * `wrap` – items move to next line when space runs out
 
 * **align-items: stretch**
-  Makes flex items equal height by stretching them to match the tallest item in the row.
+  Stretches flex items along the cross axis to fill the container, which often results in equal heights when the cross axis is vertical.
 
 * **flex-grow**
   Controls how much an item expands when extra space is available.
@@ -240,12 +241,12 @@ The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-gr
   flex: 1 1 calc(50% - 2rem);
   padding: 2rem;
   border-radius: 0.75rem;
-  box-shadow: 1px 1px 10px #0000001A;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 ```
 
-* Flex container wraps cards and ensures two per row on large screens.
+* Flex container wraps cards and allows two cards per row on larger screens when sufficient horizontal space is available.
 * Cards align icon and text horizontally with a gap.
 
 ### Project Milestone

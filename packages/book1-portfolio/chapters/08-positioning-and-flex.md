@@ -23,19 +23,19 @@ Every element on a page follows something called **normal flow**. In normal flow
 
 ## When and why to break normal flow
 
-Sometimes we may may want to design something that doesn't follow the default layout, like a badge on top of a card or a sticky sidebar. CSS allows you to break normal flow using the `position` property.
+Sometimes we may want to design something that doesn't follow the default layout, like a badge on top of a card or a sticky sidebar. CSS allows you to break normal flow using the `position` property.
 
 ---
 
 ## The position property
 
-Every element has a position value which can either be static, relative, absolute or fixed.
+Every element has a position value which can be static, relative, absolute, fixed, or sticky.
 
 ---
 
 ## Static positioning
 
-Static elements follow normal flow and cannot be moved using top, left, right, or bottom
+Static elements follow normal flow and cannot be moved using top, left, right, or bottom.
 
 ```css
 .box {
@@ -63,7 +63,7 @@ Relative positioning moves an element **relative to its original position**.  Wh
 
 ## Absolute positioning
 
-The CSS property `position: absolute` removes an element from the normal document flow and positions it relative to its nearest positioned ancestor, i.e., The element's position is determined by its closest ancestor whose position property is anything other than static (i.e., relative, absolute, fixed, or sticky). If no ancestor is positioned, it uses the viewport. It does not take up space in the layout
+The CSS property `position: absolute` removes an element from the normal document flow and positions it relative to its nearest positioned ancestor, i.e., The element is positioned relative to its nearest positioned ancestor. This is the closest ancestor whose position value is anything other than static (relative, absolute, fixed, or sticky). If no such ancestor exists, the element is positioned relative to the viewport. It does not take up space in the layout.
 
 ```css
 .badge {
@@ -99,13 +99,13 @@ Sticky is a mix of relative and fixed. It allows an element to scroll normally w
 }
 ```
 
-**N.B:** Sticky only works when there is enough scrolling space.
+**N.B:** Sticky positioning only works when there is enough scrolling space and when none of the parent containers have overflow: hidden, scroll, or auto that would block the sticky behavior.
 
 ---
 
 ## Z index
 
-When elements overlap, the browser decides which one appears on top. This is controlled by `z-index`. If box A is stacked on top of Box B in the normal flow but Box B has a higher z-index value, Box B is going to appear on top instead 
+When elements overlap, the browser decides which one appears on top. This is controlled by `z-index`. When elements overlap, stacking order is controlled by z-index. If two positioned elements overlap and one has a higher z-index value, that element will appear on top.
 
 ```css
 .modal {
@@ -116,15 +116,15 @@ When elements overlap, the browser decides which one appears on top. This is con
 
 ## Things to note when using z index
 
-* **Position:** z index only works when the element has a position other than static. 
-* **Value:** You assign an integer value (positive, negative, or zero) to the z index property. Without a specified z xindex, elements stack in the order they appear in the HTML document. 
-* **Stacking Context:** Think of a stacking context like a container that limits how high its children can stack. z index values are only compared between elements inside the same container. If a parent element sits below another element, everything inside that parent is also below it, no matter how high the child’s z index is. So a child with a very high z index cannot rise above an unrelated element if its parent is already underneath. The parent sets the ceiling.
+* **Position:** z-index only works on elements whose position is not static.
+* **Value:** You assign an integer value (positive, negative, or zero) to the z-index property. Without a specified z-index, elements stack based on their order in the HTML document.
+* **Stacking Context:** Think of a stacking context like a container that limits how high its children can stack. A stacking context is created by certain properties such as position with z-index, opacity, transform, or filter. z-index values are only compared within the same stacking context. If a parent element sits below another element, everything inside that parent is also below it, no matter how high the child’s z index is. So a child with a very high z index cannot rise above an unrelated element if its parent is already underneath. The parent sets the ceiling.
 
 ---
 
 ## Introduction to Flexbox
 
-Flexbox is short for flexible Box Layout. Flexbox is a layout model used to arrange the items in a container in either a row or column. Flexbox is great because it also implements responsive design. A flexbox consists of a flex container and one or more flex items.
+Flexbox is short for Flexible Box Layout. Flexbox is a layout model used to arrange the items in a container in either a row or column. Flexbox is useful because it makes it easier to create flexible, responsive layouts. A flexbox consists of a flex container and one or more flex items.
 A Flex Container is a parent element, where the display property is set to flex or inline-flex while a flex item is the direct child of the flex container.
 
 ---
@@ -138,7 +138,7 @@ To use Flexbox, you define a flex container. This changes how its direct childre
   display: flex;
 }
 ```
-In the next chapter, we'll learn more about flexbox, how to create flex items and how to align them
+In the next chapter, we'll learn more about flexbox, how to create flex items and how to align them.
 
 ---
 
@@ -170,7 +170,7 @@ In the next chapter, we'll learn more about flexbox, how to create flex items an
 }
 ```
 
-* This flex container aligns children horizontally with spacing between them and adds enough padding and margin.
+* This flex container aligns children horizontally with spacing between them and adds appropriate padding and centers the content using margin.
 
 **Logo & Nav Items**
 
@@ -211,8 +211,8 @@ In the next chapter, we'll learn more about flexbox, how to create flex items an
 
 ### Ship Note
 
-Open the page and confirm:
+Open the page and confirm that:
 
 * Logo, navigation links, and contact button are horizontally aligned and evenly spaced.
 * Contact button stands out with correct colors and rounded shape.
-* Navbar is neatly styled using the cincepts taught
+* Navbar is neatly styled using the concepts taught
