@@ -209,7 +209,20 @@ When showing a disabled state, it is good practice to combine color with opacity
 ```
 
 * Hero background uses `--color-bg`
+
+```css
+.hero{
+  background-color: var(--color-bg);
+}
+```
+
 * Primary button uses `--color-bg-primary` with text `--color-text-secondary`
+```css
+.hero-btn {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+}
+```
 
 This ensures colors are centralized and easy to update.
 

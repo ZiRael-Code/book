@@ -13,6 +13,7 @@
   /* Layout */
   --section-padding: 1.25rem 4.5rem;
   --section-padding-wide: 1.25rem 5.5rem;
+  --section-padding-mobile: 1rem 0.5rem;
   --max-width: 1100px;
 }
 
@@ -23,19 +24,19 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
 }
 
-#about, .navbar, header, #projects{
-  padding: var(--section-padding);
+#about, .navbar, #id, #projects{
+  padding: var(--section-padding-mobile);
 }
 
 #skills, #contact {
-  padding: var(--section-padding-wide);
+  padding: var(--section-padding-mobile);
 }
-
 
 .navbar {
   position: sticky;
@@ -118,9 +119,6 @@ body {
   display: none;
 }
 
-header {
-  background-color: var(--color-bg);
-}
 
 .hero {
   max-width: var(--max-width);
@@ -164,12 +162,11 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: center;
   background: #ffffff;
   padding: 1.25rem 2rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-
   list-style: none;
   margin: 0;
 }
@@ -201,7 +198,7 @@ header {
   background: #eaeaea;
   border-radius: 1rem;
   max-width: 900px;
-  margin: 3rem 2rem;
+  margin: 3rem 0.5rem;
   justify-self: center;
 }
 
@@ -209,9 +206,6 @@ header {
   margin-top: 0;
 }
 
-#about p {
-  max-width: 700px;
-}
 
 #about a {
   display: inline-flex;
@@ -269,10 +263,10 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  width: 100%;
 }
 
 #skills li {
@@ -444,6 +438,14 @@ footer {
 }
 
 @media (min-width: 768px) {
+  #about, .navbar, #id, #projects{
+    padding: var(--section-padding);
+  }
+
+  #skills, #contact {
+    padding: var(--section-padding);
+  }
+
   .hamburger {
     display: none;
   }
@@ -458,6 +460,10 @@ footer {
     flex-direction: row;
     padding: 0;
     gap: 2rem;
+  }
+
+  #about p {
+    max-width: 700px;
   }
 
   .contact-btn {
@@ -482,6 +488,10 @@ footer {
 
   .hero figure img {
     max-width: 100%;
+  }
+
+  .stats ul {
+    justify-content: space-between;
   }
 
   #skills > div {

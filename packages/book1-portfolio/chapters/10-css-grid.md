@@ -109,13 +109,6 @@ Grid is the perfect solution when your layout has both rows and columns. Use Fle
 
 ---
 
-### Project Milestone
-
-* Featured Projects section uses CSS Grid to display project cards in rows and columns.
-* Grid gap ensures consistent spacing between cards.
-* Contact section uses a two-column grid for form and contact info.
-* Grid layouts adapt naturally to smaller screens and can be further refined with responsive breakpoints.
-
 ### Code Walkthrough
 
 **Projects Grid**
@@ -142,6 +135,12 @@ Grid is the perfect solution when your layout has both rows and columns. Use Fle
 
 * Two-column layout: form on one side, info on the other.
 
+### Project Milestone
+
+* Featured Projects section uses CSS Grid to display project cards in rows and columns.
+* Grid gap ensures consistent spacing between cards.
+* Contact section uses a two-column grid for form and contact info.
+* Grid layouts adapt naturally to smaller screens and can be further refined with responsive breakpoints.
 
 ### Ship Note
 

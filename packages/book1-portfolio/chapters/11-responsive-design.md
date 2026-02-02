@@ -152,6 +152,15 @@ Lazy loading defers image loading until they enter the viewport. It helps with f
 
 ---
 
+## Project Milestone
+
+* Navbar now collapses into a hamburger menu on mobile screens.
+* Hero section, stats, and project grids adjust for tablets and smaller devices.
+* Images across hero, projects, and about sections scale proportionally.
+* Contact section stacks on narrow screens for better readability.
+
+---
+
 ## Code Walkthrough
 
 **Viewport Meta Tag**
@@ -214,14 +223,6 @@ While mobile-first design typically uses min-width media queries, max-width quer
 
 ---
 
-## Project Milestone
-
-* Navbar now collapses into a hamburger menu on mobile screens.
-* Hero section, stats, and project grids adjust for tablets and smaller devices.
-* Images across hero, projects, and about sections scale proportionally.
-* Contact section stacks on narrow screens for better readability.
-
----
 ## Ship Note
 
 * Portfolio now adapts seamlessly to mobile, tablet, and desktop.

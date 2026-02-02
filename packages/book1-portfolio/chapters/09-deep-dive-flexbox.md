@@ -241,7 +241,7 @@ The shorthand syntax is: `flex: <grow> <shrink> <basis>.` The values for flex-gr
   flex: 1 1 calc(50% - 2rem);
   padding: 2rem;
   border-radius: 0.75rem;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 10px #0000001A;
 }
 
 ```
