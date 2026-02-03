@@ -21,8 +21,8 @@ function setupCodeExamples() {
 
         // 👇 YOU decide the paths. No guessing.
         renderProjectPage({
-            htmlPath: '../code/03.00-architectural-plan-semantic/hero.html',
-            cssPath: '../code/03.00-architectural-plan-semantic/hero.css'
+            htmlPath: '../code/project-code/hero.html',
+            cssPath: '../code/project-code/main.css'
         });
     });
 }
