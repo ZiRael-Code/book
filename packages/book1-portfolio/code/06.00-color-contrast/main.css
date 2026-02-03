@@ -1,0 +1,16 @@
+:root {
+  /* Colors */
+  --color-bg: #fAf9f6;
+  --color-bg-primary: #2E7EF7;
+  --color-text: #36454F;
+  --color-text-secondary: #fAf9f6;
+}
+
+.hero{
+  background-color: var(--color-bg);
+}
+
+.hero-btn {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+}

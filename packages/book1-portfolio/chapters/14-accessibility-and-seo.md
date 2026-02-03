@@ -1,6 +1,26 @@
-### Lesson goal
+# Chapter 14 - Accessibility and SEO
 
-By the end of this chapter, you will understand how to prepare a website for real users and real environments by making it accessible, discoverable, and ready to ship.
+## Personal Reasoning
+
+A site that looks good but fails real users is unfinished. Accessibility, SEO, and performance are the difference between a demo and a product. This chapter exists to close that gap and shift your mindset from building pages to shipping websites that work in real environments, for real people, under real constraints.
+
+---
+## Personal Reasoning
+
+A site that looks good but fails real users is unfinished. Accessibility, SEO, and performance are not “polish” tasks — they are the difference between a demo and a product. This chapter exists to close that gap and shift your mindset from *building pages* to *shipping websites* that work in real environments, for real people, under real constraints.
+
+---
+
+## Overall Learning
+
+By the end of this chapter, you should be able to:
+
+* Design pages that work with keyboard, mouse, and assistive technologies
+* Apply accessibility fundamentals without relying on ARIA everywhere
+* Prepare HTML that search engines can correctly understand and index
+* Improve perceived performance through simple, high-impact techniques
+* Avoid common layout and loading problems that hurt UX
+* Recognize what “ready to ship” actually means beyond visuals
 
 ---
 
@@ -8,7 +28,7 @@ By the end of this chapter, you will understand how to prepare a website for rea
 
 Like we mentioned in previous chapters, finished websites should work for different people and different devices.
 
-Accessibility, SEO, and performance are very important parts of every website and we're going to be discssuing them in this chapter.
+Accessibility, SEO, and performance are very important parts of every website and we're going to be discussing them in this chapter.
 
 ---
 
@@ -77,9 +97,9 @@ Use contrast checkers to ensure your text meets WCAG guidelines.
 
 ## ARIA landmarks
 
-ARIA landmarks are accessibility features added to HTML elements to define major sections pf a webpage. They help screen readers and keyboard users understand page structure.
+ARIA landmarks are accessibility features added to HTML elements to define major sections p\of a webpage. They help screen readers and keyboard users understand page structure.
 
-You can achieve ARIA landmarks with semantic HTML5 tags like: header, banner, nav, main, footer; or ARIA attributes like: `role="banner" on elements.
+You can achieve ARIA landmarks with semantic HTML5 tags like: header, banner, nav, main, footer; or ARIA attributes like: `role="banner"` on elements.
 
 When you use proper HTML elements, ARIA is often unnecessary.
 Use ARIA only when native HTML cannot express the meaning.
@@ -88,7 +108,7 @@ Use ARIA only when native HTML cannot express the meaning.
 
 ## SEO essentials
 
-SEO means Search Engine Optimization. It is the practice of improving a website's visibility in organic(unpaid) search engine results in order to attract more users. Search engines read the structure of a webpage(HTML) so, good SEO starts with good HTML.
+SEO means Search Engine Optimization. It is the practice of improving a website's visibility in organic(unpaid) search engine results in order to attract more users. Search engines read the structure of a webpage (HTML), so good SEO starts with good HTML.
 
 ---
 
@@ -118,9 +138,8 @@ Fast sites feel better and rank better. Performance is part of user experience (
 
 ## Image optimization
 
-Images should be properly sized, compressed and not larger than needed. Large images slow pages down. Image optmization in CSS can be achieved by implementing responsive scaling, responsive bckground images, lazy loading, etc.
-
-Lazy loading means deferring the loading of images that aren't yet showing on the screen until the user scrolls near them, which helps reduce initial pqge load. You can implement this by using the `loading="lazy"`HTML attribute.
+Images should be properly sized, compressed and not larger than needed. Large images slow pages down. Image optimization in CSS can be achieved by implementing responsive scaling, responsive background images, lazy loading, etc.
+Lazy loading means deferring the loading of images that aren't yet showing on the screen until the user scrolls near them, which helps reduce initial page load. You can implement this by using the `loading="lazy"` HTML attribute.
 
 ---
 
@@ -168,3 +187,88 @@ A sitemap helps search engines understand your site structure. It lists all impo
 Favicons help users recognize your site in tabs and bookmarks. They also show completeness and professionalism.
 
 ---
+
+## Code Walkthrough
+
+### Metadata and SEO
+
+```html
+<meta name="description" content="A simple portfolio page built with clean HTML..." />
+<meta property="og:title" content="Developer Portfolio" />
+<meta property="og:image" content="..." />
+```
+
+* Improves search result clarity
+* Controls link previews
+* Requires no JavaScript
+
+---
+
+### Skip Link
+
+```html
+<a href="#main">Skip to main content</a>
+```
+
+* Allows keyboard users to bypass repeated navigation
+* Essential for accessibility on long pages
+* Only visible when focused
+
+---
+
+### Semantic Structure
+
+```html
+<header>...</header>
+<main id="main">...</main>
+<footer>...</footer>
+```
+
+* Creates natural ARIA landmarks
+* Improves screen reader navigation
+* Helps SEO and maintainability
+
+---
+
+### Images with Dimensions and Lazy Loading
+
+```html
+<img src="..." alt="Portrait of John Doe" width="442" height="537" loading="lazy" />
+```
+
+* Prevents layout shift
+* Improves loading performance
+* Provides meaningful alternative text
+
+---
+
+### Forms and Labels
+
+```html
+<label for="email">Email</label>
+<input id="email" type="email" />
+```
+
+* Ensures screen readers announce fields correctly
+* Improves click and focus behavior
+* Required for accessible forms
+
+---
+
+## Project Milestone
+
+You should now have:
+
+* A page navigable entirely by keyboard
+* Visible and intentional focus states
+* SEO-ready metadata in place
+* Optimized images and fonts
+* A layout that does not shift during load
+* A site that feels complete, not just styled
+
+---
+
+## Ship Note
+
+Tab through the entire page, disable your mouse, and resize the browser.
+If the site remains usable, readable, and predictable, it’s ready to ship.

@@ -28,7 +28,7 @@ export async function showCodeForChapter(chapter) {
         let cssFile = '';
         let jsFile = '';
 
-        const htmlFiles = ['introduction.html', 'accessibility-and-seo.html', 'prototyping.html','hero.html', 'index.html', 'main.html', 'intro-to-tailwind.html'];
+        const htmlFiles = ['introduction.html', 'accessibility-and-seo.html', 'prototyping.html','hero.html', 'intro.html', 'box-model.html', 'main.html', 'intro-to-tailwind.html'];
         for (const file of htmlFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {
@@ -42,7 +42,7 @@ export async function showCodeForChapter(chapter) {
             }
         }
 
-        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'accessibility.css', 'main.css', 'input.js'];
+        let cssFiles = ['header.css', 'hero.css', 'style.css', 'styles.css', 'base.css', 'box-model.css', 'accessibility.css', 'main.css', 'input.js'];
         for (const file of cssFiles) {
             const filePath = `${chapter.codePath}/${file}`;
             try {

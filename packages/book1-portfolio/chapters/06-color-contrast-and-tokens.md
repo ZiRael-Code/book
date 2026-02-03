@@ -1,8 +1,24 @@
-### Lesson goal
+# Chapter 6 - Color Contrast and Tokens
 
-By the end of this chapter, you will understand how color works in CSS, how to use CSS variables as design tokens, and how to apply color in a way that is consistent, readable, and accessible.
+## Personal Reasoning
 
----
+Color sets the tone for a website and directly affects readability, accessibility, and user perception. Using CSS variables instead of hard-coded values gives flexibility, consistency, and easier maintenance as projects scale. Understanding hover and disabled states also improves UX by visually communicating interactivity.
+
+## Overall Learning
+
+* How CSS handles color (color, background-color, border-color)
+
+* The pitfalls of hard-coded colors
+
+* CSS variables as design tokens for maintainable, reusable colors
+
+* Semantic naming for color tokens (--color-primary, --color-success, etc.)
+
+* Applying tokens to components
+
+* Ensuring sufficient color contrast for accessibility
+
+* Styling hover and disabled states for better UX
 
 ## Why color matters
 
@@ -10,13 +26,13 @@ Color is one of the first things people notice on a website.
 
 Good color combinations improve readability and make the site more visually appealing. On the other hand, poor color choices could make text hard to read, make your website feel less professional, and confuse users.
 
-When designing your website, you shouldn't choose random colors, try to follow a consistent system.
+When designing your website, you shouldn’t choose random colors; instead, follow a consistent system.
 
 ---
 
 ## How CSS applies color
 
-CSS controls color using properties like color, background-color, border-color, etc.
+CSS controls color using properties like `color`, `background-color`, `border-color`, etc.
 
 Example:
 
@@ -42,7 +58,7 @@ button {
 }
 ```
 
-There's nothing inherently wrong with defining your colors this way in your stylesheet. However, it becomes a problem when your website grows and becomes really large. It then becomes hard to update later and creates inconsistencies. Imagine you have a file with 800 lines of code and you're asked to change text color from black to green and now you have to go through all those lines of code and change all instances of that color, and probably do  the same for other files too. That's a lot of work!
+There's nothing inherently wrong with defining your colors this way in your stylesheet. However, it becomes a problem when your website grows and becomes really large. It then becomes hard to update later and creates inconsistencies. Imagine you have a file with 800 lines of code and you're asked to change text color from black to gray and now you have to go through all those lines of code and change all instances of that color. That's a lot of work!
 This is where CSS variables come in.
 
 ---
@@ -50,8 +66,7 @@ This is where CSS variables come in.
 ## CSS variables as design tokens
 
 CSS variables allow you to store values and reuse them.
-
-They are usually defined on the `:root` element.
+Design tokens also make accessibility improvements easier, since contrast fixes can be applied globally by adjusting token values instead of individual components. They are usually defined on the `:root` element.
 
 ```css
 :root {
@@ -73,7 +88,7 @@ This turns colors into design tokens. A token is a named value that represents a
 
 ## Semantic color tokens
 
-Instead of naming colors after how they look, we name them after what they mean.
+Instead of naming colors after how they look, we name them after what they represent in the interface. This allows the actual color values to change without breaking meaning or intent.
 
 ```css
 :root {
@@ -132,13 +147,13 @@ Example of good contrast:
 
 * Dark text on a light background
 
-It is really important to  understand contrast, as it directly affects usability.
+It is really important to understand contrast, as it directly affects usability.
 
 ---
 
 ## Checking contrast ratios
 
-There are tools that measure contrast using WCAG standards, but the general rule is that normal text should have a contrast ratio of at least 4.5:1, and large text can be slightly lower.
+According to WCAG guidelines, normal text should have a contrast ratio of at least 4.5:1, while large text (18px or larger, or 14px bold) must have a minimum ratio of 3:1.
 
 You should always check contrast in body text, buttons, links, call-to-action sections.
 
@@ -150,11 +165,11 @@ Color can also be used to communicate state.
 
 ### Hover state
 
-Hover state is an event that is registered when the cursor is directly on an element. Hover states give feedback.
+A hover state occurs when the cursor is placed over an element. Hover styles provide visual feedback that the element is interactive.
 
 ```css
 .button-primary:hover {
-  background-color: #1d4ed8;
+  background-color: var(--color-primary-hover);
 }
 ```
 
@@ -164,15 +179,63 @@ When you hover over the button above, its color will change to the specified col
 
 ### Disabled state
 
-Disabled states are very useful when building websites, as they let the user know that a request is being processed and help prevent double submissions. Disabled elements should look inactive but still be readable. For example, below is a sample code that shows the disabled state for a button that has been clicked:
+Disabled states are used to indicate that an action is currently unavailable. This may be because a requirement has not been met or an action is temporarily blocked. Disabled elements should look inactive but still be readable. For example, below is a sample code that shows the disabled state for a button that has been clicked:
 
 ```css
 .button-primary:disabled {
   background-color: #94a3b8;
+  color: #1f2933;
   cursor: not-allowed;
+  opacity: 0.7;
 }
 ```
 
+Disabled elements should maintain sufficient contrast so their text remains readable.
 When showing a disabled state, it is good practice to combine color with opacity or cursor changes. This makes for good UX.
 
 ---
+## Code Walkthrough
+
+* Defined root variables for background and text colors:
+
+```css
+:root {
+  --color-bg: #fAf9f6;
+  --color-bg-primary: #2E7EF7;
+  --color-text: #36454F;
+  --color-text-secondary: #fAf9f6;
+  --color-primary-hover: #1d4ed8;
+}
+```
+
+* Hero background uses `--color-bg`
+
+```css
+.hero{
+  background-color: var(--color-bg);
+}
+```
+
+* Primary button uses `--color-bg-primary` with text `--color-text-secondary`
+```css
+.hero-btn {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+}
+```
+
+This ensures colors are centralized and easy to update.
+
+## Project Milestone
+
+* Defined CSS variables for primary, text, and background colors
+* Applied variables consistently to the hero section and buttons
+* Ensured contrast and readability are maintained
+
+## Ship Note
+
+Open the page in a browser. Confirm that:
+
+* Hero section has the background color from `--color-bg`
+* Button displays `--color-bg-primary` and `--color-text-secondary`
+* Text is readable against the background, maintaining good contrast
