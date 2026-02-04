@@ -9,16 +9,20 @@
   "dependencies": {
     "@tailwindcss/typography": "0.5.19",
     "autoprefixer": "10.4.23",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "postcss": "8.5.6",
     "tailwindcss": "3.4.0"
   },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --watch",
+    "dev:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --minify",
     "dev": "npm run dev:css",
     "build:css": "npx tailwindcss -i ./packages/book1-portfolio/reader/styles/input.css -o ./packages/book1-portfolio/reader/styles/output.css --minify",
-    "build:pdf": "node packages/book1-portfolio/reader/scripts/build-pdf.js",
+    "server": "node server.js",
+    "pdf": "node ./packages/book1-portfolio/reader/scripts/build-pdf.js",
+    "start": "concurrently \"npm run dev\" \"npm run server\"",
     "serve": "npx serve packages/book1-portfolio",
     "build": "npm run build:css && npm run build:pdf"
   },
