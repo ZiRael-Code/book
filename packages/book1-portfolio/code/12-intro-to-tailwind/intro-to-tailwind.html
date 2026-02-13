@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Tokens Demo</title>
+
+<!--    &lt;!&ndash; ADD CDN Tailwind with your config &ndash;&gt;-->
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+
+<!--    <script>-->
+<!--        tailwind.config = {-->
+<!--            theme: {-->
+<!--                extend: {-->
+<!--                    colors: {-->
+<!--                        bg: "#ffffff",-->
+<!--                        text: "#0f172a",-->
+<!--                        primary: "#2563eb",-->
+<!--                        success: "#16a34a",-->
+<!--                        danger: "#dc2626",-->
+<!--                        warn: "#f59e0b",-->
+<!--                        muted: "#475569",-->
+<!--                        border: "#e2e8f0"-->
+<!--                    },-->
+<!--                    spacing: {-->
+<!--                        xs: "4px",-->
+<!--                        sm: "8px",-->
+<!--                        md: "16px",-->
+<!--                        lg: "24px",-->
+<!--                        xl: "32px"-->
+<!--                    },-->
+<!--                    fontFamily: {-->
+<!--                        sans: ["Inter", "system-ui", "sans-serif"],-->
+<!--                        mono: ["Roboto Mono", "ui-monospace", "monospace"]-->
+<!--                    },-->
+<!--                    borderRadius: {-->
+<!--                        sm: "4px",-->
+<!--                        md: "8px",-->
+<!--                        lg: "12px"-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- REMOVE this line - CDN provides Tailwind -->
+    <!-- <link rel="stylesheet" href="./output.css" /> -->
+
+</head>
+
+
+<body class="bg-bg text-text font-sans">
+
+<div class="p-lg max-w-2xl">
+
+    <h1 class="text-3xl font-bold">Tailwind is Utility-First</h1>
+
+    <p class="mt-sm text-base text-muted">
+
+        This page is not here to look perfect. It is here to prove that your Tailwind setup
+        works and that your design tokens are usable as classes.
+    </p>
+
+    <div class="mt-lg p-md border border-border rounded-lg">
+        <p class="text-sm text-muted">Token check:</p>
+
+        <div class="mt-sm flex gap-sm flex-wrap">
+            <span class="px-sm py-xs rounded-md bg-primary text-bg">bg-primary</span>
+            <span class="px-sm py-xs rounded-md bg-success text-bg">bg-success</span>
+            <span class="px-sm py-xs rounded-md bg-warn text-bg">bg-warn</span>
+            <span class="px-sm py-xs rounded-md bg-danger text-bg">bg-danger</span>
+        </div>
+
+        <div class="mt-md">
+            <p class="text-sm">
+                Spacing token test: this box uses <strong>p-md</strong>, and the page uses <strong>p-lg</strong>.
+            </p>
+        </div>
+
+        <div class="mt-md">
+
+            <p class="text-sm">
+                Mono font test:
+                <span class="font-mono">42 /  100 / 2025 </span>
+            </p>
+        </div>
+    </div>
+
+    <div  class="mt-lg">
+        <h2 class="text-xl font-semibold">Preflight quick check</h2 >
+
+        <p class="mt-sm text-base" >
+            Tailwind’s preflight resets some browser defaults so you start from a clean baseline.
+
+            For example, lists are unstyled by default.
+        </p>
+
+        <ul class="mt-sm">
+
+            <li>Item one</li>
+            <li>Item two</li>
+            <li>Item three</li>
+        </ul>
+        <p class="mt-sm text-sm text-muted">
+            If you expected bullets, that’s the point: preflight removed them. Later, we’ll style lists
+            when we actually need them to look like a menu.
+        </p>
+
+
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

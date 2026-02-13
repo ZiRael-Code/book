@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tailwind Variant Modifiers</title>
+
+    <link rel="stylesheet" href="../styles/output.css" />
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+
+<section class="mb-10">
+    <h1 class="text-xl font-semibold mb-4">
+        Responsive Variants
+    </h1>
+
+    <div class="bg-white dark:bg-gray-800 p-4 md:p-8 lg:p-12 rounded-lg shadow">
+        Resize the screen to see padding change.
+    </div>
+</section>
+
+<section class="mb-10">
+    <h2 class="text-lg font-semibold mb-4">
+        State Variants
+    </h2>
+
+    <button
+            class="bg-blue-600 text-white px-5 py-3 rounded-lg
+             hover:bg-blue-700
+             focus-visible:outline
+             focus-visible:outline-2
+             focus-visible:outline-offset-2
+             focus-visible:outline-blue-600"
+    >
+        Hover or focus me
+    </button>
+</section>
+
+<section class="mb-10">
+    <h2 class="text-lg font-semibold mb-4">
+        Group Hover
+    </h2>
+
+    <div class="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+        <p class="mb-2">
+            Hover this card
+        </p>
+
+        <span class="text-sm text-gray-500 group-hover:text-blue-600">
+        I react to my parent
+      </span>
+    </div>
+</section>
+
+<section>
+    <h2 class="text-lg font-semibold mb-4">
+        Structural Variants
+    </h2>
+
+    <ul class="bg-white dark:bg-gray-800 rounded-lg shadow divide-y">
+        <li class="p-4 first:pt-2">
+            First item
+        </li>
+        <li class="p-4">
+            Middle item
+        </li>
+        <li class="p-4 last:pb-2 last:border-none">
+            Last item
+        </li>
+    </ul>
+</section>
+
+</body>
+</html>
