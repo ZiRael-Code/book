@@ -1,241 +1,358 @@
-# Chapter 6 - Color Contrast and Tokens
+# Chapter 6 — Images Done Right
 
-## Personal Reasoning
-
-Color sets the tone for a website and directly affects readability, accessibility, and user perception. Using CSS variables instead of hard-coded values gives flexibility, consistency, and easier maintenance as projects scale. Understanding hover and disabled states also improves UX by visually communicating interactivity.
-
-## Overall Learning
-
-* How CSS handles color (color, background-color, border-color)
-
-* The pitfalls of hard-coded colors
-
-* CSS variables as design tokens for maintainable, reusable colors
-
-* Semantic naming for color tokens (--color-primary, --color-success, etc.)
-
-* Applying tokens to components
-
-* Ensuring sufficient color contrast for accessibility
-
-* Styling hover and disabled states for better UX
-
-## Why color matters
-
-Color is one of the first things people notice on a website.
-
-Good color combinations improve readability and make the site more visually appealing. On the other hand, poor color choices could make text hard to read, make your website feel less professional, and confuse users.
-
-When designing your website, you shouldn’t choose random colors; instead, follow a consistent system.
+**Goal of This Chapter:**  
+Understand how images work in HTML, use `alt` properly, and structure your Hero image using `<figure>` and `<figcaption>`.
 
 ---
 
-## How CSS applies color
+## Table of Contents
 
-CSS controls color using properties like `color`, `background-color`, `border-color`, etc.
+1. Prerequisites
+2. Part 1 — The `<img>` Element
+3. Part 2 — The `alt` Attribute (Deep Explanation)
+4. Part 3 — Decorative vs Meaningful Images
+5. Part 4 — Introducing `<figure>` and `<figcaption>`
+6. Applying This to Your Portfolio
+7. Project Milestone — Hero Image Structured Properly
+8. Completed Code
+
+---
+
+## 1. Prerequisites
+
+From Chapter 5, your page should look like this:
+
+```html
+<body>
+  <div>
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <h1 id="hero-title">John Doe</h1>
+    <p class="subtitle">Full-Stack Developer</p>
+    <p>I build clean, modern, and user-focused web experiences.</p>
+
+    <a href="#contact">Contact Me</a>
+
+    <img src="assets/profile.jpg" alt="Portrait of John Doe">
+  </div>
+</body>
+```
+
+**We will now improve how this image is structured.**
+
+---
+
+## Part 1 — The `<img>` Element
+
+The image element looks like this:
+
+```
+<img src="path-to-image" alt="description">
+```
+
+Important things to remember:
+
+- `<img>` is a **void element**.
+- It does NOT have a closing tag.
+- It **must** have `src`.
+- It **must** have `alt`.
+
+If `src` is wrong, the image breaks.
+
+If `alt` is missing, accessibility breaks.
+
+### What `src` Does
+
+`src` means **source**.
 
 Example:
 
-```css
-p {
-  color: #111827;
-}
+```html
+<img src="assets/profile.jpg" alt="Portrait of John Doe">
 ```
 
-* `color` controls the text color
-* `background-color` controls the surface behind the content, i.e., the background
-* `border-color` as the name implies, controls the color of your border
+The browser looks inside the `assets/` folder.
+
+If the file name is wrong — even one letter — the image will not load.
+
+**File paths must match exactly.**
 
 ---
 
-## The problem with hard-coded colors
+## Part 2 — The `alt` Attribute (Deep Explanation)
 
-Take this piece of code, for example:
+This is where beginners often misunderstand things.
 
-```css
-button {
-  background-color: #2563eb;
-}
+`alt` is **not** decoration.
+
+It is **alternative text**.
+
+It serves three major purposes:
+
+1. Screen readers read it aloud.
+2. It appears if the image fails to load.
+3. Search engines use it to understand the image.
+
+Imagine a blind user visiting your portfolio.
+
+They cannot see your image.
+
+Instead, their screen reader says:
+
+**“Portrait of John Doe.”**
+
+That is what `alt` does.
+
+### Bad `alt` Examples
+
+```
+<img src="profile.jpg" alt="image">
+<img src="profile.jpg" alt="photo">
+<img src="profile.jpg" alt="">
 ```
 
-There's nothing inherently wrong with defining your colors this way in your stylesheet. However, it becomes a problem when your website grows and becomes really large. It then becomes hard to update later and creates inconsistencies. Imagine you have a file with 800 lines of code and you're asked to change text color from black to gray and now you have to go through all those lines of code and change all instances of that color. That's a lot of work!
-This is where CSS variables come in.
+These provide no useful information.
+
+### Good `alt` Example
+
+```
+<img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+```
+
+It is short.
+
+It is clear.
+
+It describes what matters.
 
 ---
 
-## CSS variables as design tokens
+## Part 3 — Decorative vs Meaningful Images
 
-CSS variables allow you to store values and reuse them.
-Design tokens also make accessibility improvements easier, since contrast fixes can be applied globally by adjusting token values instead of individual components. They are usually defined on the `:root` element.
+Not all images are equal.
 
-```css
-:root {
-  --color-primary: #2563eb;
-}
+There are two types:
+
+### 1. Meaningful Images
+
+These **add content** to the page.
+
+Example:
+
+- Profile photo
+- Project screenshot
+- Product image
+
+These must have **descriptive `alt`**.
+
+### 2. Decorative Images
+
+These exist **only for design**.
+
+Example:
+
+- Background patterns
+- Decorative icons
+- Visual shapes
+
+For decorative images:
+
+```
+<img src="icon.svg" alt="">
 ```
 
-Now you can reuse them anywhere using the syntax below
+Empty `alt` tells screen readers:
 
-```css
-button {
-  background-color: var(--color-primary);
-}
-```
+**“Skip this.”**
 
-This turns colors into design tokens. A token is a named value that represents a design decision.
+This prevents unnecessary noise.
 
 ---
 
-## Semantic color tokens
+## Part 4 — Introducing `<figure>` and `<figcaption>`
 
-Instead of naming colors after how they look, we name them after what they represent in the interface. This allows the actual color values to change without breaking meaning or intent.
+Right now, your image is floating alone.
 
-```css
-:root {
-  --color-primary: #2563eb;
-  --color-success: #16a34a;
-  --color-danger: #dc2626;
-  --color-warn: #f59e0b;
-  --color-text: #111827;
-  --color-bg: #ffffff;
-}
+We can structure it better.
+
+HTML provides:
+
+- `<figure>`
+- `<figcaption>`
+
+These are used when:
+
+- An image stands as its own content block
+- The image may need a caption
+
+Structure:
+
+```
+<figure>
+  <img src="assets/profile.jpg" alt="Portrait of John Doe">
+  <figcaption>John Doe — Full-Stack Developer</figcaption>
+</figure>
 ```
 
-This makes your CSS easier to understand.
-Remember:
+`<figure>` groups the image and caption.
 
-* Primary is for main actions
-* Success is for positive feedback
-* Danger is for errors
-* Warn is for caution
-* Text is for readable content like p tags and header tags
-* Background is for backgrounds (surfaces)
+`<figcaption>` describes or labels the figure.
+
+This creates **better structure**.
+
+### Why This Matters
+
+Without structure:
+
+- The image is just floating content.
+- There is no relationship between image and description.
+
+With `<figure>`:
+
+- The browser understands they belong together.
+- Screen readers understand the relationship.
+- Your HTML becomes more professional.
 
 ---
 
-## Applying tokens to components
+## Part 5 — Apply This to Your Portfolio
 
-Like we showed you earlier, this is the syntax for using CSS variables:
+Now update your Hero section.
 
-```css
-body {
-  color: var(--color-text);
-  background-color: var(--color-bg);
-}
+Replace this:
+
+```
+<img src="assets/profile.jpg" alt="Portrait of John Doe">
 ```
 
-```css
-.button-primary {
-  background-color: var(--color-primary);
-  color: white;
-}
+With this:
+
+```
+<figure>
+  <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+  <figcaption>John Doe — Full-Stack Developer</figcaption>
+</figure>
 ```
 
-This way, if your brand color changes later, you can update it in one place.
+Your full `<body>` should now look like this:
+
+```
+<body>
+  <div>
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <h1 id="hero-title">John Doe</h1>
+    <p class="subtitle">Full-Stack Developer</p>
+    <p>I build clean, modern, and user-focused web experiences.</p>
+
+    <a href="#contact">Contact Me</a>
+
+    <figure>
+      <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+      <figcaption>John Doe — Full-Stack Developer</figcaption>
+    </figure>
+  </div>
+</body>
+```
+
+Save.
+
+Refresh your browser.
+
+Visually, it may look similar.
+
+**Structurally, it is stronger.**
 
 ---
 
-## Color contrast
+## Project Milestone — Hero Image Structured Properly
 
-Contrast is the difference between text color and background color. Low contrast makes text hard to read, while high contrast improves accessibility.
+You now have:
 
-Example of poor contrast:
+- Proper `src` usage
+- Proper `alt` usage
+- Understanding of decorative vs meaningful images
+- A structured `<figure>` element
 
-* Light gray text on a white background
+Your Hero section now contains:
 
-Example of good contrast:
+- Identity
+- Description
+- Call-To-Action
+- Structured image with caption
 
-* Dark text on a light background
-
-It is really important to understand contrast, as it directly affects usability.
-
----
-
-## Checking contrast ratios
-
-According to WCAG guidelines, normal text should have a contrast ratio of at least 4.5:1, while large text (18px or larger, or 14px bold) must have a minimum ratio of 3:1.
-
-You should always check contrast in body text, buttons, links, call-to-action sections.
+**This is real semantic progress.**
 
 ---
 
-## Hover and disabled states
+## Completed Code
 
-Color can also be used to communicate state.
-
-### Hover state
-
-A hover state occurs when the cursor is placed over an element. Hover styles provide visual feedback that the element is interactive.
-
-```css
-.button-primary:hover {
-  background-color: var(--color-primary-hover);
-}
 ```
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe — Developer Portfolio</title>
+  </head>
 
-When you hover over the button above, its color will change to the specified color. For most cases, hover colors should stay within the same color family.
+  <body>
+    <div>
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h1 id="hero-title">John Doe</h1>
+      <p class="subtitle">Full-Stack Developer</p>
+      <p>I build clean, modern, and user-focused web experiences.</p>
+
+      <a href="#contact">Contact Me</a>
+
+      <figure>
+        <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+        <figcaption>John Doe — Full-Stack Developer</figcaption>
+      </figure>
+    </div>
+  </body>
+</html>
+```
 
 ---
 
-### Disabled state
+### Next Chapter:
 
-Disabled states are used to indicate that an action is currently unavailable. This may be because a requirement has not been met or an action is temporarily blocked. Disabled elements should look inactive but still be readable. For example, below is a sample code that shows the disabled state for a button that has been clicked:
+Text Meaning (not styling).
 
-```css
-.button-primary:disabled {
-  background-color: #94a3b8;
-  color: #1f2933;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-```
+We will learn semantic text elements like:
 
-Disabled elements should maintain sufficient contrast so their text remains readable.
-When showing a disabled state, it is good practice to combine color with opacity or cursor changes. This makes for good UX.
+- `<strong>`
+- `<em>`
+- `<mark>`
+- `<small>`
+
+**We are gradually moving from structure to meaning.**
 
 ---
-## Code Walkthrough
 
-* Defined root variables for background and text colors:
+*We are building this the right way.*
 
-```css
-:root {
-  --color-bg: #fAf9f6;
-  --color-bg-primary: #2E7EF7;
-  --color-text: #36454F;
-  --color-text-secondary: #fAf9f6;
-  --color-primary-hover: #1d4ed8;
-}
-```
-
-* Hero background uses `--color-bg`
-
-```css
-.hero{
-  background-color: var(--color-bg);
-}
-```
-
-* Primary button uses `--color-bg-primary` with text `--color-text-secondary`
-```css
-.hero-btn {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-secondary);
-}
-```
-
-This ensures colors are centralized and easy to update.
-
-## Project Milestone
-
-* Defined CSS variables for primary, text, and background colors
-* Applied variables consistently to the hero section and buttons
-* Ensured contrast and readability are maintained
-
-## Ship Note
-
-Open the page in a browser. Confirm that:
-
-* Hero section has the background color from `--color-bg`
-* Button displays `--color-bg-primary` and `--color-text-secondary`
-* Text is readable against the background, maintaining good contrast
+**Ready for Chapter 7?**

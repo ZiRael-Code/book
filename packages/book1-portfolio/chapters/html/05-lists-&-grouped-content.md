@@ -36,7 +36,6 @@ From Chapter 4, your Hero section should look like this:
 </body>
 ```
 
-# Chapter 5 — Lists & Navigation: Grouping Links
 
 **We will now introduce navigation above the Hero.**
 

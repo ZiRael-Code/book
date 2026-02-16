@@ -1,149 +1,371 @@
-# Chapter 10 - CSS Grid
+# Chapter 10 — Forms (HTML Only)
 
-## Personal Reasoning
+**Goal of This Chapter:**  
+Learn how HTML forms work and build a proper contact form inside your portfolio.
 
-CSS Grid lets you control layout in two dimensions at once, giving more deliberate control over rows and columns than Flexbox. Using `grid-template-columns`, `grid-template-rows`, and `gap` lets items align cleanly, while `repeat(auto-fit, minmax())` makes layouts responsive without media queries for cards or complex sections.
-
-## Overall Learning
-
-* Grid containers turn direct children into grid items.
-* `grid-template-columns` and `grid-template-rows` define structure; `fr` units divide space proportionally.
-* `gap` replaces margins for consistent spacing between items.
-* `repeat(auto-fit, minmax())` creates responsive grids that adapt to screen width.
-* Use Grid for multi-row and column layouts, Flexbox for single-axis arrangements.
+We are focusing on structure only.  
+No CSS.  
+No JavaScript.
 
 ---
 
-## Why CSS Grid exists
+## Table of Contents
 
-Flexbox is great for laying things out in a line (one dimension), while CSS Grid is built for laying things out in two directions at once.
+1. Prerequisites
+2. Part 1 — What a Form Is
+3. Part 2 — The `<form>` Element
+4. Part 3 — `<label>` and Why It Matters
+5. Part 4 — `<input>` Types
+6. Part 5 — Required Fields & Placeholders
+7. Applying This to the Portfolio
+8. Project Milestone — Contact Form Markup
+9. Completed Code
 
 ---
 
-## Creating a grid container
+## 1. Prerequisites
 
-CSS Grid starts the same way Flexbox does, by creating a container.
+From Chapter 9, your page structure should look like this (simplified):
 
-```css
-.container {
-  display: grid;
-}
+```html
+<body>
+
+  <a href="#main">Skip to main content</a>
+
+  <header id="top">
+    <nav>
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section aria-labelledby="hero-title">
+      <!-- Hero content -->
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 John Doe</p>
+  </footer>
+
+</body>
 ```
 
-Once an element becomes a grid container, its direct children become grid items.
+We will now add a new section inside `<main>`.
 
 ---
 
-## Grid rows and columns
+## Part 1 — What a Form Is
 
-Grid layouts are defined by rows and columns, and grid items are placed within this structure. Columns run left to right while rows run top to bottom. You can decide how many of each you want.
+A form allows users to send data.
+
+Examples:
+
+- Contact forms
+- Login forms
+- Search bars
+- Newsletter signups
+
+Forms collect input.
+
+Then send it somewhere.
+
+Right now, we are only building the structure.
 
 ---
 
-## Defining columns
+## Part 2 — The `<form>` Element
 
-`grid-template-columns` defines the structure of your grid.
+The basic structure:
 
-```css
-.grid {
-  grid-template-columns: 1fr 1fr 1fr;
-}
+```
+<form action="#" method="post">
+</form>
 ```
 
-The `fr` unit means a fraction of the available space. This creates three equal columns.
+- `action` → where the data goes
+- `method` → how the data is sent
+
+For now:
+
+```
+action="#"
+```
+
+means “do nothing yet.”
+
+We are focusing on markup.
 
 ---
 
-## Defining rows
+## Part 3 — `<label>` and Why It Matters
 
-Rows can be defined the same way.
+Every input should have a label.
 
-```css
-.grid {
-  grid-template-rows: auto auto;
-}
+Example:
+
+```
+<label for="email">Email</label>
+<input id="email" name="email" type="email">
 ```
 
-Most of the time, rows can be left to auto size based on content, i.e., the number of rows will be created automatically based on how many grid items need to be placed.
+Important rule:
+
+**The `for` value must match the input `id`.**
+
+This connects them.
+
+Why this matters:
+
+- Clicking the label focuses the input.
+- Screen readers announce it correctly.
+- Accessibility improves.
+
+**Never leave inputs unlabeled.**
 
 ---
 
-## Spacing with grid gap
+## Part 4 — `<input>` Types
 
-Grid spacing is controlled with `gap`.
+Different types of input exist.
 
-```css
-.grid {
-  gap: 24px;
-}
+### Text
+
+```
+<input type="text">
 ```
 
-The above code leaves a space of 24px between the rows and columns. It reduces the need for margins between grid items by providing consistent spacing within the grid.
+Used for names and general text.
+
+### Email
+
+```
+<input type="email">
+```
+
+Browsers validate format automatically.
+
+### Submit Button
+
+```
+<button type="submit">Send</button>
+```
+
+This submits the form.
+
+Notice:
+
+We use `<button>` here.
+
+Why?
+
+Because this is an action.
+
+In Chapter 4, we learned:
+
+- `<a>` → navigation
+- `<button>` → action
+
+**Submitting a form is an action.**
 
 ---
 
-## Auto-fit and minmax for responsive grids
+## Part 5 — Required Fields & Placeholders
 
-One of the most powerful Grid patterns is auto fit with minmax.
+### Required
 
-```css
-.grid {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+```
+<input type="text" required>
 ```
 
-What this means:
+The browser prevents submission if empty.
 
-* Create as many columns as will fit
-* Each column is at least 250px wide
-* Columns can grow to fill available space up to 1fr
+### Placeholder
 
-This is perfect for card layouts.
-`auto-fit` collapses empty columns so items stretch to fill available space. A related value, auto-fill, keeps empty columns even if no items occupy them.
+```
+<input type="text" placeholder="Enter your name">
+```
+
+This gives users a hint.
+
+Important:
+
+**Placeholder is not a replacement for a label.**
+
+Always use labels.
 
 ---
 
-## When to use Grid instead of Flexbox
+## Part 6 — Apply This to the Portfolio
 
-Grid is the perfect solution when your layout has both rows and columns. Use Flexbox when the layout flows in just one direction.
+We now create a Contact section.
+
+Add this inside `<main>`, below your Hero section:
+
+```
+<section id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">Get in Touch</h2>
+
+  <form action="#" method="post">
+
+    <p>
+      <label for="name">Name</label><br>
+      <input id="name" name="name" type="text" required placeholder="Your full name">
+    </p>
+
+    <p>
+      <label for="email">Email</label><br>
+      <input id="email" name="email" type="email" required placeholder="your@email.com">
+    </p>
+
+    <p>
+      <label for="message">Message</label><br>
+      <textarea id="message" name="message" rows="5" required placeholder="Write your message here"></textarea>
+    </p>
+
+    <button type="submit">Send Message</button>
+
+  </form>
+</section>
+```
+
+Important additions:
+
+- `id="contact"` allows navigation from your menu.
+- `<h2>` gives this section hierarchy under `<h1>`.
+- Each input has a matching label.
+- Required fields enforce validation.
+
+### Why `<textarea>`?
+
+`<textarea>` is used for longer text.
+
+Unlike `<input>`, it has opening and closing tags.
+
+Example:
+
+```
+<textarea></textarea>
+```
+
+It allows multi-line content.
 
 ---
 
-### Code Walkthrough
+## Project Milestone — Contact Form Markup
 
-**Projects Grid**
+You now have:
 
-```css
-#projects > div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
+- Semantic page structure
+- Navigation
+- Hero section
+- Contact section
+- Properly labeled inputs
+- Required fields
+- Correct submit button
+
+Your portfolio is now interactive at a structural level.
+
+No backend yet.
+
+But the foundation is correct.
+
+---
+
+## Completed Code
+
+```
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe — Developer Portfolio</title>
+  </head>
+
+  <body>
+
+    <a href="#main">Skip to main content</a>
+
+    <header id="top">
+      <nav>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <section aria-labelledby="hero-title">
+        <h1 id="hero-title">John Doe</h1>
+        <p class="subtitle"><strong>Full-Stack Developer</strong></p>
+        <p>
+          I build <em>clean</em>, modern, and user-focused web experiences
+          with a strong focus on <mark>performance and accessibility</mark>.
+        </p>
+        <p><small>Currently available for freelance projects.</small></p>
+        <a href="#contact">Contact Me</a>
+
+        <figure>
+          <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+          <figcaption>John Doe — Full-Stack Developer</figcaption>
+        </figure>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Get in Touch</h2>
+
+        <form action="#" method="post">
+
+          <p>
+            <label for="name">Name</label><br>
+            <input id="name" name="name" type="text" required placeholder="Your full name">
+          </p>
+
+          <p>
+            <label for="email">Email</label><br>
+            <input id="email" name="email" type="email" required placeholder="your@email.com">
+          </p>
+
+          <p>
+            <label for="message">Message</label><br>
+            <textarea id="message" name="message" rows="5" required placeholder="Write your message here"></textarea>
+          </p>
+
+          <button type="submit">Send Message</button>
+
+        </form>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© 2025 John Doe</p>
+    </footer>
+
+  </body>
+</html>
 ```
 
-* Three equal columns; cards automatically adjust their width while spacing is controlled by the grid gap.
+---
 
-**Contact Section Grid**
+## Next Chapter:
 
-```css
-#contact > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-}
-```
+Tables — understanding structured data in HTML.
 
-* Two-column layout: form on one side, info on the other.
+**We are approaching the end of Book 1's core structure.**
 
-### Project Milestone
+---
 
-* Featured Projects section uses CSS Grid to display project cards in rows and columns.
-* Grid gap ensures consistent spacing between cards.
-* Contact section uses a two-column grid for form and contact info.
-* Grid layouts adapt naturally to smaller screens and can be further refined with responsive breakpoints.
+*We are now close to completing Book 1's foundation.*
 
-### Ship Note
-
-* Featured Projects section displays cards in a clean, responsive grid.
-* Contact section aligns form and contact info side by side, collapsing on smaller screens.
-* Grid gaps maintain consistent spacing.
+**Ready for Chapter 11 (Tables)?**

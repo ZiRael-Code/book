@@ -1,231 +1,395 @@
-# Chapter 11 - Responsive Design
+# Chapter 11 — Tables (HTML Fundamentals)
 
-## Personal Reasoning
+**Goal of This Chapter:**  
+Understand how HTML tables work and add structured data to your portfolio.
 
-Responsive design ensures a website works on any screen size, not just shrinking layouts for mobile. Mobile-first thinking simplifies CSS by styling small screens first, then enhancing for larger screens. Properly handling images and layouts prevents broken designs and improves user experience.
-
-## Overall Learning
-
-* The viewport meta tag controls how a page scales on different devices.
-* Media queries adjust styles based on screen width or characteristics.
-* Content-driven breakpoints help determine when layout changes are needed.
-* Images can be responsive using `width: 100%; height: auto;`, `max-width`, `srcset`, `<picture>`, and lazy loading.
-* Lazy loading improves performance by deferring offscreen images.
+Tables are for data — not layout.
 
 ---
 
-## Responsive design
+## Table of Contents
 
-Responsive design entails taking all screen sizes into consideration when designing a layout. Most people think of it as making things smaller for mobile, but it's really about letting your layout respond to the available space.
-A responsive interface should look appealing and readable on all screen sizes including: phones, tablets, laptops, large desktop and ultrawide screens
+1. Prerequisites
+2. Part 1 — When to Use Tables
+3. Part 2 — Basic Table Structure
+4. Part 3 — `<thead>` and `<tbody>`
+5. Part 4 — `<th>` vs `<td>`
+6. Part 5 — `<caption>`
+7. Applying This to the Portfolio
+8. Project Milestone — Simple Data Table
+9. Completed Code
 
 ---
 
-## Mobile-first thinking
+## 1. Prerequisites
 
-Mobile-first means designing for the smallest screen first, then adjusting the existing layout to fit larger screens. This means that default styles target mobile devices and then media queries are used to enhance the layout for larger screens. 
-Media queries will be explained later on in this chapter.
+From Chapter 10, your portfolio includes:
+
+- Semantic structure (`header`, `main`, `section`, `footer`)
+- Hero section
+- Contact form
+
+We will now add a new section inside `<main>` for structured data.
 
 ---
 
-## The viewport meta tag
+# Part 1 — When to Use Tables
 
-The viewport is the visible area of a user's web page and it varies with device size.
-The viewport meta tag is placed in the <head> of a webpage and controls how a site renders on different screen sizes by matching the layout width to the device width and setting the initial zoom level. 
-Without the viewport meta tag, mobile browsers render pages at desktop widths and scale them down.
+Tables are for structured data.
+
+Use tables when:
+
+- Comparing items
+- Displaying structured information
+- Showing rows and columns of data
+
+Do NOT use tables for layout.
+
+Modern layout is handled by CSS.
+Tables are for data only.
+
+---
+
+# Part 2 — Basic Table Structure
+
+Basic structure:
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<table>
+  <tr>
+    <th>Header</th>
+    <th>Header</th>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>Data</td>
+  </tr>
+</table>
 ```
 
-The above code tells the browser to match the layout width to the device width and render at a 1:1 scale.
-This tag is mandatory for responsive layouts.
+Let's break this down.
+
+- `<table>` → wraps the entire table
+- `<tr>` → table row
+- `<th>` → table header cell
+- `<td>` → table data cell
+
+Rows contain cells.
+
+Cells live inside rows.
 
 ---
 
-## Media queries
+## Part 3 — `<thead>` and `<tbody>`
 
-Media queries allow CSS to change based on screen characteristics like width 
-```css
-@media (min-width: 768px) {
-  .layout {
-    display: grid;
-  }
-}
+For better structure, we separate:
+
+- Table head
+- Table body
+
+Structure:
+
+```
+<table>
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th>Experience</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>HTML</td>
+      <td>3 Years</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
-The above code sets the display of the selected element to grid when the screen size is at least 768px.
+Why this matters:
+
+- Improves accessibility
+- Improves readability
+- Makes large tables easier to manage
 
 ---
 
-## Content-driven breakpoints
+## Part 4 — `<th>` vs `<td>`
 
-Things to check when choosing breakpoints:
+- `<th>` → header cell
+- `<td>` → data cell
 
-* Is the layout starting to look too small for the content?
-* Is the line length uncomfortable?
-* Do components need more space to look “okay”?
+`<th>` is used for column or row labels.
 
-If your answers to the above questions are “yes”, then you probably need to add a breakpoint
+Screen readers treat `<th>` differently.
+
+It communicates structure.
+
+**Never replace `<th>` with `<td>` for headers.**
 
 ---
 
-## Responsive images
+## Part 5 — `<caption>`
 
-An image is considered responsive if it adjusts to fit the screen size. You can easily make an image reponsive by setting the width to a percentage of the available container or space and setting the height to auto.
+`<caption>` describes the table.
 
-```css
-  .responsive-img {
-    width: 100%;
-    height: auto;
-  }
-```
+It must be placed directly inside `<table>`, at the top.
 
-In the above example, the image will always take up 100% of its container's size. 
-When height is set to auto, the browser automatically calculates the height based on the image’s intrinsic aspect ratio as its width changes.
-
-You can also give an image a `max-width` property so that it doesn't get bigger than the specified size
 Example:
-```css
-  @media (min-width: 768px) {
-  .responsive-img {
-    max-width: 500px;
-  }
-}
+
 ```
-In the above example, the image will never grow beyond 500px for screen sizes of 768px and above
-
-### srcset
-
-srcset allows the browser to choose the best image based on screen size and resolution.
-
-```html
-<img
-  src="image-800.jpg"
-  srcset="image-400.jpg 400w, image-800.jpg 800w"
-  alt=""
-/>
-```
-* `src="image-800.jpg"`: This attribute specifies the default image source that will be used by browsers that do not support the srcset attribute, or as a fallback.
-* `srcset="image-400.jpg 400w, image-800.jpg 800w"`: This attribute provides a list of alternative image files and their intrinsic widths (indicated by the w descriptor) to the browser.
-* `image-400.jpg 400w`: A version of the image that is 400 pixels wide.
-* `image-800.jpg 800w`: A version of the image that is 800 pixels wide.
-The browser uses this list to select the most appropriate image based on the user's screen size and device pixel ratio (DPR).
-
-### sizes
-
-This tells the browser how much screen space the image will occupy.
-
-```html
-<img
-  src="image-800.jpg"
-  srcset="image-400.jpg 400w, image-800.jpg 800w"
-  sizes="(min-width: 768px) 50vw, 100vw"
-  alt=""
-/>
+<table>
+  <caption>Technical Skills Overview</caption>
+  ...
+</table>
 ```
 
-When using srcset with width descriptors (w), the sizes attribute tells the browser how much space the image will occupy in the layout, allowing it to choose the most appropriate image.
+This improves:
+
+- Accessibility
+- Context
+- Clarity
+
+Users immediately understand what the table represents.
 
 ---
 
-### picture element
+## Part 6 — Apply This to the Portfolio
 
-The `<picture>` element allows different images for different conditions.
+We will now add a Skills section with a table.
 
-```html
-<picture>
-  <source media="(min-width: 1024px)" srcset="hero-large.jpg" />
-  <img src="hero-mobile.jpg" alt="" />
-</picture>
+Inside `<main>`, add this **ABOVE** the contact section:
+
+```
+<section id="skills" aria-labelledby="skills-title">
+  <h2 id="skills-title">Skills Overview</h2>
+
+  <table>
+    <caption>Technical Skills and Experience</caption>
+
+    <thead>
+      <tr>
+        <th>Technology</th>
+        <th>Experience</th>
+        <th>Level</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>HTML</td>
+        <td>3 Years</td>
+        <td>Advanced</td>
+      </tr>
+      <tr>
+        <td>CSS</td>
+        <td>3 Years</td>
+        <td>Advanced</td>
+      </tr>
+      <tr>
+        <td>JavaScript</td>
+        <td>2 Years</td>
+        <td>Intermediate</td>
+      </tr>
+      <tr>
+        <td>React</td>
+        <td>2 Years</td>
+        <td>Intermediate</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+```
+
+Save.
+
+Refresh your browser.
+
+You now see a structured table.
+
+It may look plain.
+**That is correct.**
+
+Structure first.
+
+Design later.
+
+---
+
+## Why This Matters
+
+Without tables:
+
+- Data becomes messy paragraphs.
+- Comparisons become unclear.
+- Structure becomes confusing.
+
+With tables:
+
+- Data is aligned.
+- Relationships are clear.
+- Accessibility improves.
+
+**Tables are powerful when used correctly.**
+
+---
+
+## Project Milestone — Simple Data Table
+
+You now have:
+
+- Navigation
+- Hero section
+- Skills table
+- Contact form
+- Footer
+
+Your portfolio now contains:
+
+- Structured navigation
+- Meaningful content
+- Data representation
+- Interactive form
+
+**Book 1 HTML foundation is complete.**
+
+---
+
+## Completed Code
+
+```
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe — Developer Portfolio</title>
+  </head>
+
+  <body>
+
+    <a href="#main">Skip to main content</a>
+
+    <header id="top">
+      <nav>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <section aria-labelledby="hero-title">
+        <h1 id="hero-title">John Doe</h1>
+        <p class="subtitle"><strong>Full-Stack Developer</strong></p>
+        <p>
+          I build <em>clean</em>, modern, and user-focused web experiences
+          with a strong focus on <mark>performance and accessibility</mark>.
+        </p>
+        <p><small>Currently available for freelance projects.</small></p>
+        <a href="#contact">Contact Me</a>
+
+        <figure>
+          <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+          <figcaption>John Doe — Full-Stack Developer</figcaption>
+        </figure>
+      </section>
+
+      <section id="skills" aria-labelledby="skills-title">
+        <h2 id="skills-title">Skills Overview</h2>
+
+        <table>
+          <caption>Technical Skills and Experience</caption>
+
+          <thead>
+            <tr>
+              <th>Technology</th>
+              <th>Experience</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>HTML</td>
+              <td>3 Years</td>
+              <td>Advanced</td>
+            </tr>
+            <tr>
+              <td>CSS</td>
+              <td>3 Years</td>
+              <td>Advanced</td>
+            </tr>
+            <tr>
+              <td>JavaScript</td>
+              <td>2 Years</td>
+              <td>Intermediate</td>
+            </tr>
+            <tr>
+              <td>React</td>
+              <td>2 Years</td>
+              <td>Intermediate</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Get in Touch</h2>
+
+        <form action="#" method="post">
+
+          <p>
+            <label for="name">Name</label><br>
+            <input id="name" name="name" type="text" required placeholder="Your full name">
+          </p>
+
+          <p>
+            <label for="email">Email</label><br>
+            <input id="email" name="email" type="email" required placeholder="your@email.com">
+          </p>
+
+          <p>
+            <label for="message">Message</label><br>
+            <textarea id="message" name="message" rows="5" required placeholder="Write your message here"></textarea>
+          </p>
+
+          <button type="submit">Send Message</button>
+
+        </form>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© 2025 John Doe</p>
+    </footer>
+
+  </body>
+</html>
 ```
 
 ---
 
-## Lazy loading images
+## End of Book 1 HTML Foundation
 
-Lazy loading defers image loading until they enter the viewport. It helps with faster initial load, reduced data usage and better performance on mobile
+The learner can now:
 
-```html
-<img src="photo.jpg" loading="lazy" alt="" />
-```
+- Write structured HTML
+- Use semantic layout elements
+- Build navigation
+- Structure content meaningfully
+- Create forms
+- Create data tables
 
----
-
-## Project Milestone
-
-* Navbar now collapses into a hamburger menu on mobile screens.
-* Hero section, stats, and project grids adjust for tablets and smaller devices.
-* Images across hero, projects, and about sections scale proportionally.
-* Contact section stacks on narrow screens for better readability.
+**Foundation complete.**
 
 ---
 
-## Code Walkthrough
-
-**Viewport Meta Tag**
-
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1">
-```
-
-* Ensures the page scales correctly on all devices.
-
-**Media Queries for Layout**
-
-```css
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; text-align: center; }
-  #projects > div { grid-template-columns: repeat(2, 1fr); }
-  #contact > div { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  #projects > div { grid-template-columns: 1fr; }
-  #projects, #contact { padding: 3rem 1.5rem; }
-}
-```
-
-* Adjusts hero, projects, and contact layouts for smaller screens.
-
-**Responsive Images**
-
-```css
-.hero figure img,
-#projects img {
-  width: 100%;
-  height: auto;
-  max-width: 420px;
-}
-```
-
-* Images resize while maintaining aspect ratio.
-
-**Hamburger Navigation**
-
-```css
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .nav { display: none; position: absolute; width: 100%; top: 100%; }
-  .nav-toggle:checked + .hamburger + .nav { display: block; }
-}
-```
-
-* Toggles mobile menu visibility using a checkbox input.
-While mobile-first design typically uses min-width media queries, max-width queries are also valid and sometimes clearer for adapting existing layouts. The key principle is prioritizing small screens, not the query syntax itself.
-
-**Lazy Loading Images**
-
-```html
-<img src="photo.jpg" loading="lazy" alt="">
-```
-
-* Improves performance by loading images only when they enter the viewport.
-
----
-
-## Ship Note
-
-* Portfolio now adapts seamlessly to mobile, tablet, and desktop.
-* Project grids, hero section, and stats resize dynamically.
-* Hamburger menu ensures accessible navigation on small screens.
-* Images scale correctly and load efficiently with lazy loading.
+**Ready to outline Book 2 — Intermediate & Advanced HTML?**
