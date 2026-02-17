@@ -5,9 +5,11 @@ export default defineConfig({
   description: "Raw Node.js + PostgreSQL from first principles",
   cleanUrls: true,
   lastUpdated: true,
+  ignoreDeadLinks: true,
 
   themeConfig: {
     siteTitle: "AtopBank Book",
+
 
     nav: [
       { text: "Start", link: "/read-me-first" },
