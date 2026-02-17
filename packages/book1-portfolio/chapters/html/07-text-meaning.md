@@ -1,7 +1,7 @@
 # Chapter 7 — Text Meaning: Strong, Emphasis, Mark, and Small
 
+**Goal of This Chapter:**
 
-**Goal of This Chapter:**  
 Understand semantic text elements and use them to improve meaning and readability in your portfolio content.
 
 ---
@@ -24,7 +24,7 @@ Understand semantic text elements and use them to improve meaning and readabilit
 
 From Chapter 6, your Hero section should look like this:
 
-```html
+```
 <div>
   <h1 id="hero-title">John Doe</h1>
   <p class="subtitle">Full-Stack Developer</p>
@@ -37,45 +37,74 @@ From Chapter 6, your Hero section should look like this:
     <figcaption>John Doe — Full-Stack Developer</figcaption>
   </figure>
 </div>
-```
 
+```
 
 **We will now improve the meaning of the text inside this section.**
 
 ---
 
+### Friction Moment — "Why Not Just Make It Bold in CSS?"
+
+Most beginners think:
+
+**"If I can bold this later with CSS, why use special tags now?"**
+
+Because bold is visual.
+
+HTML is semantic.
+
+One is makeup.
+
+The other is meaning.
+
+---
+
 ## Part 1 — Meaning vs Appearance
 
-Important concept:
+HTML is about **meaning first**.
 
-**HTML is about meaning.**
+Not about how things look.
 
-It is *not* about visual styling.
+Yes, browsers show:
 
-Beginners often think:
+- `<strong>` as bold
+- `<em>` as italic
 
-- `<strong>` = bold
-- `<em>` = italic
+But that is just default styling.
 
-That is **not** the real purpose.
+Their real job is to communicate **importance** and **emphasis**.
 
-These elements communicate **emphasis** and **importance**.
+To:
 
-Browsers display them visually by default.
+- screen readers
+- search engines
+- accessibility tools
 
-But their real role is **semantic**.
+**Meaning comes before style.**
 
-- Screen readers interpret them differently.
-- Search engines understand them differently.
+---
 
-**Meaning comes first.**
-**Style comes later.**
+### Concept Anchor — Voice vs Highlighter
+
+Imagine reading out loud.
+
+- `<strong>` is when your voice becomes firm
+- `<em>` is when you stress a word
+
+It's about tone — not typography.
+
+---
+
+### Micro Recap
+
+HTML elements describe **what** something is, not how it looks.
 
 ---
 
 ## Part 2 — `<strong>`
 
-`<strong>` indicates **strong importance**.
+`<strong>` signals **strong importance**.
 
 Example:
 
@@ -83,24 +112,39 @@ Example:
 <p>I am a <strong>Full-Stack Developer</strong>.</p>
 ```
 
-This tells:
+This tells assistive tech:
 
-- screen readers: *emphasize this strongly*
-- search engines: this phrase matters
+**"This phrase matters."**
 
-It is not just bold text.
+Use it for:
 
-It is **important text**.
+- roles
+- warnings
+- key facts
 
-Use `<strong>` when the content is critical.
+Don't use it everywhere.
 
-**Do not overuse it.**
+**When everything is important, nothing is.**
+
+---
+
+### Common Beginner Mistake
+
+Wrapping entire paragraphs in `<strong>`.
+
+That defeats its purpose.
+
+---
+
+### Micro Recap
+
+`<strong>` = critical importance
 
 ---
 
 ## Part 3 — `<em>`
 
-`<em>` indicates **emphasis**.
+`<em>` adds **emphasis**.
 
 Example:
 
@@ -108,22 +152,26 @@ Example:
 <p>I focus on <em>clean architecture</em> and performance.</p>
 ```
 
-This suggests verbal emphasis.
+It represents natural speech stress.
 
-Screen readers change tone when reading it.
+Lighter than `<strong>`.
 
-It is lighter than `<strong>`.
+Think:
 
-Think of:
+- `<strong>` → importance
+- `<em>` → emphasis
 
-- `<strong>` → **importance**
-- `<em>` → *emphasis*
+---
+
+### Micro Recap
+
+`<em>` highlights what you'd stress when speaking.
 
 ---
 
 ## Part 4 — `<mark>`
 
-`<mark>` highlights text as **relevant**.
+`<mark>` highlights content as **especially relevant**.
 
 Example:
 
@@ -131,42 +179,57 @@ Example:
 <p>I specialize in <mark>accessible web design</mark>.</p>
 ```
 
-This visually highlights content.
+It means:
 
-Semantically, it means:
+**"This part deserves attention in this context."**
 
-**“This is especially relevant in this context.”**
+Use sparingly.
 
-Use it carefully.
-**Do not highlight everything.**
+Overuse turns pages into noise.
+
+---
+
+### Concept Anchor — Digital Highlighter
+
+`<mark>` is literally a highlighter pen.
+
+You don't highlight entire textbooks.
+
+You highlight what matters.
 
 ---
 
 ## Part 5 — `<small>`
 
-`<small>` represents **side notes** or **fine print**.
+`<small>` represents **side information**.
 
 Example:
 
 ```
-<p><small>Available for freelance projects worldwide.</small></p>
+<p><small>Currently available for freelance projects.</small></p>
 ```
 
-It is *not* just smaller text.
+It communicates:
 
-It represents:
+- fine print
+- notes
+- secondary details
 
-- disclaimers
-- secondary information
-- supporting notes
+Not just smaller text — **secondary meaning**.
+
+---
+
+### Micro Recap
+
+`<small>` = supporting information
 
 ---
 
 ## Applying This to the Portfolio
 
-We now improve your Hero description.
+Now we upgrade your Hero content.
 
-Update your Hero section to:
+Replace it with:
 
 ```
 <div>
@@ -192,57 +255,53 @@ Update your Hero section to:
     <figcaption>John Doe — Full-Stack Developer</figcaption>
   </figure>
 </div>
+
 ```
 
-- Save.
+Save.
 
-- Refresh your browser.
+Refresh.
 
-- Visually, you will notice small changes.
+Small visual changes.
 
-**Structurally and semantically, the page is now stronger.**
+**Big semantic improvements.**
 
 ---
 
-## Why This Matters
+### Why This Matters in the Real World
 
-Without semantic text elements:
+Accessibility audits care about this.
 
-- Everything is just plain paragraphs.
-- Important phrases get lost.
-- Accessibility is weaker.
+SEO cares about this.
 
-With semantic text:
+Professional codebases expect this.
 
-- Content hierarchy becomes clearer.
-- Screen readers communicate emphasis.
-- Search engines understand key phrases.
+**Semantic HTML is what separates beginners from developers.**
 
-**We are building not just pages.**
-**We are building meaningful documents.**
+---
+
+### Micro Recap
+
+You now used:
+
+- `<strong>` for importance
+- `<em>` for emphasis
+- `<mark>` for relevance
+- `<small>` for secondary info
 
 ---
 
 ## Project Milestone — Readable Content Sections
 
-You now have:
-
-- Structured navigation
-- A grouped Hero section
-- Proper image handling
-- Semantic text emphasis
-
 Your Hero section now communicates:
 
-- Identity
-- Role
-- Specialization
-- Availability
-- Call-to-action
-- Visual identity
+- who you are
+- what you do
+- what you focus on
+- your availability
+- a clear call-to-action
 
-**This is no longer a basic page.**
-**It is becoming a real portfolio foundation.**
+**This is structured content — not just text.**
 
 ---
 
@@ -292,7 +351,18 @@ Your Hero section now communicates:
     </div>
   </body>
 </html>
+
 ```
+
+---
+
+## Final Reflection
+
+You're no longer just placing words on a page.
+
+**You're giving them meaning.**
+
+That's what the web is built on.
 
 ---
 
@@ -300,10 +370,6 @@ Your Hero section now communicates:
 
 Why Semantics Exist.
 
-**We move from small semantic elements to full page architecture.**
+We'll zoom out from small elements to full page structure.
 
----
-
-*We are now ready to transition from raw structure into semantic layout thinking.*
-
-**Ready for Chapter 8?**
+**You're about to level up.**

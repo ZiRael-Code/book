@@ -7,148 +7,234 @@ export const CONFIG = {
     },
     chapters: [
         {
-            id: "read",
+            id: "readme",
             title: "Read Me First",
             order: 0,
-            path: `../chapters/00.00-read-me-first.md`,
-            codePath: "../code/00.00-read-me-first/",
+            path: "../chapters/00.00-readme.md",
+            codePath: "../code/00.00-readme/",
             time: "10 min",
             subtitle: "Welcome to your learning journey. Let's start by understanding how this book works."
         },
+
         {
-            id: "introduction-to-html",
-            title: "Introduction to HTML",
+            id: "the-first-words",
+            title: "The First Words",
             order: 1,
-            path: "../chapters/01.00-introduction-to-html.md",
-            codePath: "../code/01.00-introduction-to-html/",
+            path: "../chapters/html/01.00-the-first-words.md",
+            codePath: "../code/html/01.00-the-first-words/",
             time: "15 min",
-            subtitle: "Introduction to HTML"
+            subtitle: "Getting started with HTML"
         },
         {
-            id: "link-vs-button",
-            title: "Link VS Button",
-            order: 1.5,
-            path: "../chapters/01.50-link-vs-button.md",
-            codePath: "../code/01.50-link-vs-button/",
-            time: "20 min",
-            subtitle: "Links vs Buttons (tiny but critical)"
-        },
-        {
-            id: "structuring-content",
-            title: "Structuring Content",
+            id: "attributes",
+            title: "Attributes",
             order: 2,
-            path: "../chapters/02.00-structuring-content.md",
-            codePath: "../code/02.00-structuring-content/",
-            time: "25 min",
-            subtitle: "Structuring your content"
+            path: "../chapters/html/02.00-attributes.md",
+            codePath: "../code/html/02.00-attributes/",
+            time: "15 min",
+            subtitle: "Understanding HTML attributes"
         },
         {
-            id: "architectural-plan",
-            title: "Semantic HTML",
+            id: "block-vs-inline",
+            title: "Block vs Inline",
             order: 3,
-            path: "../chapters/03.00-architectural-plan-semantic.md",
-            codePath: "../code/03.00-architectural-plan-semantic/",
-            time: "35 min",
-            subtitle: "Semantic HTML"
+            path: "../chapters/html/03.00-block-vs-inline.md",
+            codePath: "../code/html/03.00-block-vs-inline/",
+            time: "15 min",
+            subtitle: "Understanding element display types"
         },
         {
-            id: "the-first-coat-of-paint",
-            title: "The First Coat Of Paint",
+            id: "flow-and-content",
+            title: "Flow & Content",
             order: 4,
-            path: "../chapters/04-The-First-Coat-of-Paint-Intro-to-CSS.md",
-            codePath: "../code/04.00-intro-to-css/",
-            time: "25 min",
-            subtitle: "Introduction to CSS"
+            path: "../chapters/html/04-flow-&-content.md",
+            codePath: "../code/html/04-flow-&-content/",
+            time: "20 min",
+            subtitle: "Document flow and content organization"
         },
         {
-            id: "The-laws-of-Space",
-            title: "The Laws of Space: The CSS Box Model",
+            id: "lists-and-grouped-content",
+            title: "Lists & Grouped Content",
             order: 5,
-            path: "../chapters/05-The-CSS-Box-Model.md",
-            codePath: "../code/05.00-css-box-model/",
-            time: "25 min",
-            subtitle: "The CSS Box Model"
+            path: "../chapters/html/05-lists-&-grouped-content.md",
+            codePath: "../code/html/05-lists-&-grouped-content/",
+            time: "20 min",
+            subtitle: "Organizing content with lists"
         },
         {
-            id: "color-contrast-and-tokens",
-            title: "Color, Contrast and Tokens",
+            id: "images-done-right",
+            title: "Images Done Right",
             order: 6,
-            path: "../chapters/06-color-contrast-and-tokens.md",
-            codePath: "../code/06.00-color-contrast/",
+            path: "../chapters/html/06-images-done-right.md",
+            codePath: "../code/html/06-images-done-right/",
+            time: "20 min",
+            subtitle: "Proper image implementation"
+        },
+        {
+            id: "text-meaning",
+            title: "Text Meaning",
+            order: 7,
+            path: "../chapters/html/07-text-meaning.md",
+            codePath: "../code/html/07-text-meaning/",
+            time: "15 min",
+            subtitle: "Semantic text elements"
+        },
+        {
+            id: "why-semantics-exist",
+            title: "Why Semantics Exist",
+            order: 8,
+            path: "../chapters/html/08-why-semantics-exist.md",
+            codePath: "../code/html/08-why-semantics-exist/",
+            time: "20 min",
+            subtitle: "The importance of semantic HTML"
+        },
+        {
+            id: "the-architectural-plan",
+            title: "The Architectural Plan",
+            order: 9,
+            path: "../chapters/html/09-the-architectural-plan.md",
+            codePath: "../code/html/09-the-architectural-plan/",
             time: "25 min",
-            subtitle: "Choosing colors"
+            subtitle: "Structuring your HTML documents"
+        },
+        {
+            id: "html-form",
+            title: "HTML Form",
+            order: 10,
+            path: "../chapters/html/10-html-form.md",
+            codePath: "../code/html/10-html-form/",
+            time: "25 min",
+            subtitle: "Building forms"
+        },
+        {
+            id: "html-tables",
+            title: "HTML Tables",
+            order: 11,
+            path: "../chapters/html/11-html-tables.md",
+            codePath: "../code/html/11-html-tables/",
+            time: "20 min",
+            subtitle: "Creating and styling tables"
+        },
+
+        // CSS Chapters
+        {
+            id: "introduction-to-css",
+            title: "Introduction to CSS",
+            order: 12,
+            path: "../chapters/css/12-introduction-to-css.md",
+            codePath: "../code/css/12-introduction-to-css/",
+            time: "25 min",
+            subtitle: "Getting started with CSS"
+        },
+        {
+            id: "css-box-model",
+            title: "CSS Box Model",
+            order: 13,
+            path: "../chapters/css/13-css-box-model.md",
+            codePath: "../code/css/13-css-box-model/",
+            time: "25 min",
+            subtitle: "Understanding the CSS box model"
+        },
+        {
+            id: "color-contrast-and-token",
+            title: "Color, Contrast and Tokens",
+            order: 14,
+            path: "../chapters/css/14-color-contrast-and-token.md",
+            codePath: "../code/css/14-color-contrast-and-token/",
+            time: "25 min",
+            subtitle: "Working with colors and design tokens"
         },
         {
             id: "typography",
             title: "Typography",
-            order: 7,
-            path: "../chapters/07-typography.md",
-            codePath: "../code/07.00-typography/",
+            order: 15,
+            path: "../chapters/css/15-typography.md",
+            codePath: "../code/css/15-typography/",
             time: "25 min",
-            subtitle: "Choosing fonts"
+            subtitle: "Mastering web typography"
         },
         {
-            id: "positioning-and-flex",
-            title: "Positioning and Flex",
-            order: 8,
-            path: "../chapters/08-positioning-and-flex.md",
-            codePath: "../code/08.00-positioning-and-flex/",
+            id: "positioning",
+            title: "Positioning",
+            order: 16,
+            path: "../chapters/css/16-positioning.md",
+            codePath: "../code/css/16-positioning/",
             time: "25 min",
-            subtitle: "Flex Layout"
+            subtitle: "CSS positioning techniques"
         },
         {
-            id: "deep-dive-flex",
-            title: "Deep Dive into Flexbox",
-            order: 9,
-            path: "../chapters/09-deep-dive-flexbox.md",
-            codePath: "../code/09.00-deep-dive-flexbox/",
+            id: "flexbox-fundamentals",
+            title: "Flexbox Fundamentals",
+            order: 17,
+            path: "../chapters/css/17-flexbox-fundamentals.md",
+            codePath: "../code/css/17-flexbox-fundamentals/",
             time: "25 min",
-            subtitle: "Learn to style using flexbox"
+            subtitle: "Introduction to Flexbox"
         },
         {
-            id: "css-grid",
-            title: "CSS Grid",
-            order: 10,
-            path: "../chapters/10-css-grid.md",
-            codePath: "../code/10.00-css-grid/",
+            id: "flexbox-deep-dive",
+            title: "Flexbox Deep Dive",
+            order: 18,
+            path: "../chapters/css/18-flexbox-deep-dive.md",
+            codePath: "../code/css/18-flexbox-deep-dive/",
             time: "25 min",
-            subtitle: "Learn to create 2d layouts"
+            subtitle: "Advanced Flexbox concepts"
+        },
+        {
+            id: "introduction-to-css-grid",
+            title: "Introduction to CSS Grid",
+            order: 19,
+            path: "../chapters/css/19-introduction-to-css-grid.md",
+            codePath: "../code/css/19-introduction-to-css-grid/",
+            time: "25 min",
+            subtitle: "Getting started with CSS Grid"
         },
         {
             id: "responsive-design",
             title: "Responsive Design",
-            order: 11,
-            path: "../chapters/11-responsive-design.md",
-            codePath: "../code/11.00-responsive-design/",
+            order: 20,
+            path: "../chapters/css/20-responsive-design.md",
+            codePath: "../code/css/20-responsive-design/",
             time: "25 min",
-            subtitle: "Designing for all screen sizes"
+            subtitle: "Creating responsive layouts"
+        },
+
+        // Tailwind Chapters
+        {
+            id: "micro-interaction-polish",
+            title: "Micro Interaction Polish",
+            order: 21,
+            path: "../chapters/tailwind/21-micro-interaction-polish.md",
+            codePath: "../code/tailwind/21-micro-interaction-polish/",
+            time: "25 min",
+            subtitle: "Adding polish with micro-interactions"
         },
         {
-            id: "intro-to-tailwind",
-            title: "Intro to Tailwind",
-            order: 12,
-            path: "../chapters/12-intro-to-tailwind.md",
-            codePath: "../code/12-intro-to-tailwind/",
+            id: "clean-css-architecture",
+            title: "Clean CSS Architecture",
+            order: 22,
+            path: "../chapters/tailwind/22-clean-css-architechture.md",
+            codePath: "../code/tailwind/22-clean-css-architechture/",
             time: "25 min",
-            subtitle: "Learn the basics of tailwind"
+            subtitle: "Organizing your CSS"
         },
         {
-            id: "prototyping-with-tailwind",
-            title: "Rapid Prototyping with Tailwind",
-            order: 13,
-            path: "../chapters/13-prototyping-with-tailwind.md",
-            codePath: "../code/13-prototyping-with-tailwind/",
+            id: "utility-first-css",
+            title: "Utility First CSS",
+            order: 23,
+            path: "../chapters/tailwind/23-utility-first-css.md",
+            codePath: "../code/tailwind/23-utility-first-css/",
             time: "25 min",
-            subtitle: "Diving deeper into Tailwind"
+            subtitle: "Understanding utility-first approach"
         },
         {
-            id: "accessibility-and-seo",
-            title: "Accessibility and SEO",
-            order: 14,
-            path: "../chapters/14-accessibility-and-seo.md",
-            codePath: "../code/14-accessibility-and-seo/",
+            id: "tailwind-responsiveness",
+            title: "Responsiveness with Tailwind",
+            order: 24,
+            path: "../chapters/tailwind/24-responsiveness.md",
+            codePath: "../code/tailwind/24-responsiveness/",
             time: "25 min",
-            subtitle: "Diving deeper into Tailwind"
-        },
+            subtitle: "Building responsive designs with Tailwind"
+        }
     ]
 };

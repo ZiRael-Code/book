@@ -1,6 +1,7 @@
 # Chapter 6 — Images Done Right
 
-**Goal of This Chapter:**  
+**Goal of This Chapter:**
+
 Understand how images work in HTML, use `alt` properly, and structure your Hero image using `<figure>` and `<figcaption>`.
 
 ---
@@ -22,7 +23,7 @@ Understand how images work in HTML, use `alt` properly, and structure your Hero 
 
 From Chapter 5, your page should look like this:
 
-```html
+```
 <body>
   <div>
     <ul>
@@ -43,9 +44,28 @@ From Chapter 5, your page should look like this:
     <img src="assets/profile.jpg" alt="Portrait of John Doe">
   </div>
 </body>
+
 ```
 
 **We will now improve how this image is structured.**
+
+---
+
+### Friction Moment — "It Shows Up, So Isn't It Fine?"
+
+Most beginners stop here.
+
+The image loads.
+
+The page looks okay.
+
+So they move on.
+
+But HTML isn't just about showing things.
+
+**It's about meaning, structure, and accessibility.**
+
+Images deserve the same care as text.
 
 ---
 
@@ -57,140 +77,183 @@ The image element looks like this:
 <img src="path-to-image" alt="description">
 ```
 
-Important things to remember:
+Important rules:
 
-- `<img>` is a **void element**.
-- It does NOT have a closing tag.
-- It **must** have `src`.
-- It **must** have `alt`.
+- `<img>` is a **void element** (no closing tag)
+- `src` is **required**
+- `alt` is **required**
 
-If `src` is wrong, the image breaks.
+If `src` breaks, the image disappears.
 
 If `alt` is missing, accessibility breaks.
 
-### What `src` Does
+**Both matter.**
 
-`src` means **source**.
+---
 
-Example:
+### Concept Anchor — Think of `src` as the Address
 
-```html
-<img src="assets/profile.jpg" alt="Portrait of John Doe">
-```
+Just like a house needs the correct address to be found,
 
-The browser looks inside the `assets/` folder.
+an image needs the correct file path.
 
-If the file name is wrong — even one letter — the image will not load.
+One wrong letter and the browser gets lost.
 
-**File paths must match exactly.**
+---
+
+### Micro Recap
+
+Every image needs:
+
+- a valid `src`
+- a meaningful `alt`
 
 ---
 
 ## Part 2 — The `alt` Attribute (Deep Explanation)
 
-This is where beginners often misunderstand things.
+`alt` is **not decoration**.
 
-`alt` is **not** decoration.
+It is **replacement content**.
 
-It is **alternative text**.
+It steps in when the image can't.
 
-It serves three major purposes:
+It serves three big roles:
 
-1. Screen readers read it aloud.
-2. It appears if the image fails to load.
-3. Search engines use it to understand the image.
+1. Screen readers read it aloud
+2. It shows if the image fails
+3. Search engines understand the image
 
-Imagine a blind user visiting your portfolio.
+Imagine someone who cannot see your page.
 
-They cannot see your image.
+Their experience becomes:
 
-Instead, their screen reader says:
+**"Portrait of John Doe smiling and facing forward."**
 
-**“Portrait of John Doe.”**
+That sentence replaces the photo.
 
-That is what `alt` does.
+---
 
-### Bad `alt` Examples
+### Common Beginner Mistakes
 
 ```
-<img src="profile.jpg" alt="image">
-<img src="profile.jpg" alt="photo">
-<img src="profile.jpg" alt="">
+<img alt="image">
+<img alt="photo">
+<img alt="">
+
 ```
 
-These provide no useful information.
+These communicate nothing.
 
-### Good `alt` Example
+They defeat the purpose.
+
+---
+
+### Good `alt` Text
 
 ```
 <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
 ```
 
-It is short.
+Short.
 
-It is clear.
+Clear.
 
-It describes what matters.
+Meaningful.
+
+---
+
+### Why This Matters
+
+Accessibility is not optional.
+
+Good developers write good `alt`.
+
+Bad `alt` breaks real user experiences.
+
+---
+
+### Micro Recap
+
+`alt` should:
+
+- describe what matters
+- replace the image meaningfully
 
 ---
 
 ## Part 3 — Decorative vs Meaningful Images
 
-Not all images are equal.
+Not all images need the same treatment.
 
-There are two types:
+There are **two categories**.
 
-### 1. Meaningful Images
+### Meaningful Images
 
-These **add content** to the page.
+These **add information**.
 
-Example:
+Examples:
 
-- Profile photo
-- Project screenshot
-- Product image
+- profile photos
+- screenshots
+- product images
 
-These must have **descriptive `alt`**.
+They must have **descriptive `alt`**.
 
-### 2. Decorative Images
+### Decorative Images
 
-These exist **only for design**.
+These are **purely visual**.
 
-Example:
+Examples:
 
-- Background patterns
-- Decorative icons
-- Visual shapes
+- background shapes
+- flourishes
+- visual noise
 
-For decorative images:
+For these:
 
 ```
 <img src="icon.svg" alt="">
 ```
 
-Empty `alt` tells screen readers:
+Empty `alt` tells assistive tech to ignore it.
 
-**“Skip this.”**
+---
 
-This prevents unnecessary noise.
+### Concept Anchor — Content vs Wallpaper
+
+Meaningful images are like words in a sentence.
+
+Decorative images are like wallpaper.
+
+One communicates.
+
+The other decorates.
+
+---
+
+### Micro Recap
+
+- meaningful → describe it
+- decorative → empty `alt`
 
 ---
 
 ## Part 4 — Introducing `<figure>` and `<figcaption>`
 
-Right now, your image is floating alone.
+Right now your image floats alone.
 
-We can structure it better.
+HTML gives us a better structure.
 
-HTML provides:
+Enter:
 
 - `<figure>`
 - `<figcaption>`
 
-These are used when:
+Use them when:
 
-- An image stands as its own content block
-- The image may need a caption
+- an image stands as content
+- it may have a label or description
 
 Structure:
 
@@ -199,49 +262,53 @@ Structure:
   <img src="assets/profile.jpg" alt="Portrait of John Doe">
   <figcaption>John Doe — Full-Stack Developer</figcaption>
 </figure>
+
 ```
 
-`<figure>` groups the image and caption.
+Now the browser knows:
 
-`<figcaption>` describes or labels the figure.
+**"These belong together."**
 
-This creates **better structure**.
+---
 
 ### Why This Matters
 
-Without structure:
+With structure:
 
-- The image is just floating content.
-- There is no relationship between image and description.
+- screen readers connect image + caption
+- layout becomes easier later
+- HTML becomes more semantic
 
-With `<figure>`:
+**This is professional-level markup.**
 
-- The browser understands they belong together.
-- Screen readers understand the relationship.
-- Your HTML becomes more professional.
+---
+
+### Micro Recap
+
+- `<figure>` groups visual content.
+- `<figcaption>` labels it.
 
 ---
 
 ## Part 5 — Apply This to Your Portfolio
 
-Now update your Hero section.
-
-Replace this:
+Replace:
 
 ```
 <img src="assets/profile.jpg" alt="Portrait of John Doe">
 ```
 
-With this:
+With:
 
 ```
 <figure>
   <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
   <figcaption>John Doe — Full-Stack Developer</figcaption>
 </figure>
+
 ```
 
-Your full `<body>` should now look like this:
+Your full `<body>` should now be:
 
 ```
 <body>
@@ -267,15 +334,26 @@ Your full `<body>` should now look like this:
     </figure>
   </div>
 </body>
+
 ```
 
 Save.
 
-Refresh your browser.
+Refresh.
 
-Visually, it may look similar.
+It may look similar.
 
-**Structurally, it is stronger.**
+**But structurally, it's far stronger.**
+
+---
+
+### Real Developer Scenario
+
+When content editors add captions or SEO teams review accessibility,
+
+this structure saves hours of fixes.
+
+**This is why professionals do it early.**
 
 ---
 
@@ -283,19 +361,16 @@ Visually, it may look similar.
 
 You now have:
 
-- Proper `src` usage
-- Proper `alt` usage
-- Understanding of decorative vs meaningful images
-- A structured `<figure>` element
+- correct `src` paths
+- meaningful `alt` text
+- decorative vs content understanding
+- a structured image block
 
-Your Hero section now contains:
+Your Hero section is now:
 
-- Identity
-- Description
-- Call-To-Action
-- Structured image with caption
-
-**This is real semantic progress.**
+- readable
+- accessible
+- semantic
 
 ---
 
@@ -334,7 +409,18 @@ Your Hero section now contains:
     </div>
   </body>
 </html>
+
 ```
+
+---
+
+## Final Reflection
+
+Images are not just visuals.
+
+**They are content.**
+
+When you treat them with structure and meaning, your site becomes more usable for everyone.
 
 ---
 
@@ -342,17 +428,11 @@ Your Hero section now contains:
 
 Text Meaning (not styling).
 
-We will learn semantic text elements like:
+We'll explore semantic text elements like:
 
 - `<strong>`
 - `<em>`
 - `<mark>`
 - `<small>`
 
-**We are gradually moving from structure to meaning.**
-
----
-
-*We are building this the right way.*
-
-**Ready for Chapter 7?**
+**We're moving deeper into real HTML semantics.**
