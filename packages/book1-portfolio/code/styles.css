@@ -639,3 +639,123 @@ button[type="submit"]:hover{
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   Mobile header + hero (CSS only)
+   - Hide nav on phone
+   - Turn the existing Contact button into a hamburger icon (no JS)
+========================= */
+
+@media (max-width: 560px){
+
+    /* Header layout: logo left, icon right */
+    .header-inner{
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+    }
+
+    /* Hide the nav links on phone (like screenshot) */
+    .main-nav{
+        display: none;
+    }
+
+    /* Re-style the existing Contact button to LOOK like a hamburger */
+    .header-inner > .btn{
+        justify-self: end;
+
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border-radius: 12px;
+
+        background: transparent;
+        box-shadow: none;
+
+        /* hide the "Contact" text visually but keep it accessible */
+        font-size: 0;
+        line-height: 0;
+
+        position: relative;
+    }
+
+    /* Draw 3 hamburger lines */
+    .header-inner > .btn::before{
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 18px;
+        height: 2px;
+        background: #111827;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 -6px 0 #111827, 0 6px 0 #111827;
+        border-radius: 2px;
+    }
+
+    /* Hero centered on phone (like screenshot) */
+    .hero-content{
+        text-align: center;
+    }
+
+    .hero-content p{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-content .btn{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .stats-list{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-photo{
+        justify-self: center;
+    }
+}
+@media (max-width: 560px){
+    .stats-list{
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        padding: 12px 12px;
+        gap: 6px;
+        max-width: 100%;
+    }
+
+    .stats-list strong{
+        font-size: 16px;
+    }
+
+    .stats-list p:last-child{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 560px){
+    .contact-grid{
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 18px;
+    }
+
+    .contact-left{
+        text-align: center;
+    }
+
+    .contact-email{
+        justify-content: center;
+    }
+
+    .social-list{
+        justify-content: center;
+    }
+
+    .contact-form{
+        width: 100%;
+    }
+}
+
+
