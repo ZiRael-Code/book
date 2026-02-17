@@ -328,9 +328,9 @@ p, h1, h2, h3{
 }
 
 .skill-card header img{
-    width: 34px;
-    height: 34px;
-    padding: 7px;
+    width: 44px;
+    height: 44px;
+    padding: 3px;
     background: var(--blue);
     border-radius: 10px;
 }
