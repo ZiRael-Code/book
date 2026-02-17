@@ -13,3 +13,6 @@ create table if not exists kyc_documents (
 );
 
 create index if not exists kyc_documents_user_id_idx on kyc_documents(user_id);
+
+
+

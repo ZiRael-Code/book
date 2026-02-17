@@ -61,3 +61,5 @@ We assume you already have a `transactions` table like:
 In summary,statement is  a summary over a period and derived from transactions
 
 ![alt text](image-8.png)
+
+
