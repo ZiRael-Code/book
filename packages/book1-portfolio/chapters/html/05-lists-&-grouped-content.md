@@ -23,7 +23,7 @@ Understand how lists work in HTML and use them to build a real navigation struct
 
 From Chapter 4, your Hero section should look like this:
 
-```
+```html
 <body>
   <div>
     <h1 id="hero-title">John Doe</h1>
@@ -46,7 +46,7 @@ From Chapter 4, your Hero section should look like this:
 
 Most beginners naturally write:
 
-```
+```html
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
@@ -136,7 +136,7 @@ Use `<ul>` when **order does not matter**.
 
 Structure:
 
-```
+```html
 <ul>
   <li>Item One</li>
   <li>Item Two</li>
@@ -181,7 +181,7 @@ Use `<ol>` when **sequence matters**.
 
 Structure:
 
-```
+```html
 <ol>
   <li>Step One</li>
   <li>Step Two</li>
@@ -219,13 +219,13 @@ So we use `<ul>` for menus.
 
 **This is invalid:**
 
-```
+```html
 <li>Home</li>
 ```
 
 **This is correct:**
 
-```
+```html
 <ul>
   <li>Home</li>
 </ul>
@@ -269,7 +269,7 @@ So we combine:
 
 Example:
 
-```
+```html
 <ul>
   <li><a href="#top">Home</a></li>
   <li><a href="#about">About</a></li>
@@ -300,7 +300,7 @@ Frameworks, screen readers, and CSS all expect navigation to be lists.
 
 Add navigation above your Hero:
 
-```
+```html
 <body>
   <div>
     <ul>
@@ -376,7 +376,7 @@ You are officially building layout architecture.
 
 ## Completed Code
 
-```
+```html
 <!doctype html>
 <html lang="en">
   <head>

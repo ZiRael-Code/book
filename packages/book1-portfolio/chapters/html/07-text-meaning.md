@@ -24,7 +24,7 @@ Understand semantic text elements and use them to improve meaning and readabilit
 
 From Chapter 6, your Hero section should look like this:
 
-```
+```html
 <div>
   <h1 id="hero-title">John Doe</h1>
   <p class="subtitle">Full-Stack Developer</p>
@@ -108,7 +108,7 @@ HTML elements describe **what** something is, not how it looks.
 
 Example:
 
-```
+```html
 <p>I am a <strong>Full-Stack Developer</strong>.</p>
 ```
 
@@ -148,7 +148,7 @@ That defeats its purpose.
 
 Example:
 
-```
+```html
 <p>I focus on <em>clean architecture</em> and performance.</p>
 ```
 
@@ -175,7 +175,7 @@ Think:
 
 Example:
 
-```
+```html
 <p>I specialize in <mark>accessible web design</mark>.</p>
 ```
 
@@ -205,7 +205,7 @@ You highlight what matters.
 
 Example:
 
-```
+```html
 <p><small>Currently available for freelance projects.</small></p>
 ```
 
@@ -231,7 +231,7 @@ Now we upgrade your Hero content.
 
 Replace it with:
 
-```
+```html
 <div>
   <h1 id="hero-title">John Doe</h1>
 
@@ -307,7 +307,7 @@ Your Hero section now communicates:
 
 ## Completed Code
 
-```
+```html
 <!doctype html>
 <html lang="en">
   <head>

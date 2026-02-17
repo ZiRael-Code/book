@@ -1,6 +1,7 @@
 # Chapter 11 — Tables (HTML Fundamentals)
 
-**Goal of This Chapter:**  
+**Goal of This Chapter:**
+
 Understand how HTML tables work and add structured data to your portfolio.
 
 Tables are for data — not layout.
@@ -25,32 +26,78 @@ Tables are for data — not layout.
 
 From Chapter 10, your portfolio includes:
 
-- Semantic structure (`header`, `main`, `section`, `footer`)
-- Hero section
-- Contact form
+- semantic structure (`header`, `main`, `section`, `footer`)
+- a Hero section
+- a Contact form
 
-We will now add a new section inside `<main>` for structured data.
+**We will now add one more section inside `<main>` for structured data.**
 
 ---
 
-# Part 1 — When to Use Tables
+### Friction Moment — "Tables Feel Like Old-School HTML"
 
-Tables are for structured data.
+A lot of beginners hear "tables" and think:
 
-Use tables when:
+**"Isn't that what people used in 2004 to build layouts?"**
 
-- Comparing items
-- Displaying structured information
-- Showing rows and columns of data
+Yes… and that's why tables have a bad reputation.
 
-Do NOT use tables for layout.
+**But tables themselves aren't bad.**
+
+**Using tables for layout is bad.**
+
+Using tables for data is exactly what they're for.
+
+---
+
+## Part 1 — When to Use Tables
+
+Tables are for **structured data**.
+
+Use tables when you're working with:
+
+- comparisons
+- rows and columns
+- repeated patterns of information
+
+Examples:
+
+- skills and experience
+- pricing plans
+- schedules
+- feature comparisons
+
+Do **not** use tables to position elements on a page.
 
 Modern layout is handled by CSS.
-Tables are for data only.
+
+**Tables are for data only.**
 
 ---
 
-# Part 2 — Basic Table Structure
+### Concept Anchor — Spreadsheet Thinking
+
+If the information makes sense in Excel,
+
+it probably makes sense as an HTML table.
+
+Rows. Columns. Headings.
+
+That's the mental model.
+
+---
+
+### Micro Recap
+
+Tables are for:
+
+- data relationships
+- structured comparisons
+- row/column information
+
+---
+
+## Part 2 — Basic Table Structure
 
 Basic structure:
 
@@ -65,14 +112,15 @@ Basic structure:
     <td>Data</td>
   </tr>
 </table>
+
 ```
 
-Let's break this down.
+Let's break it down:
 
-- `<table>` → wraps the entire table
-- `<tr>` → table row
-- `<th>` → table header cell
-- `<td>` → table data cell
+- `<table>` wraps the entire table
+- `<tr>` means **table row**
+- `<th>` means **header cell**
+- `<td>` means **data cell**
 
 Rows contain cells.
 
@@ -80,16 +128,41 @@ Cells live inside rows.
 
 ---
 
+### Common Beginner Mistake
+
+Putting table cells directly inside `<table>` without a row:
+
+```html
+<table>
+  <td>HTML</td>
+</table>
+
+```
+
+That's invalid structure.
+
+**Cells must always be inside `<tr>`.**
+
+---
+
+### Micro Recap
+
+- `<table>` → contains rows
+- `<tr>` → contains cells
+- `<th>` and `<td>` → the cells themselves
+
+---
+
 ## Part 3 — `<thead>` and `<tbody>`
 
-For better structure, we separate:
+For better structure, we split the table into parts:
 
-- Table head
-- Table body
+- `<thead>` for headings
+- `<tbody>` for the main data
 
 Structure:
 
-```
+```html
 <table>
   <thead>
     <tr>
@@ -105,63 +178,112 @@ Structure:
     </tr>
   </tbody>
 </table>
+
 ```
 
 Why this matters:
 
-- Improves accessibility
-- Improves readability
-- Makes large tables easier to manage
+- improves accessibility
+- improves readability
+- helps with large tables later
+- makes styling cleaner when you eventually add CSS
+
+---
+
+### Friction Moment — "But It Works Without Thead/Tbody"
+
+True.
+
+The browser can still draw it.
+
+**But structure is about clarity, not just "it renders."**
+
+When you write semantic markup, you future-proof your code.
+
+---
+
+### Micro Recap
+
+- `<thead>` = heading rows
+- `<tbody>` = data rows
 
 ---
 
 ## Part 4 — `<th>` vs `<td>`
 
-- `<th>` → header cell
-- `<td>` → data cell
+- `<th>` is a **header cell**
+- `<td>` is a **data cell**
 
-`<th>` is used for column or row labels.
+Headers describe what the column or row means.
 
-Screen readers treat `<th>` differently.
+Screen readers use headers to understand context.
 
-It communicates structure.
+**That means `<th>` is not optional.**
 
-**Never replace `<th>` with `<td>` for headers.**
+Never use `<td>` where a header should be.
+
+---
+
+### Real Developer Scenario
+
+In real apps (admin dashboards, reports, analytics pages),
+
+accessible tables matter a lot.
+
+If the table isn't structured properly, users who rely on assistive tech basically get a wall of numbers.
+
+---
+
+### Micro Recap
+
+- `<th>` labels.
+- `<td>` fills in the data.
 
 ---
 
 ## Part 5 — `<caption>`
 
-`<caption>` describes the table.
+`<caption>` names the table.
 
-It must be placed directly inside `<table>`, at the top.
+It must be the **first element** inside `<table>`.
 
 Example:
 
-```
+```html
 <table>
   <caption>Technical Skills Overview</caption>
   ...
 </table>
+
 ```
 
 This improves:
 
-- Accessibility
-- Context
-- Clarity
+- accessibility context
+- clarity for readers
+- meaning for search engines
 
-Users immediately understand what the table represents.
+Think of it like the title of a chart.
 
 ---
 
-## Part 6 — Apply This to the Portfolio
+### Micro Recap
 
-We will now add a Skills section with a table.
+A good table has:
 
-Inside `<main>`, add this **ABOVE** the contact section:
+- headers
+- a caption
+- a clean structure
 
-```
+---
+
+## Applying This to the Portfolio
+
+**We will now add a Skills section above the Contact section.**
+
+Inside `<main>`, add this above your contact section:
+
+```html
 <section id="skills" aria-labelledby="skills-title">
   <h2 id="skills-title">Skills Overview</h2>
 
@@ -200,38 +322,34 @@ Inside `<main>`, add this **ABOVE** the contact section:
     </tbody>
   </table>
 </section>
+
 ```
 
 Save.
 
-Refresh your browser.
+Refresh.
 
-You now see a structured table.
+It will look plain.
 
-It may look plain.
-**That is correct.**
+**That's correct.**
 
-Structure first.
-
-Design later.
+We're building the skeleton.
 
 ---
 
-## Why This Matters
+### Friction Moment — "The Table Looks Ugly"
 
-Without tables:
+Right now it looks like a default browser table.
 
-- Data becomes messy paragraphs.
-- Comparisons become unclear.
-- Structure becomes confusing.
+That's fine.
 
-With tables:
+What matters is:
 
-- Data is aligned.
-- Relationships are clear.
-- Accessibility improves.
+- the data is structured
+- the relationships are clear
+- the markup is correct
 
-**Tables are powerful when used correctly.**
+**Design comes later.**
 
 ---
 
@@ -239,26 +357,25 @@ With tables:
 
 You now have:
 
-- Navigation
-- Hero section
-- Skills table
-- Contact form
-- Footer
+- navigation
+- a Hero section
+- a Skills table
+- a Contact form
+- a footer
 
-Your portfolio now contains:
+Your portfolio now supports:
 
-- Structured navigation
-- Meaningful content
-- Data representation
-- Interactive form
+- content structure
+- data structure
+- interactive structure
 
-**Book 1 HTML foundation is complete.**
+**That's a strong foundation.**
 
 ---
 
 ## Completed Code
 
-```
+```html
 <!doctype html>
 <html lang="en">
   <head>
@@ -373,23 +490,21 @@ Your portfolio now contains:
 
   </body>
 </html>
+
 ```
 
 ---
 
 ## End of Book 1 HTML Foundation
 
-The learner can now:
+At this point, the learner can:
 
-- Write structured HTML
-- Use semantic layout elements
-- Build navigation
-- Structure content meaningfully
-- Create forms
-- Create data tables
+- write structured HTML
+- use semantic layout elements
+- build navigation and sections
+- create accessible forms
+- present structured data with tables
 
-**Foundation complete.**
+**This is a real foundation — not copy/paste knowledge.**
 
 ---
-
-**Ready to outline Book 2 — Intermediate & Advanced HTML?**

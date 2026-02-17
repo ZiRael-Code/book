@@ -23,7 +23,7 @@ Understand how images work in HTML, use `alt` properly, and structure your Hero 
 
 From Chapter 5, your page should look like this:
 
-```
+```html
 <body>
   <div>
     <ul>
@@ -136,7 +136,7 @@ That sentence replaces the photo.
 
 ### Common Beginner Mistakes
 
-```
+```html
 <img alt="image">
 <img alt="photo">
 <img alt="">
@@ -151,7 +151,7 @@ They defeat the purpose.
 
 ### Good `alt` Text
 
-```
+```html
 <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
 ```
 
@@ -212,7 +212,7 @@ Examples:
 
 For these:
 
-```
+```html
 <img src="icon.svg" alt="">
 ```
 
@@ -257,7 +257,7 @@ Use them when:
 
 Structure:
 
-```
+```html
 <figure>
   <img src="assets/profile.jpg" alt="Portrait of John Doe">
   <figcaption>John Doe — Full-Stack Developer</figcaption>
@@ -294,13 +294,13 @@ With structure:
 
 Replace:
 
-```
+```html
 <img src="assets/profile.jpg" alt="Portrait of John Doe">
 ```
 
 With:
 
-```
+```html
 <figure>
   <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
   <figcaption>John Doe — Full-Stack Developer</figcaption>
@@ -310,7 +310,7 @@ With:
 
 Your full `<body>` should now be:
 
-```
+```html
 <body>
   <div>
     <ul>
@@ -376,7 +376,7 @@ Your Hero section is now:
 
 ## Completed Code
 
-```
+```html
 <!doctype html>
 <html lang="en">
   <head>

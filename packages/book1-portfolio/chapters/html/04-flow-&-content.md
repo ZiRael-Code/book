@@ -35,7 +35,7 @@ Structurally, they are completely different.
 
 A link uses the `<a>` element.
 
-```
+```html
 <a href="destination">Text</a>
 ```
 
@@ -49,7 +49,7 @@ It moves the user:
 
 Examples:
 
-```
+```html
 <a href="about.html">About Me</a>
 <a href="#contact">Contact Section</a>
 <a href="https://github.com">GitHub</a>
@@ -86,7 +86,7 @@ Links:
 
 A button uses the `<button>` element.
 
-```
+```html
 <button>Click Me</button>
 ```
 
@@ -108,7 +108,7 @@ It does something.
 
 Using buttons for navigation:
 
-```
+```html
 <button>Contact Me</button>
 ```
 
@@ -181,7 +181,7 @@ In professional projects, accessibility audits fail most often because:
 
 In Chapter 3, we had:
 
-```
+```html
 <p>
   Want to work together?
   <a href="#contact">Contact Me</a>
@@ -199,7 +199,7 @@ We separate the Call-To-Action visually and structurally.
 
 Update your Hero section:
 
-```
+```html
 <body>
   <div>
     <h1 id="hero-title">John Doe</h1>
@@ -230,7 +230,7 @@ Later, CSS will style it to look like a button.
 
 If we wrote:
 
-```
+```html
 <button>Contact Me</button>
 ```
 
@@ -277,7 +277,7 @@ Your Hero section now contains:
 
 ## Completed Code
 
-```
+```html
 <!doctype html>
 <html lang="en">
   <head>
