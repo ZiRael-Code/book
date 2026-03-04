@@ -177,137 +177,145 @@ Flexbox keeps columns balanced by default.
 
 ## Part 4 — Building a Two-Column Layout
 
-Let's create a real About section.
+Let's create a real About section that matches where our portfolio is heading.
 
 HTML:
 
 ```html
 <section class="section" id="about" aria-labelledby="about-title">
-  <h2 id="about-title">About Me</h2>
+    <div class="panel panel--about">
+        <div class="about-inner">
+            <h2 id="about-title">About Me</h2>
 
-  <div class="about-layout">
-    <div class="about-text">
-      <p>Short bio content goes here.</p>
-    </div>
+            <p>
+                Hi! I'm John, a passionate developer who loves crafting beautiful and
+                functional web experiences.
+            </p>
 
-    <div class="about-skills">
-      <p>Highlight strengths here.</p>
+            <p>
+                I specialize in building modern web applications with a focus on user
+                experience, clean architecture, and scalable solutions.
+            </p>
+
+            <a href="../assets/docs/john-doe-cv.pdf">Download My CV</a>
+        </div>
     </div>
-  </div>
 </section>
 ```
 
 CSS:
 
 ```css
-.about-layout {
-  display: flex;
-  gap: 40px;
+.panel {
+    border-radius: 18px;
+    padding: 46px;
 }
 
-.about-text,
-.about-skills {
-  flex: 1;
+.panel--about {
+    background: #e6e6e6;
+}
+
+.about-inner {
+    max-width: 82ch;
+    margin: 0 auto;
 }
 ```
 
 What happened:
 
-- two columns created
-- equal width
-- equal height
-- consistent spacing
+- the About section is wrapped in a panel — a styled container
+- content is centered with a max character width for readability
+- no two-column split here — About is a focused, single-column reading block
 
-No math.
-
-No hacks.
-
-Just Flexbox.
+That's intentional. Not every section needs two columns.
+Good layout means knowing when columns help and when they don't.
 
 ---
 
-### Concept Anchor — Split Screen
 
-Think of your screen split down the middle.
+## Part 5 — Building the Skills Section
 
-Flexbox does exactly that — but responsively.
-
----
-
-### Micro Recap
-
-`flex: 1` gives equal space to each column.
-
----
-
-## Part 5 — Improving the Skills Section
-
-Earlier, your Skills section was centered content only.
-
-Now we prepare it for layout growth.
-
-Add:
-
-```css
-#skills {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-```
-
-This:
-
-- stacks content vertically
-- centers it cleanly
-- prepares for card layouts
-
----
-
-## Preparing for Card Layouts (Before Grid)
+The Skills section uses a grid of cards — not a table, and not a flex row.
+Each card represents a category: Frontend, Backend, Tools, Design.
 
 Example HTML:
 
 ```html
-<div class="skills-row">
-  <div class="skill-card">HTML</div>
-  <div class="skill-card">CSS</div>
-  <div class="skill-card">JavaScript</div>
-</div>
+<section id="skills" class="section" aria-labelledby="skills-title">
+    <h2 id="skills-title">Skills &amp; Technologies</h2>
+
+    <div class="skills-grid">
+        <article class="skill-card" aria-labelledby="skills-frontend-title">
+            <header>
+                <h3 id="skills-frontend-title">Frontend</h3>
+            </header>
+            <ul>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Tailwind CSS</li>
+                <li>Next.js</li>
+            </ul>
+        </article>
+
+        <article class="skill-card" aria-labelledby="skills-backend-title">
+            <header>
+                <h3 id="skills-backend-title">Backend</h3>
+            </header>
+            <ul>
+                <li>Node.js</li>
+                <li>PostgreSQL</li>
+                <li>MongoDB</li>
+                <li>REST APIs</li>
+            </ul>
+        </article>
+    </div>
+</section>
 ```
 
 CSS:
 
 ```css
-.skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
 .skill-card {
-  flex: 1 1 200px;
-  padding: 20px;
-  background: white;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.skill-card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.skill-card ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-card li {
+    font-size: 11px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 6px 10px;
+    border-radius: 999px;
 }
 ```
 
-The magic line:
-
-`flex: 1 1 200px;`
-
-Means:
-
-- grow when space allows
-- shrink when needed
-- start around 200px
-
-Result:
-
-Responsive cards without media queries.
-
+This is the real Skills section structure.
+Cards instead of tables.
+Grid instead of rows.
+Each technology becomes a pill tag inside a category card.
 ---
 
 ### Friction Moment — "Why Does It Resize Automatically?"
@@ -320,43 +328,70 @@ Because Flexbox distributes space dynamically.
 
 ## Improving the Contact Layout
 
-Current contact section stacks everything.
+The contact section uses a two-column layout: info on the left, form on the right.
 
 Let's structure it.
 
 HTML:
 
 ```html
-<div class="contact-layout">
-  <div class="contact-info">
-    <p>Email info</p>
-  </div>
+<section id="contact" class="section" aria-labelledby="contact-title">
+    <div class="contact-grid">
+        <div class="contact-left">
+            <h2 id="contact-title">Get in Touch</h2>
 
-  <div class="contact-form">
-    <form>...</form>
-  </div>
-</div>
+            <section class="contact-info" aria-label="Contact information">
+                <p class="contact-email">
+                    <a href="mailto:johndoe@email.com">Johndoe@email.com</a>
+                </p>
+            </section>
+        </div>
+
+        <section class="contact-form" aria-label="Contact form">
+            <form action="#" method="post">
+                <p>
+                    <label for="name">Name</label><br />
+                    <input id="name" name="name" type="text" autocomplete="name" />
+                </p>
+
+                <p>
+                    <label for="email">Email</label><br />
+                    <input id="email" name="email" type="email" autocomplete="email" />
+                </p>
+
+                <p>
+                    <label for="message">Message</label><br />
+                    <textarea id="message" name="message" rows="6"></textarea>
+                </p>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+</section>
 ```
 
 CSS:
 
 ```css
-.contact-layout {
-  display: flex;
-  gap: 40px;
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 36px;
 }
 
-.contact-info,
 .contact-form {
-  flex: 1;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
 }
 ```
 
-Now:
+Notice this uses CSS Grid, not Flexbox — two defined columns with specific proportions.
+The form gets slightly more space (1.1fr) because it has more content.
 
-- info sits beside form
-- layout feels professional
-- spacing is consistent
 
 ---
 
@@ -382,38 +417,68 @@ You now have:
 ## Completed Code (Flex Layout Additions)
 
 ```css
-.about-layout {
-  display: flex;
-  gap: 40px;
+.panel {
+    border-radius: 18px;
+    padding: 46px;
 }
 
-.about-text,
-.about-skills {
-  flex: 1;
+.panel--about {
+    background: #e6e6e6;
 }
 
-.contact-layout {
-  display: flex;
-  gap: 40px;
+.about-inner {
+    max-width: 82ch;
+    margin: 0 auto;
 }
 
-.contact-info,
-.contact-form {
-  flex: 1;
-}
-
-.skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
 .skill-card {
-  flex: 1 1 200px;
-  padding: 20px;
-  background: white;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.skill-card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.skill-card ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-card li {
+    font-size: 11px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 36px;
+}
+
+.contact-form {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
 }
 ```
 

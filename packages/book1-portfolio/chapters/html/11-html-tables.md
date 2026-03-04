@@ -279,50 +279,98 @@ A good table has:
 
 ## Applying This to the Portfolio
 
-**We will now add a Skills section above the Contact section.**
+Here's something worth saying honestly.
 
-Inside `<main>`, add this above your contact section:
+Tables are a core part of HTML — and you now understand them properly.
+
+But for this specific portfolio, the Skills section won't use a table.
+
+It will use card-based layout — a more visual, modern approach that fits the design better. You'll build those cards once we get into CSS Grid.
+
+So right now, treat the table above as a standalone exercise, not a portfolio addition.
+
+Build it, study it, and understand the relationships between `thead`, `tbody`, `th`, and `td`.
+
+That knowledge will carry into real projects constantly. Admin dashboards, pricing comparisons, analytics reports — tables show up everywhere professionally.
+
+You're learning the tool. The portfolio will use a different tool for this particular section.
+
+That said, don't delete the table exercise from your file. Keep it commented out or in a practice file. You'll want to reference it.
 
 ```html
-<section id="skills" aria-labelledby="skills-title">
-  <h2 id="skills-title">Skills Overview</h2>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe — Developer Portfolio</title>
+</head>
 
-  <table>
-    <caption>Technical Skills and Experience</caption>
+<body>
 
-    <thead>
-      <tr>
-        <th>Technology</th>
-        <th>Experience</th>
-        <th>Level</th>
-      </tr>
-    </thead>
+<a href="#main">Skip to main content</a>
 
-    <tbody>
-      <tr>
-        <td>HTML</td>
-        <td>3 Years</td>
-        <td>Advanced</td>
-      </tr>
-      <tr>
-        <td>CSS</td>
-        <td>3 Years</td>
-        <td>Advanced</td>
-      </tr>
-      <tr>
-        <td>JavaScript</td>
-        <td>2 Years</td>
-        <td>Intermediate</td>
-      </tr>
-      <tr>
-        <td>React</td>
-        <td>2 Years</td>
-        <td>Intermediate</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<header id="top">
+    <nav>
+        <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
+<main id="main">
+
+    <section aria-labelledby="hero-title">
+        <h1 id="hero-title">John Doe</h1>
+        <p class="subtitle"><strong>Full-Stack Developer</strong></p>
+        <p>
+            I build <em>clean</em>, modern, and user-focused web experiences
+            with a strong focus on <mark>performance and accessibility</mark>.
+        </p>
+        <p><small>Currently available for freelance projects.</small></p>
+        <a href="#contact">Contact Me</a>
+
+        <figure>
+            <img src="assets/profile.jpg" alt="Portrait of John Doe smiling and facing forward">
+        </figure>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Get in Touch</h2>
+
+        <form action="#" method="post">
+
+            <p>
+                <label for="name">Name</label><br>
+                <input id="name" name="name" type="text" autocomplete="name" />
+            </p>
+
+            <p>
+                <label for="email">Email</label><br>
+                <input id="email" name="email" type="email" autocomplete="email" />
+            </p>
+
+            <p>
+                <label for="message">Message</label><br>
+                <textarea id="message" name="message" rows="6"></textarea>
+            </p>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 John Doe</p>
+</footer>
+
+</body>
+</html>
 ```
 
 Save.
@@ -494,8 +542,6 @@ Your portfolio now supports:
 ```
 
 ---
-
-## End of Book 1 HTML Foundation
 
 At this point, the learner can:
 

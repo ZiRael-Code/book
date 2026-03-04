@@ -26,32 +26,137 @@ Grid handles layout architecture.
 
 ## 1. Prerequisites
 
-From Chapter 18:
+From Chapter 18, your portfolio now has:
 
-- About section uses Flexbox
-- Contact layout uses Flexbox
-- Skills use wrapping layout
+- an About section with a styled panel
+- a Skills section using a card grid
+- a Contact section with a two-column layout
 
-Now we focus on Projects.
+One major section is still missing.
 
-From HTML Chapter 11, you should have something like:
+**Projects.**
 
-```
-<section class="section" id="projects" aria-labelledby="projects-title">
-  <h2 id="projects-title">Projects</h2>
+We haven't added it to the HTML yet.
 
-  <div class="projects-grid">
-    <article class="project-card">...</article>
-    <article class="project-card">...</article>
-    <article class="project-card">...</article>
-  </div>
-</section>
-
-```
-
-We now control that grid.
+That changes now — and Grid is exactly the right tool for it.
 
 ---
+
+We're going to build the Projects section from scratch here.
+
+This is where HTML structure and CSS Grid meet directly.
+
+Start by adding this section inside `<main>`, **between Skills and Contact**:
+
+```html
+<section id="projects" class="section" aria-labelledby="projects-title">
+  <h2 id="projects-title">Featured Projects</h2>
+  <p>A selection of projects that showcase my skills and passion for building great software.</p>
+
+  <div class="projects-grid">
+
+    <article class="project-card" aria-labelledby="p1-title">
+      <figure>
+        <img
+          src="assets/images/projects/project-01.jpg"
+          alt="E-Commerce Platform screenshot"
+          width="401"
+          height="215"
+        />
+      </figure>
+
+      <h3 id="p1-title">E-Commerce Platform</h3>
+      <p>A full-featured online shopping platform with cart management and payment integration.</p>
+
+      <ul aria-label="Tools used">
+        <li><span>React</span></li>
+        <li><span>Node.js</span></li>
+        <li><span>PostgreSQL</span></li>
+      </ul>
+
+      <div>
+        <a href="#" target="_blank" rel="noreferrer">Live Demo</a>
+        <a href="#" target="_blank" rel="noreferrer">View Code</a>
+      </div>
+    </article>
+
+    <article class="project-card" aria-labelledby="p2-title">
+      <figure>
+        <img
+          src="assets/images/projects/project-02.jpg"
+          alt="Task Manager Pro screenshot"
+          width="401"
+          height="215"
+        />
+      </figure>
+
+      <h3 id="p2-title">Task Manager Pro</h3>
+      <p>Collaborative task management app with real-time updates and productivity analytics.</p>
+
+      <ul aria-label="Tools used">
+        <li><span>React</span></li>
+        <li><span>MongoDB</span></li>
+        <li><span>Docker</span></li>
+      </ul>
+
+      <div>
+        <a href="#" target="_blank" rel="noreferrer">Live Demo</a>
+        <a href="#" target="_blank" rel="noreferrer">View Code</a>
+      </div>
+    </article>
+
+    <article class="project-card" aria-labelledby="p3-title">
+      <figure>
+        <img
+          src="assets/images/projects/project-03.jpg"
+          alt="Weather Dashboard screenshot"
+          width="401"
+          height="215"
+        />
+      </figure>
+
+      <h3 id="p3-title">Weather Dashboard</h3>
+      <p>Beautiful weather app with forecasts, location tracking, and interactive visualizations.</p>
+
+      <ul aria-label="Tools used">
+        <li><span>TypeScript</span></li>
+        <li><span>REST APIs</span></li>
+        <li><span>Figma</span></li>
+      </ul>
+
+      <div>
+        <a href="#" target="_blank" rel="noreferrer">Live Demo</a>
+        <a href="#" target="_blank" rel="noreferrer">View Code</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+```
+
+## Applying This to the Portfolio
+
+Here's something worth saying honestly.
+
+Tables are a core part of HTML — and you now understand them properly.
+
+But for this specific portfolio, the Skills section won't use a table.
+
+It will use card-based layout — a more visual, modern approach that fits the design better. You'll build those cards once we get into CSS Grid.
+
+So right now, treat the table above as a standalone exercise, not a portfolio addition.
+
+Build it, study it, and understand the relationships between `thead`, `tbody`, `th`, and `td`.
+
+That knowledge will carry into real projects constantly. Admin dashboards, pricing comparisons, analytics reports — tables show up everywhere professionally.
+
+You're learning the tool. The portfolio will use a different tool for this particular section.
+
+That said, don't delete the table exercise from your file. Keep it commented out or in a practice file. You'll want to reference it.
+
+---
+
+## Now we have real content to lay out.
 
 ## Part 1 — Why Grid Exists
 
@@ -61,34 +166,33 @@ Grid works in two dimensions.
 
 Flexbox:
 
-- Row OR column
+- Row or column
 
 Grid:
 
-- Rows AND columns
+- Rows and columns
 
 For layouts like:
 
-- Portfolio project cards
-- Dashboards
-- Galleries
+- project card galleries
+- dashboards
+- image mosaics
 
-Grid is clearer.
+Grid is usually clearer and easier to reason about.
 
 ---
 
 ## Part 2 — display: grid
 
-To activate grid:
+To activate Grid:
 
 ```
 .projects-grid {
   display: grid;
 }
-
 ```
 
-Nothing changes visually yet.
+Nothing changes yet.
 
 Grid needs columns.
 
@@ -96,29 +200,25 @@ Grid needs columns.
 
 ## Part 3 — Defining Columns
 
-Add:
+Here's the simplest version of a multi-column grid:
 
 ```
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
+  gap: 22px;
 }
-
 ```
 
-Explanation:
+That creates three equal columns.
 
-- 3 equal columns
-- `1fr` = one fraction of available space
-
-This creates a 3-column layout.
+But we're going to write this more cleanly next.
 
 ---
 
 ## Part 4 — repeat() and minmax()
 
-Hardcoding columns is inflexible.
+Hardcoding columns works, but it's repetitive.
 
 Instead of:
 
@@ -132,103 +232,145 @@ Use:
 grid-template-columns: repeat(3, 1fr);
 ```
 
-Cleaner.
+Same result. Less clutter.
 
-Now improve flexibility:
+Now one important upgrade:
+
+Use `minmax(0, 1fr)` instead of plain `1fr`.
+
+Why?
+
+Because it prevents weird overflow issues when content gets long.
+
+So our final column rule becomes:
 
 ```
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+grid-template-columns: repeat(3, minmax(0, 1fr));
 ```
 
-Explanation:
-
-- Minimum width: 250px
-- Maximum: stretch to available space
-- `auto-fit` automatically adjusts number of columns
-
-This makes layout responsive without media queries.
+This keeps the grid stable even when a card has longer text.
 
 ---
 
 ## Part 5 — gap in Grid
 
-Just like Flexbox:
+Grid spacing is clean:
 
 ```
-gap: 24px;
+gap: 22px;
 ```
 
-Controls spacing between rows and columns.
+This controls spacing between:
 
-No margin hacks required.
+- columns
+- rows
+
+No margin hacks.
+
+No "last-child" fixes.
+
+Just spacing.
 
 ---
 
 ## Improving Project Cards
 
-From earlier chapters, you may already have:
+Each card has four parts: an image, a title, a description, and action links.
+
+Let's make sure the image fills the card cleanly:
 
 ```
 .project-card {
-  background: white;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
-  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
-```
+.project-card figure {
+  margin: 0;
+  background: #9ca3af;
+  height: 170px;
+}
 
-Now ensure images scale properly:
-
-```
-.project-card img {
+.project-card figure img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
 }
 
+.project-card h3 {
+  font-size: 14px;
+  margin: 14px 16px 6px;
+}
+
+.project-card p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 16px 12px;
+}
+
+.project-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 16px 14px;
+  list-style: none;
+}
+
+.project-card ul li span {
+  font-size: 11px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.project-card > div {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
 ```
 
-This references HTML Chapter 6 (image handling).
+`object-fit: cover` keeps the image cropped nicely regardless of the original file dimensions.
+
+`overflow: hidden` on the card means the image corners respect the card's border radius.
 
 ---
 
-## Optional: Create a Featured Layout
+## Optional: Span a Card Across Two Columns
 
-If you want the first project to span full width:
+If you want one project to stand out visually:
 
 ```
 .project-card:first-child {
   grid-column: span 2;
 }
-
 ```
 
-This creates a "featured project" effect.
+This makes the first card twice as wide.
 
-Grid allows easy spanning.
+Use this sparingly — it works best when the first project is your strongest piece.
 
 ---
 
 ## Building the Projects Grid
 
-Final recommended grid rule:
+The final grid rule for the portfolio:
 
 ```
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
-
 ```
 
-This:
+Three equal columns. Clean gaps. No extra math.
 
-- Automatically adapts
-- Maintains clean spacing
-- Avoids media queries
-- Scales down to one column on small screens
+On smaller screens (which we handle in Chapter 20), this will collapse to two columns, then one.
 
 ---
 
@@ -236,36 +378,82 @@ This:
 
 You now have:
 
-- True grid-based layout
-- Responsive behavior without breakpoints
-- Clean card spacing
-- Controlled image scaling
+- a real Projects section (not placeholders)
+- a true Grid layout system
+- clean spacing with `gap`
+- cards with properly cropped images and consistent structure
 
-Your Projects section now feels modern.
+**Your Projects section now feels modern and intentional.**
 
 Grid handles architecture.
 
 Flexbox handles alignment.
 
-Use each tool correctly.
+Use each tool for what it was built for.
 
 ---
 
-## Completed Code (Grid Additions)
+## Completed Code
 
 ```
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
-.project-card img {
+.project-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.project-card figure {
+  margin: 0;
+  background: #9ca3af;
+  height: 170px;
+}
+
+.project-card figure img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
 }
 
+.project-card h3 {
+  font-size: 14px;
+  margin: 14px 16px 6px;
+}
+
+.project-card p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 16px 12px;
+}
+
+.project-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 16px 14px;
+  list-style: none;
+}
+
+.project-card ul li span {
+  font-size: 11px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.project-card > div {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
 ```
 
 ---
@@ -278,6 +466,6 @@ We now refine everything for mobile and tablet.
 
 ---
 
-Your layout system is now powerful.
+**Your layout system is now powerful.**
 
 **Ready for Chapter 20?**

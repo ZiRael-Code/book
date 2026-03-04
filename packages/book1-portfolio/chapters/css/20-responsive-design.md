@@ -26,13 +26,13 @@ A site that works only on desktop is unfinished.
 
 From Chapter 19:
 
-- Projects use Grid with `auto-fit`
-- Flexbox controls About and Contact
-- Typography uses `clamp()`
+- Projects use Grid (3-column layout)
+- About, Skills, and Contact sections are already styled
+- Typography uses `clamp()` for fluid sizing
 
 You already did part of the work.
 
-Now we refine it.
+Now we make sure it survives real screen sizes.
 
 ---
 
@@ -47,9 +47,11 @@ Not the other way around.
 
 Why?
 
-Because small screens are stricter.
+Because small screens are strict.
 
-They force clarity.
+They force you to simplify and prioritize.
+
+If it reads well on a phone, it usually reads well everywhere.
 
 ---
 
@@ -57,24 +59,25 @@ They force clarity.
 
 From HTML Chapter 1, ensure this exists in `<head>`:
 
-```
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
-Without it:
+## Without it:
 
-- Mobile devices zoom out.
-- Layout looks tiny.
+- mobile browsers zoom out
+- layouts look tiny
+- text becomes unreadable
 
 This tag tells the browser:
 
-**"Match layout to device width."**
+**"Match layout to the device width."**
 
 ---
 
 ## Part 3 — Media Queries
 
-Media queries apply styles conditionally.
+Media queries let you apply CSS only when a condition is true.
 
 Example:
 
@@ -84,12 +87,15 @@ Example:
     background: white;
   }
 }
-
 ```
 
-This means:
+Meaning:
 
-Apply styles only if screen is 768px or wider.
+Only apply this if the screen is 768px or wider.
+
+For responsiveness, we mostly use `max-width`:
+
+**"When the screen gets small, change the layout."**
 
 ---
 
@@ -97,146 +103,174 @@ Apply styles only if screen is 768px or wider.
 
 Do not choose breakpoints randomly.
 
-Resize your browser slowly.
+Open your portfolio.
 
-When layout starts to feel cramped —
+Resize the browser slowly.
 
-that is your breakpoint.
+When a section starts to feel cramped — that's your breakpoint.
 
-Common starting points:
+In this portfolio, we'll use:
 
-- 640px (small tablets)
-- 768px (tablets)
-- 1024px (small laptops)
+- **980px** for mid-sized screens where 3-column Projects gets tight
+- **560px** for mobile where most layouts should stack
 
-But always trust layout, not numbers.
+These numbers are not magic.
+
+They're based on when your content needs help.
 
 ---
 
 ## Part 5 — Responsive Images
 
-From HTML Chapter 6, we used:
+From HTML Chapter 6, we already handled images structurally.
+
+For responsiveness, the main idea is simple:
+
+**images should never overflow their container**
+
+In most cases:
 
 ```
-<img src="profile.jpg" alt="Portrait of John Doe">
+img {
+  max-width: 100%;
+  height: auto;
+}
 ```
 
-Improve it:
+And for performance, you can also add:
 
 ```
-<img
-  src="profile.jpg"
-  alt="Portrait of John Doe"
-  loading="lazy">
-
+<img src="profile.jpg" alt="Portrait of John Doe" loading="lazy">
 ```
 
-`loading="lazy"` improves performance.
+`loading="lazy"` tells the browser:
 
-If using multiple sizes:
-
-```
-<img
-  src="image-800.jpg"
-  srcset="image-400.jpg 400w, image-800.jpg 800w"
-  sizes="(max-width: 600px) 100vw, 50vw"
-  alt="Project preview">
-
-```
-
-This allows the browser to choose correct image size.
-
-For now, `max-width: 100%` in CSS is enough for most cases.
+**"Only load this image when the user is close to it."**
 
 ---
 
 ## Making the Portfolio Fully Responsive
 
-Now we refine layout.
+### Step 1 — Stack the Contact Section on Small Screens
 
-### Step 1 — Stack About Section on Small Screens
-
-Currently:
+The contact section uses a two-column grid:
 
 ```
-.about-layout {
-  display: flex;
-  gap: 40px;
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 36px;
 }
-
 ```
 
-Add:
+On smaller screens, that needs to collapse:
 
 ```
-@media (max-width: 768px) {
-  .about-layout {
-    flex-direction: column;
+@media (max-width: 560px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 18px;
+  }
+}
+```
+
+This prevents:
+
+- squeezed form fields
+- awkward column compression
+- tiny, unreadable spacing
+
+### Step 2 — Collapse the Skills Grid
+
+On small screens, two-column skill cards are too tight:
+
+```
+@media (max-width: 560px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+Now each skill card gets full width.
+
+Cleaner and easier to read.
+
+### Step 3 — Adjust the Projects Grid
+
+On mid-sized screens, three columns becomes cramped:
+
+```
+@media (max-width: 980px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-```
-
-Now columns stack vertically on tablets and phones.
-
-### Step 2 — Stack Contact Section
-
-```
-@media (max-width: 768px) {
-  .contact-layout {
-    flex-direction: column;
+@media (max-width: 560px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }
-
 ```
 
-### Step 3 — Adjust Navigation Wrapping
+So the Projects grid becomes:
+
+- 3 columns on desktop
+- 2 columns on tablets / small laptops
+- 1 column on phones
+
+### Step 4 — Navigation Wrapping
+
+On mobile, nav links often overflow.
+
+Fix it:
 
 ```
-@media (max-width: 600px) {
-  nav ul {
+@media (max-width: 560px) {
+  .nav-list {
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 14px;
   }
 }
-
 ```
 
-This prevents overflow.
+Now the menu wraps naturally.
 
-### Step 4 — Improve Hero Spacing
+### Step 5 — Hero Text Alignment
+
+On desktop, left-aligned hero text feels strong.
+
+On mobile, it can feel unbalanced.
+
+Center it:
 
 ```
-@media (max-width: 600px) {
-  #hero-title {
+@media (max-width: 560px) {
+  .hero-content {
     text-align: center;
   }
+}
+```
 
-  section[aria-labelledby="hero-title"] {
-    align-items: center;
+This makes the hero feel intentional, not cramped.
+
+### Step 6 — About Panel Padding
+
+The about panel has generous padding on desktop.
+
+On mobile, reduce it:
+
+```
+@media (max-width: 560px) {
+  .panel {
+    padding: 26px;
   }
 }
-
 ```
 
-Now hero looks balanced on mobile.
-
-### Step 5 — Grid Already Helps
-
-Because we used:
-
-```
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-```
-
-Projects automatically collapse to:
-
-- 2 columns
-- then 1 column
-
-No extra media query required.
-
-That is modern CSS working properly.
+This keeps the panel comfortable without wasting space.
 
 ---
 
@@ -244,62 +278,76 @@ That is modern CSS working properly.
 
 You now have:
 
-- Mobile-first base styles
-- Responsive typography
-- Grid that adapts automatically
-- Flex layouts that stack on smaller screens
-- Navigation that wraps cleanly
+- a Projects grid that scales down cleanly
+- a Contact section that stacks properly
+- Skills cards that remain readable
+- navigation that wraps instead of breaking
+- hero content that feels balanced on mobile
+- panels with mobile-friendly padding
 
 Your portfolio now works on:
 
-- Phones
-- Tablets
-- Laptops
-- Large monitors
+- phones
+- tablets
+- laptops
+- large monitors
 
-That is professional behavior.
+**That's what "finished" looks like.**
 
 ---
 
 ## Completed Code (Responsive Additions)
 
 ```
-@media (max-width: 768px) {
-  .about-layout {
-    flex-direction: column;
-  }
-
-  .contact-layout {
-    flex-direction: column;
+@media (max-width: 980px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 600px) {
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+@media (max-width: 560px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 18px;
   }
 
-  #hero-title {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .hero-content {
     text-align: center;
   }
 
-  section[aria-labelledby="hero-title"] {
-    align-items: center;
+  .panel {
+    padding: 26px;
   }
 }
-
 ```
-
-You have now completed:
-
-Structure → Identity → Layout → Responsiveness.
-
-Custom CSS portion of Book 1 is complete.
 
 ---
 
-### Next:
+## Final Reflection
+
+Responsive design isn't "make it smaller."
+
+**It's "make it readable."**
+
+When your layout adapts without stress, users feel it immediately.
+
+---
+
+### Next
 
 We enter Tailwind.
 
@@ -307,6 +355,6 @@ A new language built on everything you now understand.
 
 ---
 
-Your portfolio is now structurally and visually complete using pure CSS.
+**Your portfolio is now structurally and visually complete using pure CSS.**
 
 **Ready for Chapter 21 (Tailwind Begins)?**
