@@ -59,11 +59,11 @@ If it reads well on a phone, it usually reads well everywhere.
 
 From HTML Chapter 1, ensure this exists in `<head>`:
 
-```html
+```
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
-## Without it:
+Without it:
 
 - mobile browsers zoom out
 - layouts look tiny
@@ -238,7 +238,66 @@ Fix it:
 
 Now the menu wraps naturally.
 
-### Step 5 — Hero Text Alignment
+### Step 5 — The Hamburger Menu
+
+On mobile, the full navigation list takes up too much space.
+
+Real sites solve this with a hamburger menu — three lines that toggle the nav open and closed.
+
+In our portfolio, the nav button is already in the HTML. On small screens, the Contact button in the header transforms into a hamburger icon using pure CSS:
+
+```
+@media (max-width: 560px) {
+  .main-nav {
+    display: none;
+  }
+
+  .header-inner > .btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+  }
+
+  .header-inner > .btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: #111827;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 -6px 0 #111827, 0 6px 0 #111827;
+    border-radius: 2px;
+  }
+}
+```
+
+What's happening here:
+
+- `font-size: 0` hides the button's text label ("Contact") visually
+- `::before` draws three horizontal lines using the element itself plus box-shadow above and below it
+- the nav links are hidden entirely — on a real project, you'd wire up a JavaScript toggle to show them when the icon is clicked
+
+Why no JavaScript yet?
+
+Because this is the CSS book.
+
+The visual behavior — the icon appearing, the nav hiding — is CSS's job.
+
+The toggle interaction is JavaScript's job, and that comes later.
+
+For now, your mobile header shows a proper hamburger icon instead of a broken nav overflow.
+
+That's the right foundation.
+
+### Step 6 — Hero Text Alignment
 
 On desktop, left-aligned hero text feels strong.
 
@@ -256,7 +315,7 @@ Center it:
 
 This makes the hero feel intentional, not cramped.
 
-### Step 6 — About Panel Padding
+### Step 7 — About Panel Padding
 
 The about panel has generous padding on desktop.
 
@@ -282,6 +341,7 @@ You now have:
 - a Contact section that stacks properly
 - Skills cards that remain readable
 - navigation that wraps instead of breaking
+- a hamburger icon replacing the nav on mobile
 - hero content that feels balanced on mobile
 - panels with mobile-friendly padding
 
@@ -323,6 +383,35 @@ Your portfolio now works on:
   .nav-list {
     flex-wrap: wrap;
     gap: 14px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .header-inner > .btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+  }
+
+  .header-inner > .btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: #111827;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 -6px 0 #111827, 0 6px 0 #111827;
+    border-radius: 2px;
   }
 
   .hero-content {

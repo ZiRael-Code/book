@@ -2,23 +2,23 @@
 
 **Goal of This Chapter:**
 
-Use Tailwind's responsive prefixes and state utilities to polish interactions and finish visual refinement.
+Learn Tailwind's responsive prefixes and state utilities, then use them to polish the interactive parts of your portfolio.
 
-You already understand CSS.
+You already know how to build with Tailwind.
 
-Now you move quickly without breaking structure.
+Now you learn how to move fast and feel confident doing it.
 
 ---
 
 ## Table of Contents
 
 1. Prerequisites
-2. Part 1 — Responsive Prefixes (`sm:`, `md:`, `lg:`)
-3. Part 2 — State Utilities (`hover:`, `focus:`, `focus-visible:`)
-4. Part 3 — Interactive Polish for Buttons
-5. Part 4 — Improving Project Cards
-6. Part 5 — Polishing Social Icons
-7. Project Milestone — Interaction Complete
+2. Part 1 — Responsive Prefixes
+3. Part 2 — State Utilities
+4. Part 3 — Polishing the CTA Button
+5. Part 4 — Polishing Form Inputs
+6. Part 5 — Polishing Social Icon Links
+7. Project Milestone — Interactions Complete
 8. Completed Code
 
 ---
@@ -27,263 +27,283 @@ Now you move quickly without breaking structure.
 
 From Chapter 22:
 
-- Header uses Tailwind
-- Hero uses Tailwind
-- Brand shadow remains in custom CSS
-- Tokens are mapped into config
+- Header and nav use Tailwind
+- Hero (inside the header) uses Tailwind — including stats and photo
+- Brand shadow and skip link live in `@layer components`
+- Token system is mapped into config
 
-Now we enhance interactions.
+The structure is there.
+
+Now we sharpen the interactions before building the remaining sections.
 
 ---
 
 ## Part 1 — Responsive Prefixes
 
-From CSS Chapter 20, we used media queries.
-
-In Tailwind, we use prefixes.
-
-Example:
+From CSS Chapter 20, you wrote media queries like this:
 
 ```
-text-3xl md:text-5xl
+@media (max-width: 980px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 ```
 
-Meaning:
+In Tailwind, responsive prefixes replace that entirely:
 
-- Default → small screens
-- On medium screens and above → larger size
+```
+class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+```
 
-Common breakpoints:
+Reading left to right:
 
-- `sm:` → 640px
-- `md:` → 768px
-- `lg:` → 1024px
-- `xl:` → 1280px
+- default → 1 column on small screens
+- `md:` → 2 columns at 768px and above
+- `lg:` → 3 columns at 980px and above
 
-We stay mobile-first.
+The breakpoints `md` and `lg` are already mapped to 768px and 980px in your `tailwind.config.js` from Chapter 21.
 
-Always write base class first.
+Always write the smallest screen first.
 
-Then add enhancements.
+Then layer enhancements on top.
+
+That is mobile-first — the same principle from CSS Chapter 20, just written differently.
+
+---
+
+### Concept Anchor — Stacking Outfits
+
+Think of it like layering clothing.
+
+You start with a base.
+
+Then add things as the weather (screen size) allows.
+
+You never start with the winter coat.
+
+---
+
+### Micro Recap
+
+- Write base styles first
+- Add `md:` and `lg:` prefixes for larger screens
+- Breakpoints are defined in your config
 
 ---
 
 ## Part 2 — State Utilities
 
-Instead of writing CSS like:
+From CSS Chapter 14, you wrote hover rules like this:
 
 ```
 button:hover {
   background: #1f5fd1;
 }
-
 ```
 
-We write:
+In Tailwind, that becomes:
 
 ```
 class="bg-primary hover:bg-primary-dark"
 ```
 
-Other useful states:
+Other states you'll use frequently:
 
-- `focus:`
-- `focus-visible:`
-- `active:`
-- `disabled:`
-- `group-hover:`
+- `hover:` — mouse over
+- `focus-visible:` — keyboard focus only (not mouse click)
+- `active:` — while being clicked
+- `transition` — smooth animation between states
 
-These let us control behavior inline.
+The `transition` utility is important.
+
+Without it, state changes are instant and feel harsh.
+
+With it, they feel polished.
 
 ---
 
-## Part 3 — Interactive Polish for Buttons
+### Why `focus-visible:` and not `focus:`
 
-Update Hero CTA:
+`focus:` triggers on both mouse click and keyboard tab.
+
+`focus-visible:` triggers only on keyboard navigation.
+
+This means:
+
+- keyboard users always see a clear focus ring
+- mouse users don't see unnecessary outlines
+
+That's the professional behavior.
+
+---
+
+### Micro Recap
+
+- State utilities apply styles conditionally
+- Always add `transition` alongside hover/focus states
+- Prefer `focus-visible:` over `focus:` for interactive elements
+
+---
+
+## Part 3 — Polishing the CTA Button
+
+From Chapter 22, your hero CTA looks like this:
 
 ```
 <a href="#projects"
    class="inline-flex items-center gap-2
-          bg-primary text-white
-          px-6 py-3 rounded-full
-          font-semibold
-          transition
-          hover:bg-primary-dark
+          bg-primary text-white text-sm font-semibold
+          px-5 py-3 rounded-md
+          hover:bg-primary-dark transition">
+  View My Work
+  <img src="assets/icons/arrow-right.svg" alt="" width="16" height="16" />
+</a>
+```
+
+Now add keyboard focus support:
+
+```
+<a href="#projects"
+   class="inline-flex items-center gap-2
+          bg-primary text-white text-sm font-semibold
+          px-5 py-3 rounded-md
+          hover:bg-primary-dark transition
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-primary
           focus-visible:ring-offset-2">
   View My Work
+  <img src="assets/icons/arrow-right.svg" alt="" width="16" height="16" />
 </a>
-
 ```
 
-What we added:
+What was added:
 
-- `transition` → smooth hover
-- `focus-visible:ring-2` → accessible keyboard focus
-- `ring-offset-2` → separation from background
+- `focus-visible:outline-none` → removes the default browser outline
+- `focus-visible:ring-2` → adds a clean custom ring instead
+- `focus-visible:ring-primary` → ring uses your brand color
+- `focus-visible:ring-offset-2` → small gap between element and ring
 
-This replaces our earlier CSS focus styles from Chapter 14.
+This replaces the focus CSS from Chapter 14 — same behavior, written inline.
 
 ---
 
-## Part 4 — Improving Project Cards
+### Micro Recap
 
-From HTML Chapter 11, project cards contain:
+Good buttons always have:
 
-- Image
-- Title
-- Description
-- Buttons
-
-Refactor card container:
-
-```
-<article class="bg-white rounded-lg brand-shadow
-                overflow-hidden
-                transition
-                hover:-translate-y-1
-                hover:shadow-lg">
-
-```
-
-What this does:
-
-- `hover:-translate-y-1` → subtle lift
-- `hover:shadow-lg` → deeper shadow
-- `transition` → smooth animation
-
-This adds motion without JavaScript.
+- hover color change
+- smooth transition
+- visible keyboard focus
 
 ---
 
-## Responsive Grid Enhancement
+## Part 4 — Polishing Form Inputs
 
-In Chapter 19 we used Grid.
-
-Now in Tailwind:
+From Chapter 22, your contact form inputs will use this pattern:
 
 ```
-<div class="grid gap-6
-            sm:grid-cols-2
-            lg:grid-cols-3">
-
+<input type="text"
+       class="w-full px-3 py-2 mt-2
+              border border-line rounded-md
+              text-sm font-sans
+              focus-visible:outline-none
+              focus-visible:border-primary
+              focus-visible:ring-4
+              focus-visible:ring-blue-100
+              transition" />
 ```
 
-Meaning:
+What each part does:
 
-- 1 column on small screens
-- 2 columns on small tablets
-- 3 columns on desktops
+- `border border-line` → subtle grey border at rest
+- `focus-visible:border-primary` → border turns blue on focus
+- `focus-visible:ring-4 focus-visible:ring-blue-100` → soft blue glow around the field
+- `transition` → smooth color change
 
-Cleaner than writing media queries manually.
+This replaces the `input:focus` rules from CSS Chapter 14.
+
+Same visual result.
 
 ---
 
-## Part 5 — Polishing Social Icons
+### Friction Moment — "Why `ring-blue-100` and not `ring-primary`?"
 
-From HTML Chapter 10 (Contact section):
+`ring-primary` would give a solid blue ring.
+
+`ring-blue-100` is a very light blue — almost transparent.
+
+Combined with `ring-4` it creates a soft glow effect rather than a harsh outline.
+
+That subtle difference is what makes forms feel professional.
+
+---
+
+## Part 5 — Polishing Social Icon Links
+
+In the Contact section, each social icon is a circular link.
+
+Here's the pattern:
 
 ```
 <a href="#" aria-label="Twitter"
-   class="w-9 h-9
-          flex items-center justify-center
-          rounded-full
-          border border-line
-          bg-white
-          transition
-          hover:bg-primary
-          hover:text-white">
-  <img src="..." alt="">
+   class="w-9 h-9 flex items-center justify-center
+          rounded-full border border-line bg-card
+          brand-shadow transition
+          hover:bg-primary hover:border-primary">
+  <img src="assets/icons/twitter.svg" alt="" width="20" height="20" />
 </a>
-
 ```
 
-This creates:
+What this creates:
 
-- Circular icon
-- Hover color inversion
-- Smooth transition
+- `w-9 h-9` → fixed square, which `rounded-full` turns into a circle
+- `flex items-center justify-content` → centers the icon inside
+- `brand-shadow` → subtle depth
+- `hover:bg-primary hover:border-primary` → the circle fills with brand blue on hover
+- `transition` → smooth fill animation
 
-Accessible and clear.
+The icon stays white against the blue background naturally because SVG icons in this portfolio are designed for it.
 
 ---
 
-## Improving Form Inputs
+## Project Milestone — Interactions Complete
 
-From HTML Chapter 10:
+You now understand:
 
-```
-<input type="email"
-       class="w-full px-4 py-3
-              border border-line
-              rounded-md
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-primary
-              transition">
+- how to write responsive layouts with prefixes
+- how to handle hover and focus states inline
+- how to make buttons, inputs, and icons feel alive
 
-```
+These patterns repeat across every section you build next.
 
-This replaces earlier CSS input focus rules.
+You won't need to relearn them.
 
-Tailwind keeps logic consistent.
+You'll just apply them.
 
 ---
 
-## Project Milestone — Interaction Complete
+## Completed Code
 
-You now have:
+No new HTML sections were added this chapter.
 
-- Responsive typography via prefixes
-- Interactive buttons
-- Lift-on-hover project cards
-- Responsive grid using utilities
-- Accessible focus states
-- Polished social icons
+The patterns you learned here are applied starting in Chapter 24.
 
-Your portfolio now feels modern.
+Keep your `input.css` and `tailwind.config.js` from Chapter 22.
 
-Not static.
-
-Interactive.
-
----
-
-## Completed Example Snippets
-
-### Responsive Grid
-
-```
-<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-```
-
-### CTA Button
-
-```
-class="bg-primary text-white px-6 py-3 rounded-full
-       hover:bg-primary-dark transition
-       focus-visible:ring-2 focus-visible:ring-primary"
-```
-
-### Project Card
-
-```
-class="bg-white rounded-lg brand-shadow
-       transition hover:-translate-y-1 hover:shadow-lg"
-```
+They are correct as-is.
 
 ---
 
 ### Next Chapter:
 
-Accessibility, SEO & Ship.
+Building the Page — Part 1.
 
-We prepare this portfolio for the real world.
+We build the About and Skills sections in full.
 
 ---
 
-You now move quickly without losing structure.
+**The tools are sharp. Time to build.**
 
-**Ready for the final chapter?**
+**Ready for Chapter 24?**

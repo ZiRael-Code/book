@@ -63,7 +63,6 @@ Traditional CSS:
   background: var(--color-primary);
   border-radius: 8px;
 }
-
 ```
 
 Tailwind equivalent:
@@ -96,7 +95,6 @@ Install via npm:
 npm init -y
 npm install -D tailwindcss
 npx tailwindcss init
-
 ```
 
 This creates:
@@ -119,7 +117,6 @@ Add:
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 ```
 
 ### Build Output File
@@ -160,9 +157,9 @@ Tailwind includes a reset called **Preflight**.
 
 It:
 
-- Removes default margins
-- Normalizes font sizing
-- Sets sensible defaults
+- removes default margins
+- normalizes font sizing
+- sets sensible defaults
 
 It replaces our earlier reset from Chapter 12.
 
@@ -208,7 +205,6 @@ module.exports = {
   },
   plugins: []
 }
-
 ```
 
 Now we can write:
@@ -233,7 +229,6 @@ Instead of:
 .hero {
   padding: 60px 0;
 }
-
 ```
 
 We write:
@@ -249,7 +244,6 @@ Instead of:
   max-width: 1100px;
   margin: 0 auto;
 }
-
 ```
 
 We write:
@@ -264,49 +258,59 @@ Everything becomes composable.
 
 ## Refactoring the Header with Tailwind
 
-From HTML Chapter 9, header looked like:
+Here's where things get interesting.
+
+In the real portfolio, the `<header>` contains two things — the nav bar and the hero section.
+
+They live together inside one `<header>` element.
+
+Keep that structure.
+
+Just replace the CSS classes with Tailwind utilities.
+
+The nav bar inner row has three parts: the brand on the left, the nav links in the middle, and a Contact button on the right.
 
 ```
-<header id="top">
-  <nav>
-    <ul>
-      <li><a href="#top">Home</a></li>
-      ...
-    </ul>
-  </nav>
-</header>
+<header id="top" class="pt-4">
 
-```
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
 
-Now rewrite it using Tailwind:
+    <a href="#top" class="flex items-center gap-2 font-bold text-lg">
+      <img src="assets/icons/logo-mark.svg" alt="" width="24" height="24" />
+      <span>John Doe</span>
+    </a>
 
-```
-<header id="top" class="sticky top-0 bg-bg border-b border-line z-10">
-  <div class="max-w-6xl mx-auto px-6 py-4">
-    <nav>
-      <ul class="flex justify-center items-center gap-6 text-sm">
-        <li><a href="#top" class="text-text hover:opacity-100 opacity-80">Home</a></li>
-        <li><a href="#about" class="text-text hover:opacity-100 opacity-80">About</a></li>
-        <li><a href="#projects" class="text-text hover:opacity-100 opacity-80">Projects</a></li>
-        <li><a href="#skills" class="text-text hover:opacity-100 opacity-80">Skills</a></li>
-        <li><a href="#contact" class="text-text hover:opacity-100 opacity-80">Contact</a></li>
+    <nav aria-label="Primary navigation">
+      <ul class="flex items-center gap-6 text-sm text-text">
+        <li><a href="#top" class="opacity-90 hover:opacity-100">Home</a></li>
+        <li><a href="#about" class="opacity-90 hover:opacity-100">About</a></li>
+        <li><a href="#projects" class="opacity-90 hover:opacity-100">Projects</a></li>
+        <li><a href="#blog" class="opacity-90 hover:opacity-100">Blog</a></li>
       </ul>
     </nav>
-  </div>
-</header>
 
+    <a href="#contact"
+       class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-primary-dark transition">
+      Contact
+    </a>
+
+  </div>
+
+  <!-- Hero lives here — see Chapter 22 -->
+
+</header>
 ```
 
 Notice:
 
-- `flex` → from Chapter 17
-- `sticky` → from Chapter 16
-- `max-w-6xl mx-auto` → from Chapter 13
-- `border-line` → from Chapter 14 tokens
+- `flex items-center justify-between` → from Chapter 17 (Flexbox)
+- `rounded-full` → pill button from our CSS token system
+- `opacity-90 hover:opacity-100` → replaces our earlier `nav a` opacity rule
+- the nav links are: Home, About, Projects, Blog — matching the real portfolio
 
-Tailwind is not new knowledge.
+The Contact link is a pill-shaped button, not a plain link — that's intentional.
 
-It is compressed CSS knowledge.
+It's the primary call-to-action in the nav.
 
 ---
 
@@ -317,8 +321,9 @@ You now have:
 - Tailwind installed
 - Tokens mapped into config
 - Header fully rewritten in utilities
-- Sticky nav preserved
 - Layout preserved
+- Navigation structure preserved
+- Primary CTA preserved as a button-like link
 
 This confirms 1:1 mapping.
 
@@ -330,15 +335,6 @@ We translated.
 
 ## Completed Files
 
-### input.css
-
-```
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-```
-
 ### tailwind.config.js
 
 ```
@@ -349,16 +345,37 @@ module.exports = {
       colors: {
         primary: "#2f7cf6",
         "primary-dark": "#1f5fd1",
-        bg: "#f8fafc",
+        bg: "#ffffff",
         text: "#0f172a",
         muted: "#6b7280",
-        line: "#e5e7eb"
-      }
-    }
+        line: "#e5e7eb",
+        panel: "#e6e6e6",
+        card: "#ffffff",
+      },
+      borderRadius: {
+        lg: "18px",
+        md: "14px",
+        sm: "12px",
+      },
+      screens: {
+        md: "768px",
+        lg: "980px",
+      },
+      maxWidth: {
+        container: "1120px",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }
+```
 
+### input.css
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
 ---
@@ -367,7 +384,7 @@ module.exports = {
 
 Tailwind + Custom CSS Together.
 
-We learn when NOT to use utilities.
+We learn when not to use utilities.
 
 ---
 
@@ -375,6 +392,6 @@ You are now officially bilingual:
 
 Custom CSS
 
-Utility CSS
+Utility-first CSS
 
 **Ready for Chapter 22?**

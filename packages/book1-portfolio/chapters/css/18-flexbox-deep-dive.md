@@ -15,7 +15,7 @@ We move from simple alignment into intentional layout design.
 3. Part 2 — `flex-wrap` and Responsive Stacking
 4. Part 3 — Equal-Height Cards
 5. Part 4 — Building a Two-Column Layout
-6. Part 5 — Improving the Skills Section
+6. Part 5 — Building the Skills Section
 7. Applying Flexbox to the Portfolio
 8. Project Milestone — Two-Column About + Clean Skills
 9. Completed Code
@@ -181,7 +181,7 @@ Let's create a real About section that matches where our portfolio is heading.
 
 HTML:
 
-```html
+```
 <section class="section" id="about" aria-labelledby="about-title">
     <div class="panel panel--about">
         <div class="about-inner">
@@ -205,7 +205,7 @@ HTML:
 
 CSS:
 
-```css
+```
 .panel {
     border-radius: 18px;
     padding: 46px;
@@ -228,101 +228,115 @@ What happened:
 - no two-column split here — About is a focused, single-column reading block
 
 That's intentional. Not every section needs two columns.
+
 Good layout means knowing when columns help and when they don't.
 
 ---
 
-
 ## Part 5 — Building the Skills Section
 
 The Skills section uses a grid of cards — not a table, and not a flex row.
-Each card represents a category: Frontend, Backend, Tools, Design.
 
-Example HTML:
+Each card represents a category:
 
-```html
+- Frontend
+- Backend
+- Tools
+- Design
+
+Here are the first two cards to get you started:
+
+```
 <section id="skills" class="section" aria-labelledby="skills-title">
-    <h2 id="skills-title">Skills &amp; Technologies</h2>
+  <h2 id="skills-title">Skills & Technologies</h2>
 
-    <div class="skills-grid">
-        <article class="skill-card" aria-labelledby="skills-frontend-title">
-            <header>
-                <h3 id="skills-frontend-title">Frontend</h3>
-            </header>
-            <ul>
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>Tailwind CSS</li>
-                <li>Next.js</li>
-            </ul>
-        </article>
+  <div class="skills-grid">
 
-        <article class="skill-card" aria-labelledby="skills-backend-title">
-            <header>
-                <h3 id="skills-backend-title">Backend</h3>
-            </header>
-            <ul>
-                <li>Node.js</li>
-                <li>PostgreSQL</li>
-                <li>MongoDB</li>
-                <li>REST APIs</li>
-            </ul>
-        </article>
-    </div>
+    <article class="skill-card" aria-labelledby="skills-frontend-title">
+      <header>
+        <h3 id="skills-frontend-title">Frontend</h3>
+      </header>
+      <ul>
+        <li>React</li>
+        <li>TypeScript</li>
+        <li>Tailwind CSS</li>
+        <li>Next.js</li>
+      </ul>
+    </article>
+
+    <article class="skill-card" aria-labelledby="skills-backend-title">
+      <header>
+        <h3 id="skills-backend-title">Backend</h3>
+      </header>
+      <ul>
+        <li>Node.js</li>
+        <li>PostgreSQL</li>
+        <li>MongoDB</li>
+        <li>REST APIs</li>
+      </ul>
+    </article>
+
+    <!-- Your turn — add Tools and Design cards here -->
+
+  </div>
 </section>
 ```
 
-CSS:
+Two more cards remain: Tools and Design.
 
-```css
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    max-width: 920px;
-    margin: 0 auto;
-}
+Try building them yourself before looking at the answer below.
 
-.skill-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 18px;
-}
+You already have everything you need — the pattern is identical.
 
-.skill-card header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
+Tools contains:
 
-.skill-card ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+- GitHub
+- Docker
+- VS Code
+- Figma
 
-.skill-card li {
-    font-size: 11px;
-    background: #f3f4f6;
-    border: 1px solid #e5e7eb;
-    padding: 6px 10px;
-    border-radius: 999px;
-}
+Design contains:
+
+- UI/UX
+- Prototyping
+- Responsive Design
+
+### Exercise Answer
+
+```
+<article class="skill-card" aria-labelledby="skills-tools-title">
+  <header>
+    <h3 id="skills-tools-title">Tools</h3>
+  </header>
+  <ul>
+    <li>GitHub</li>
+    <li>Docker</li>
+    <li>VS Code</li>
+    <li>Figma</li>
+  </ul>
+</article>
+
+<article class="skill-card" aria-labelledby="skills-design-title">
+  <header>
+    <h3 id="skills-design-title">Design</h3>
+  </header>
+  <ul>
+    <li>UI/UX</li>
+    <li>Prototyping</li>
+    <li>Responsive Design</li>
+  </ul>
+</article>
 ```
 
-This is the real Skills section structure.
-Cards instead of tables.
-Grid instead of rows.
-Each technology becomes a pill tag inside a category card.
----
+If yours matched — you're thinking like a developer.
 
-### Friction Moment — "Why Does It Resize Automatically?"
+Patterns in HTML are meant to be repeated.
 
-Because Flexbox distributes space dynamically.
+Once you've seen one card, you've seen all of them.
 
-**That's the whole point.**
+The CSS stays exactly the same — nothing new needed.
+
+The grid handles the layout automatically as you add more cards.
 
 ---
 
@@ -334,7 +348,7 @@ Let's structure it.
 
 HTML:
 
-```html
+```
 <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="contact-grid">
         <div class="contact-left">
@@ -373,7 +387,7 @@ HTML:
 
 CSS:
 
-```css
+```
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -390,8 +404,8 @@ CSS:
 ```
 
 Notice this uses CSS Grid, not Flexbox — two defined columns with specific proportions.
-The form gets slightly more space (1.1fr) because it has more content.
 
+The form gets slightly more space (1.1fr) because it contains more content.
 
 ---
 
@@ -416,7 +430,7 @@ You now have:
 
 ## Completed Code (Flex Layout Additions)
 
-```css
+```
 .panel {
     border-radius: 18px;
     padding: 46px;

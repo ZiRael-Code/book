@@ -83,7 +83,6 @@ That replaces:
 .hero {
   padding: 60px 0;
 }
-
 ```
 
 Clear and fast.
@@ -126,7 +125,6 @@ Inside `styles/input.css`, below Tailwind imports:
     box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
   }
 }
-
 ```
 
 Now you can write:
@@ -146,47 +144,83 @@ Clean and intentional.
 
 ## Refactoring the Hero Section
 
-From HTML Chapter 9, hero looked like:
+The hero lives inside the `<header>`, right below the nav bar.
+
+Keep that structure as you convert.
+
+The hero has two sides: content on the left, profile photo on the right.
 
 ```
-<section aria-labelledby="hero-title">
-  <h1 id="hero-title">Hello, I'm John Doe</h1>
-  <p>Full-Stack Developer...</p>
-</section>
+<!-- This goes inside <header>, below the nav div -->
 
-```
+<section class="max-w-5xl mx-auto px-6 pt-10 pb-0
+                grid grid-cols-2 items-center gap-16"
+         aria-labelledby="hero-title">
 
-Now rewrite with Tailwind utilities:
-
-```
-<section aria-labelledby="hero-title" class="py-20 bg-bg">
-  <div class="max-w-6xl mx-auto px-6">
+  <div>
     <h1 id="hero-title"
-        class="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-      Hello, I'm John Doe
+        class="text-5xl font-bold leading-tight tracking-tight mb-3">
+      Hello,<br />I'm John Doe
     </h1>
 
-    <p class="text-muted max-w-prose mb-6">
-      Full-Stack Developer with a passion for clean design and elegant code.
+    <p class="text-muted max-w-prose mb-5">
+      Full-Stack Developer with a passion for clean design and elegant code
     </p>
 
     <a href="#projects"
-       class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition">
+       class="inline-flex items-center gap-2
+              bg-primary text-white text-sm font-semibold
+              px-5 py-3 rounded-md
+              hover:bg-primary-dark transition">
       View My Work
+      <img src="assets/icons/arrow-right.svg" alt="" width="16" height="16" />
     </a>
-  </div>
-</section>
 
+    <!-- Stats -->
+    <div class="mt-6">
+      <ul class="bg-card border border-line rounded-md
+                 grid grid-cols-3 text-center
+                 px-4 py-3 gap-2 max-w-md brand-shadow">
+        <li>
+          <p class="text-xl font-bold text-text">15</p>
+          <p class="text-xs text-muted">Experience</p>
+        </li>
+        <li>
+          <p class="text-xl font-bold text-text">100+</p>
+          <p class="text-xs text-muted">Projects Completed</p>
+        </li>
+        <li>
+          <p class="text-xl font-bold text-text">52</p>
+          <p class="text-xs text-muted">Happy Clients</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <figure class="rounded-lg overflow-hidden brand-shadow justify-self-end max-w-sm">
+    <img
+      src="assets/images/profile.jpg"
+      alt="Portrait of John Doe"
+      width="442"
+      height="537"
+      class="w-full h-auto object-cover"
+    />
+  </figure>
+
+</section>
 ```
 
 What we used:
 
-- `md:text-6xl` → from CSS Chapter 20 (responsive thinking)
-- `tracking-tight` → typography refinement (Chapter 15)
-- `rounded-full` → border-radius system (Chapter 14 tokens)
-- `hover:` → state utilities
+- `grid grid-cols-2 items-center gap-16` → two-column hero layout (Chapter 19)
+- `leading-tight tracking-tight` → typography refinement (Chapter 15)
+- `grid grid-cols-3` → stats row (Chapter 19)
+- `brand-shadow` → custom CSS layer (Chapter 22)
+- `rounded-lg overflow-hidden` → hero photo treatment (Chapter 14 tokens)
 
-This is a 1:1 translation of our CSS logic.
+The stats block is important — it communicates experience at a glance.
+
+Don't skip it.
 
 ---
 
@@ -264,8 +298,22 @@ That is professional flexibility.
   .brand-shadow {
     box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
   }
-}
 
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 12px;
+    background: #0f172a;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  .skip-link:focus {
+    left: 12px;
+  }
+}
 ```
 
 ---

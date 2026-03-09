@@ -235,6 +235,33 @@ export const CONFIG = {
             codePath: "../code/tailwind/24-responsiveness/",
             time: "25 min",
             subtitle: "Building responsive designs with Tailwind"
+        },
+        {
+            id: "tailwind-building-page-2",
+            title: "Building the Page (Part 3)",
+            order: 25,
+            path: "../chapters/tailwind/25-building-the-page-part-2.md",
+            codePath: "../code/tailwind/25-building-the-page-part-2/",
+            time: "25 min",
+            subtitle: "Building responsive designs with Tailwind"
+        },
+        {
+            id: "tailwind-building-page3",
+            title: "Building the Page (Part 3)",
+            order: 26,
+            path: "25-building-the-page-part-3.md",
+            codePath: "../code/tailwind/24-responsiveness/",
+            time: "25 min",
+            subtitle: "Building responsive designs with Tailwind"
+        },
+        {
+            id: "tailwind-accessibility-seo",
+            title: "RAccessibility, SEO & Ship",
+            order: 27,
+            path: "../chapters/tailwind/24-accessibility-seo-ship.md",
+            codePath: "../code/tailwind/24-responsiveness/",
+            time: "25 min",
+            subtitle: "Building responsive designs with Tailwind"
         }
     ]
 };
